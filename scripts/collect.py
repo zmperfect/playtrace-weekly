@@ -57,7 +57,7 @@ LIBRARY_GENRES = {
     "角色扮演": ("角色扮演", "日系角色扮演", "动作角色扮演", "团队角色扮演", "CRPG", "JRPG"),
     "卡牌": ("卡牌", "卡牌游戏", "卡牌战斗", "牌组构建", "卡组构筑", "牌组构建式类 Rogue"),
     "Roguelike": ("Roguelike", "Roguelite", "类 Rogue", "轻度 Rogue", "动作类 Rogue", "传统类 Rogue", "牌组构建式类 Rogue"),
-    "模拟经营": ("模拟", "模拟经营", "农场模拟", "生活模拟", "管理", "城市营造", "殖民模拟"),
+    "模拟经营": ("模拟经营", "农场模拟", "生活模拟", "管理", "城市营造", "殖民模拟", "经济", "资源管理"),
     "生存建造": ("生存", "建造", "开放世界生存制作", "基地建设", "制作"),
     "叙事冒险": ("叙事", "冒险", "文字游戏", "互动小说", "视觉小说", "选择取向", "剧情丰富", "指向点击"),
     "节奏": ("节奏", "音乐节奏"), "竞速": ("竞速", "赛车", "汽车模拟"),
@@ -67,8 +67,10 @@ LIBRARY_GENRES = {
 }
 
 
-def library_genres(tags):
+def library_genres(tags, description=""):
     result = []
+    if re.search(r"\bsocial (?:VR|world|platform)\b|社交(?:平台|游戏|空间|世界)", description, re.I):
+        result.append("社交协作")
     for tag in tags:
         for genre, labels in LIBRARY_GENRES.items():
             if tag in labels and genre not in result:
@@ -250,7 +252,7 @@ def steam_games(seen):
             "mechanic": "「" + description + "」（摘自商店介绍）",
             "prompt": prompt_for(tags), "url": url,
             "image": trusted_url(artwork, "steamstatic.com"),
-            "action": "查看 Steam 商店", "tags": tags, "genres": library_genres(all_tags), "video": video,
+            "action": "查看 Steam 商店", "tags": tags, "genres": library_genres(all_tags, description), "video": video,
             **release_fields(item, url),
         }
 
@@ -298,7 +300,7 @@ def itch_games(seen):
             "signalUrl": ITCH_LIST, "mechanic": "「" + excerpt(description) + "」（作者原文）",
             "prompt": prompt_for(tags), "url": url,
             "image": trusted_url(entry.findtext("imageurl"), "itch.zone"),
-            "action": "浏览器试玩", "tags": tags, "genres": library_genres(tags), "video": video,
+            "action": "浏览器试玩", "tags": tags, "genres": library_genres(tags, description), "video": video,
             "review": itch_review(page, url),
         }
 
