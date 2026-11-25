@@ -79,6 +79,62 @@ def find_recording(candidates, aliases, fetch):
     return None
 
 
+CHAPTER_ACTION = re.compile(
+    r"战斗|解谜|攀爬|合作|逃脱|追逐|竞速|对局|收集|建造|卡组|攻略|"
+    r"\b(?:combat|boss|battle|fight|puzzle|climb|race|chase|crafting|building|"
+    r"duel|draft|dungeon|exploration|stealth|heist|fishing|gameplay)\b", re.I)
+
+
+def chapter_segment(description, duration=None):
+    marks = []
+    for line in description.splitlines():
+        entry = re.fullmatch(r"\s*[-•]?\s*\[?(?:(\d{1,2}):)?(\d{1,3}):([0-5]\d)\]?\s*[-–—|:]?\s+(.{2,100})", line)
+        if entry:
+            hrs, mins, secs, label = entry.groups()
+            start = int(hrs or 0) * 3600 + int(mins) * 60 + int(secs)
+            if (hrs and int(mins) >= 60) or (marks and start <= marks[-1][0]):
+                return None
+            marks.append((start, label.strip()))
+    if len(marks) < 3 or marks[0][0] != 0:
+        return None
+    for i, (start, label) in enumerate(marks):
+        if not CHAPTER_ACTION.search(label) or OTHER.search(label) or re.search(
+                r"intro|outro|opening cinematic|cutscene|tutorial menu|片头|过场|开场动画", label, re.I):
+            continue
+        boundary = marks[i + 1][0] if i + 1 < len(marks) else duration
+        if boundary is None:
+            continue
+        end = min(start + 30, boundary, duration if duration is not None else boundary)
+        if end > start:
+            return {"start": start, "end": end, "cue": f"作者章节「{label}」", "method": "chapter"}
+    return None
+
+
+def youtube_segment(video, fetch):
+    # Read the public description displayed on the watch page. Do not access
+    # playback streams or use private player endpoints when sign-in is required.
+    page = fetch(video["url"]).decode("utf-8")
+    marker = re.search(r"\bytInitialData\s*=\s*", page)
+    if not marker:
+        return None
+    doc = json.JSONDecoder().raw_decode(page[marker.end():])[0]
+    if doc.get("currentVideoEndpoint", {}).get("watchEndpoint", {}).get("videoId") != video["id"]:
+        return None
+    duration = None
+    marker = re.search(r"\bytInitialPlayerResponse\s*=\s*", page)
+    if marker:
+        details = json.JSONDecoder().raw_decode(page[marker.end():])[0].get("videoDetails", {})
+        if details.get("videoId") == video["id"] and str(details.get("lengthSeconds", "")).isdigit():
+            duration = int(details["lengthSeconds"])
+    watch = doc.get("contents", {}).get("twoColumnWatchNextResults", {})
+    for row in watch.get("results", {}).get("results", {}).get("contents", []):
+        info = row.get("videoSecondaryInfoRenderer", {})
+        copy = info.get("attributedDescription", {}).get("content")
+        if copy:
+            return chapter_segment(copy, duration)
+    return None
+
+
 def steam_recording(app_id, name, fetch):
     page = fetch(f"https://steamcommunity.com/app/{app_id}/videos/?l=english&searchText=gameplay").decode("utf-8")
     heading = re.search(r"<title>Steam Community :: ([^<]+)</title>", page)
@@ -99,8 +155,8 @@ def steam_recording(app_id, name, fetch):
     return find_recording([video for _, video in candidates[:4]], aliases, fetch)
 
 
-def itch_recording(url, name, fetch):
-    page = html.unescape(fetch(url).decode("utf-8"))
+def itch_recording(page, name, fetch):
+    page = html.unescape(page)
     return find_recording(list(dict.fromkeys(YT_LINK.findall(page)))[:4], game_names([name]), fetch)
 
 
@@ -139,7 +195,19 @@ def steam_preview(item):
             tracks = header[start:end]
             if end > len(header) or b"vide" not in tracks or b"avc1" not in tracks:
                 continue
+            movie = tracks.find(b"mvhd")
+            if movie < 0 or movie + 40 > len(tracks) or tracks[movie + 4] not in (0, 1):
+                continue
+            v1 = tracks[movie + 4] == 1
+            scale_at = movie + (24 if v1 else 16)
+            scale = int.from_bytes(tracks[scale_at:scale_at + 4], "big")
+            ticks = int.from_bytes(tracks[scale_at + 4:scale_at + (12 if v1 else 8)], "big")
+            if not scale or not 1 <= ticks / scale <= 30:
+                continue
+            segment = {"start": 0, "end": ticks // scale,
+                       "cue": f"Steam 实机短片「{trailer.get('trailer_name') or item['name']}」",
+                       "method": "official"}
             return {"provider": "steam", "src": src, "title": "官方实机短片",
-                    "silent": b"soun" not in tracks, "creator": "Steam 商店",
+                    "silent": b"soun" not in tracks, "creator": "Steam 商店", "segment": segment,
                     "url": f"https://store.steampowered.com/app/{app_id}/"}
     return None

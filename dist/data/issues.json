@@ -20,7 +20,13 @@
             "id": "BV1d1tdzTEjH",
             "title": "四人攀登沙漠方山",
             "creator": "手残党老杰",
-            "url": "https://www.bilibili.com/video/BV1d1tdzTEjH/"
+            "url": "https://www.bilibili.com/video/BV1d1tdzTEjH/",
+            "segment": {
+              "start": 1787,
+              "end": 1816,
+              "cue": "看绿色队友先上岩沿。跟上去的人伸手抓住同一条锁链，沿着队友的路线翻了上去。",
+              "method": "editor"
+            }
           },
           "tags": [
             "协作攀登",
@@ -28,7 +34,21 @@
           ],
           "sourceUrl": "https://store.steampowered.com/charts/mostplayed",
           "artCredit": "Landfall、Aggro Crab",
-          "artSource": "https://landfall.se/peak-press-kit"
+          "artSource": "https://landfall.se/peak-press-kit",
+          "review": {
+            "core": "体力和背包重量决定能爬多远。先上岩沿的人可以继续探路，也可以放绳、伸手，把队友拉上来。",
+            "appeal": "PC Gamer 的队伍轮流探路和觅食。Game Informer 记住的却是朋友一脚踩空，惨叫声越落越远。一次失误就能把赶路变成全队的故事。",
+            "sources": [
+              {
+                "label": "PC Gamer · Elie Gould 实测",
+                "url": "https://www.pcgamer.com/games/adventure/peak-review/"
+              },
+              {
+                "label": "Game Informer · Alex Van Aken 评测",
+                "url": "https://gameinformer.com/review/peak/a-brilliant-co-op-climbing-adventure"
+              }
+            ]
+          }
         },
         {
           "id": "steam-2868840",
@@ -46,7 +66,13 @@
             "id": "BV1gvHi6rELt",
             "title": "铁甲战士的塔顶战：选牌、跳过与出牌",
             "creator": "Trixster",
-            "url": "https://www.bilibili.com/video/BV1gvHi6rELt/"
+            "url": "https://www.bilibili.com/video/BV1gvHi6rELt/",
+            "segment": {
+              "start": 6,
+              "end": 28,
+              "cue": "先看三张备选牌，再看战斗中的前排怪物。一次出牌之后，伤害数字为什么会接连跳出来？",
+              "method": "editor"
+            }
           },
           "tags": [
             "卡组构筑",
@@ -54,7 +80,21 @@
           ],
           "sourceUrl": "https://store.steampowered.com/charts/mostplayed",
           "artCredit": "Mega Crit",
-          "artSource": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2868840/b0958d387dc366211e0f353443710cfcf9fdb020/header_2x.jpg"
+          "artSource": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2868840/b0958d387dc366211e0f353443710cfcf9fdb020/header_2x.jpg",
+          "review": {
+            "core": "在地图上选普通战、精英战或商店，用血量换牌和遗物，再靠这副牌撑过下一战。",
+            "appeal": "GamesRadar+ 喜欢每次拿奖励都要重新权衡。PC Gamer 的作者玩了约 20 小时，发现初代的得意牌组依然奏效，也因此少了些摸索的惊喜。",
+            "sources": [
+              {
+                "label": "GamesRadar+ · Ali Jones 抢先体验评测",
+                "url": "https://www.gamesradar.com/slay-the-spire-2-review/"
+              },
+              {
+                "label": "PC Gamer · Robin Valentine 试玩约 20 小时",
+                "url": "https://www.pcgamer.com/games/roguelike/slay-the-spire-2-early-access-features/"
+              }
+            ]
+          }
         },
         {
           "id": "itch-jbodah-admin-play",
@@ -78,7 +118,13 @@
               "title": "读便笺、解开密码，再走进办公室",
               "creator": "游感周刊实录",
               "silent": true,
-              "url": "https://jbodah.itch.io/admin-play"
+              "url": "https://jbodah.itch.io/admin-play",
+              "segment": {
+                "start": 0,
+                "end": 22,
+                "cue": "先读电脑旁的黄色便笺，再看玩家把线索敲进密码框。解锁后，办公室和对话选项才出现。",
+                "method": "editor"
+              }
             }
           },
           "tags": [
@@ -87,7 +133,21 @@
           ],
           "sourceUrl": "https://itch.io/games/top-rated/tag-game-jam",
           "artCredit": "ZeroStas、jbodah、GabeMalk",
-          "artSource": "https://raw.githubusercontent.com/jbodah/game_jam-locked/master/cover.png"
+          "artSource": "https://raw.githubusercontent.com/jbodah/game_jam-locked/master/cover.png",
+          "review": {
+            "core": "问同事、翻工位、试密码。输不对时，刚才看过的便笺可能就有了另一层意思。",
+            "appeal": "John Colagioia 喜欢线索同时透露人物性格。玩家 ugo-morandi 也提到，正是这些各有脾气的同事，让办公室有了侦探现场的味道。",
+            "sources": [
+              {
+                "label": "Entropy Arbitrage · John Colagioia 评测",
+                "url": "https://john.colagioia.net/blog/2023/12/30/admin.html"
+              },
+              {
+                "label": "itch.io · ugo-morandi 的游玩点评",
+                "url": "https://itch.io/post/17653054"
+              }
+            ]
+          }
         },
         {
           "id": "steam-3419430",
@@ -104,7 +164,13 @@
             "id": "BV1ZN9ZYPEjm",
             "title": "桌面拍键与帽子收集演示",
             "creator": "老蒜名游堂",
-            "url": "https://www.bilibili.com/video/BV1ZN9ZYPEjm/"
+            "url": "https://www.bilibili.com/video/BV1ZN9ZYPEjm/",
+            "segment": {
+              "start": 2,
+              "end": 16,
+              "cue": "打字时盯住猫爪和旁边的计数。接着打开饰品栏，一只黑色蝴蝶结就戴到了猫头上。",
+              "method": "editor"
+            }
           },
           "tags": [
             "桌面伙伴",
@@ -112,7 +178,21 @@
           ],
           "sourceUrl": "https://store.steampowered.com/charts/mostplayed",
           "artCredit": "Irox Games",
-          "artSource": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3419430/2e6c93c020fe13d09d8120bb9164ed7cb58f00c5/header_2x.jpg"
+          "artSource": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3419430/2e6c93c020fe13d09d8120bb9164ed7cb58f00c5/header_2x.jpg",
+          "review": {
+            "core": "你打字，猫就拍桌。平常的键鼠输入会积成点数，攒够了可以开箱、换帽子。",
+            "appeal": "一位作者会为新帽子叫同事来看，另一位拿了两顶帽子后，开始刻意在网页上多点几下。同一个奖励可以是工作时的小惊喜，也能变成收集目标。",
+            "sources": [
+              {
+                "label": "PC Gamer · Andy Chalk 桌面体验",
+                "url": "https://www.pcgamer.com/games/life-sim/one-of-the-biggest-games-on-steam-right-now-is-bongo-cat-a-cat-with-a-hat-who-smacks-your-windows-taskbar-like-a-bongo-drum-when-you-type/"
+              },
+              {
+                "label": "Destructoid · Paula Vaynshteyn 试玩记录",
+                "url": "https://www.destructoid.com/the-best-thing-from-steam-next-fest-is-a-productivity-boosting-bongo-cat-with-unlockable-hats/"
+              }
+            ]
+          }
         },
         {
           "id": "itch-nbmachine-riba",
@@ -133,10 +213,16 @@
             "preview": {
               "provider": "local",
               "src": "assets/riba-gameplay.webm",
-              "title": "河边垂钓：抛竿、等待与收线",
+              "title": "抛竿、钓起遗骨，再把它安放在岸边",
               "creator": "游感周刊实录",
               "silent": true,
-              "url": "https://nbmachine.itch.io/riba"
+              "url": "https://nbmachine.itch.io/riba",
+              "segment": {
+                "start": 0,
+                "end": 23.79,
+                "cue": "看浮标下沉。玩家收线钓起一根遗骨，读到一段关于祖母的回忆，再把骨头放在岸边的紫花旁。片中剪短了等候和阅读的时间。",
+                "method": "editor"
+              }
             }
           },
           "tags": [
@@ -145,7 +231,21 @@
           ],
           "sourceUrl": "https://itch.io/games/top-rated/tag-game-jam",
           "artCredit": "Ivan Papiol、nbmach1ne",
-          "artSource": "https://img.itch.zone/aW1nLzUwOTU0NzcucG5n/315x250%23c/etxZpj.png"
+          "artSource": "https://img.itch.zone/aW1nLzUwOTU0NzcucG5n/315x250%23c/etxZpj.png",
+          "review": {
+            "core": "抛竿、等候、收线。同样的动作，有时钓上来一条鱼，有时带出祖母的一段往事。读完，你可以亲手把遗骨安放在岸边。",
+            "appeal": "Wei Yuan Lee 记住的是分几次浮现的家庭往事。玩家 LuckyThirdShot 则说，亲手摆好每片叶子和贝壳，让自己愿意留下来听音乐、慢慢告别。",
+            "sources": [
+              {
+                "label": "Level Editors · Wei Yuan Lee 游玩随笔",
+                "url": "https://leveleditors.net/how-i-recovered-from-the-end-of-flash-games-with-itch-io/"
+              },
+              {
+                "label": "itch.io · LuckyThirdShot 的游玩点评",
+                "url": "https://itch.io/post/9494917"
+              }
+            ]
+          }
         }
       ]
     }

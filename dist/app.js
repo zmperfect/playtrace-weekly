@@ -87,14 +87,29 @@ function gameLink(game, className) {
   return link;
 }
 
+function selectedSegment(clip) {
+  const part = clip?.segment;
+  if (!part || !Number.isFinite(part.start) || !Number.isFinite(part.end) ||
+      part.start < 0 || part.end <= part.start || part.end - part.start > 30 ||
+      typeof part.cue !== "string" || !part.cue.trim()) return null;
+  return part;
+}
+
+function clockTime(seconds) {
+  const whole = Math.floor(seconds);
+  return Math.floor(whole / 60) + ":" + String(whole % 60).padStart(2, "0");
+}
+
 function playableSource(video) {
   if (!video) return null;
-  const start = Number.isSafeInteger(video.start) && video.start > 0 ? video.start : 0;
+  const part = selectedSegment(video);
+  const start = part ? part.start : Number.isSafeInteger(video.start) && video.start > 0 ? video.start : 0;
   if (video.provider === "youtube" && /^[A-Za-z0-9_-]{11}$/.test(video.id)) {
     const url = new URL("https://www.youtube.com/embed/" + video.id);
     url.searchParams.set("autoplay", "1");
     url.searchParams.set("playsinline", "1");
-    if (start) url.searchParams.set("start", start);
+    if (start) url.searchParams.set("start", Math.floor(start));
+    if (part) url.searchParams.set("end", Math.ceil(part.end));
     return { url, label: "YouTube", embed: true };
   }
   if (video.provider === "bilibili" && /^BV[A-Za-z0-9]{10}$/.test(video.id)) {
@@ -109,7 +124,8 @@ function playableSource(video) {
   const url = new URL(src);
   if (video.provider === "local" && url.origin !== location.origin) return null;
   if (!/\.(mp4|webm|m3u8)$/i.test(url.pathname)) return null;
-  if (start) url.hash = "t=" + start;
+  if (part) url.hash = `t=${start},${part.end}`;
+  else if (start) url.hash = "t=" + start;
   return { url, label: video.provider === "steam" ? "Steam" : "站内视频", embed: false };
 }
 
@@ -126,7 +142,7 @@ function stopVideo() {
   stage.replaceChildren();
   stage.hidden = true;
   toggle.setAttribute("aria-expanded", "false");
-  toggle.querySelector(".watch-verb").textContent = "播放实机";
+  toggle.querySelector(".watch-verb").textContent = toggle.dataset.playLabel;
   toggle.querySelector("use").setAttribute("href", "#play");
   article.classList.remove("video-open");
   mediaBox.classList.remove("media-playing");
@@ -155,11 +171,14 @@ function watchLink(url, text, accessibleName) {
 function videoSection(game, article, mediaBox) {
   const video = game.video;
   const original = playableSource(video);
+  const originalPart = selectedSegment(video);
+  const previewPart = selectedSegment(video?.preview);
+  const preferOriginal = original && originalPart && (!previewPart || previewPart.method === "official");
   const preview = playablePreview(video);
   if (!original && !preview) return document.createDocumentFragment();
 
-  let source = preview || original;
-  let clip = preview ? video.preview : video;
+  let source = preferOriginal ? original : preview || original;
+  let clip = source === preview ? video.preview : video;
   const stage = element("div", "player-stage");
   stage.id = "player-" + game.id;
   stage.hidden = true;
@@ -167,18 +186,38 @@ function videoSection(game, article, mediaBox) {
   const section = element("section", "watch");
   section.setAttribute("aria-label", `《${game.title}》实机视频`);
   const bar = element("div", "watch-bar");
+  const timing = element("p", "watch-range");
+  const cue = element("p", "watch-cue");
   const title = element("p", "watch-title");
   const credit = element("p", "watch-credit");
-  const originalUrl = safeUrl(video.url, video.provider === "local") || (original && !original.embed ? original.url.href : safeUrl(game.url));
+  let switchSource;
+  let originalUrl = safeUrl(video.url, video.provider === "local") || (original && !original.embed ? original.url.href : safeUrl(game.url));
+  if (originalUrl && originalPart?.start && original?.embed) {
+    const link = new URL(originalUrl);
+    link.searchParams.set("t", Math.floor(originalPart.start));
+    originalUrl = link.href;
+  }
   const fullLabel = preview ? `${original?.label || "平台"} 完整实况 · ${video.creator || "未署名"}` : "原片";
   const fullLink = () => watchLink(originalUrl, fullLabel, `在新窗口打开《${game.title}》${fullLabel}`);
 
   function showCaption() {
+    const part = selectedSegment(clip);
+    if (switchSource) switchSource.textContent = source === original ? "改看备用短片" : "切回玩家实况";
+    toggle.dataset.playLabel = part ? "播放选段" : "播放实机";
+    if (stage.hidden) toggle.querySelector(".watch-verb").textContent = toggle.dataset.playLabel;
+    const duration = part ? Math.round(part.end - part.start) : 0;
+    timing.textContent = part
+      ? `${clockTime(part.start)}–${clockTime(Math.ceil(part.end))} · ${duration} 秒`
+      : clip.provider === "steam" || clip.provider === "local" ? "实机短片" : "完整实况 · 暂无精选时间点";
+    cue.hidden = !part;
+    if (part) cue.textContent = part.cue;
     title.textContent = clip.title || `${game.title} 实机片段`;
+    title.hidden = Boolean(part);
     const previewUrl = source === preview && safeUrl(clip.url, clip.provider === "local");
     const platform = previewUrl ? watchLink(previewUrl, source.label, `查看《${game.title}》预览片来源`) : document.createTextNode(source.label);
     const sound = clip.silent === true ? " · 无声" : clip.silent === false ? " · 有声" : "";
-    credit.replaceChildren(platform, document.createTextNode(` · ${clip.creator || "未署名"}${sound}`));
+    const continuation = part && clip.provider === "bilibili" ? " · 选段结束后继续播放" : "";
+    credit.replaceChildren(platform, document.createTextNode(` · ${clip.creator || "未署名"}${sound}${continuation}`));
   }
 
   function play() {
@@ -198,6 +237,20 @@ function videoSection(game, article, mediaBox) {
     player.controls = true;
     player.playsInline = true;
     player.setAttribute("aria-label", playerTitle);
+    const part = selectedSegment(clip);
+    if (part) {
+      const seekToStart = () => {
+        if (player.currentTime >= part.end - 0.05 || player.currentTime < part.start) {
+          player.currentTime = part.start;
+        }
+      };
+      player.addEventListener("loadedmetadata", seekToStart, { once: true });
+      player.addEventListener("canplay", seekToStart, { once: true });
+      player.addEventListener("play", seekToStart);
+      player.addEventListener("timeupdate", () => {
+        if (!player.paused && player.currentTime >= part.end) player.pause();
+      });
+    }
     player.addEventListener("error", () => {
       if (!stage.contains(player)) return;
       if (source === preview && original) {
@@ -225,7 +278,7 @@ function videoSection(game, article, mediaBox) {
     article.classList.add("video-open");
     mediaBox.classList.add("media-playing");
     toggle.setAttribute("aria-expanded", "true");
-    toggle.querySelector(".watch-verb").textContent = "收起实机";
+    toggle.querySelector(".watch-verb").textContent = "收起视频";
     toggle.querySelector("use").setAttribute("href", "#close");
     stage.hidden = false;
     play();
@@ -237,8 +290,18 @@ function videoSection(game, article, mediaBox) {
   toggle.setAttribute("aria-expanded", "false");
   toggle.append(icon("play"), element("span", "watch-verb", "播放实机"), element("span", "sr-only", `《${game.title}》`));
   bar.append(toggle);
-  if (originalUrl && !preview) bar.append(fullLink());
-  section.append(bar, title, credit);
+  if (preferOriginal && preview) {
+    switchSource = button("watch-original", "", () => {
+      const wasPlaying = !stage.hidden;
+      source = source === original ? preview : original;
+      clip = source === original ? video : video.preview;
+      showCaption();
+      if (wasPlaying) play();
+      else toggle.click();
+    });
+    bar.append(switchSource);
+  } else if (originalUrl && !preview) bar.append(fullLink());
+  section.append(bar, timing, cue, title, credit);
   if (originalUrl && preview) {
     const full = element("div", "watch-full");
     full.append(fullLink());
@@ -322,6 +385,39 @@ function coverFor(game, index, featured) {
   return cover;
 }
 
+function reviewDigest(game) {
+  const review = game.review;
+  const sources = Array.isArray(review?.sources) ? review.sources.filter(s => s?.label && safeUrl(s.url)) : [];
+  if (!sources.length || (!review.core && !review.appeal)) return null;
+  const section = element("section", "review-digest");
+  section.setAttribute("aria-label", "测评里的玩法与吸引力");
+  const excerpts = review.mode === "excerpts";
+  const cited = new Set();
+  const labels = excerpts ? [["core", "玩家谈玩法"], ["appeal", "玩家谈体验"]]
+    : [["core", "玩法核心"], ["appeal", "吸引力"]];
+  for (const [key, label] of labels) {
+    if (!review[key]) continue;
+    const row = element("p", "review-line");
+    row.append(element("strong", "review-label", label), document.createTextNode(excerpts ? "「" + review[key] + "」" : review[key]));
+    const reference = sources.find(s => s.url === review[key + "SourceUrl"]);
+    if (excerpts && reference) {
+      row.append(document.createTextNode(" "), watchLink(reference.url, reference.label, "阅读" + reference.label + "的评价"));
+      cited.add(reference.url);
+    }
+    section.append(row);
+  }
+  const remaining = sources.filter(s => !cited.has(s.url));
+  if (remaining.length) {
+    const credits = element("div", "review-sources");
+    credits.append(element("span", "", excerpts ? "玩家原评" : "测评来源"));
+    for (const source of remaining) {
+      credits.append(watchLink(source.url, source.label, "阅读测评来源：" + source.label));
+    }
+    section.append(credits);
+  }
+  return section;
+}
+
 function feature(game) {
   const article = element("article", "feature");
   const media = element("div", "feature-media");
@@ -337,8 +433,8 @@ function feature(game) {
   read.append(icon("arrow"));
   const actions = element("div", "feature-actions");
   actions.append(read, gameLink(game, "external"));
-  contents.append(top, element("h2", "", game.title), tags, element("p", "feature-signal", game.signal || game.mechanic), actions);
-  contents.append(videoSection(game, article, media));
+  contents.append(top, element("h2", "", game.title), tags, videoSection(game, article, media));
+  contents.append(reviewDigest(game) || element("p", "feature-signal", game.signal || game.mechanic), actions);
   article.append(media, contents);
   return article;
 }
@@ -354,7 +450,8 @@ function card(game, index, inNotes = false) {
   if (tag) info.append(element("span", "", "·"), element("span", "", tag));
   const title = element("h3");
   title.append(openButton(game, "", game.title));
-  body.append(info, title, element("p", "card-blurb", game.mechanic || game.signal));
+  body.append(info, title, videoSection(game, article, artWrap));
+  body.append(reviewDigest(game) || element("p", "card-blurb", game.mechanic || game.signal));
   const entry = entries.get(game.id);
   if (inNotes && entry?.note) body.append(element("p", "note-snippet", entry.note));
   const foot = element("div", "card-foot");
@@ -362,7 +459,6 @@ function card(game, index, inNotes = false) {
   read.append(icon(inNotes && entry?.note ? "pencil" : "arrow"));
   foot.append(read, gameLink(game, ""));
   body.append(foot);
-  body.append(videoSection(game, article, artWrap));
   article.append(artWrap, body);
   return article;
 }
@@ -385,6 +481,9 @@ function openDetail(game, opener, target = "") {
   const actions = element("div", "dialog-actions");
   actions.append(gameLink(game, "primary"), bookmark(game, true));
   wrap.append(actions);
+  const digest = reviewDigest(game);
+  if (digest) wrap.append(digest);
+  else if (game.review) wrap.append(element("p", "review-empty", "这款游戏暂未收录可核实的测评。"));
   for (const [heading, text] of [["为什么入选", game.signal], ["玩家在做什么选择", game.mechanic]]) {
     if (!text) continue;
     const observation = element("section", "observation");
