@@ -146,6 +146,39 @@ dialog h2{font-size:clamp(28px,4vw,38px);letter-spacing:-.055em;line-height:1.13
 .note-form textarea::placeholder{color:#818674}
 .art-credit{margin-top:12px;font-size:11px;color:#737969}
 .art-credit .evidence{font-size:11px}
+.feature-media{display:grid;min-width:0}
+.feature-media>.video-cover{display:grid}
+.video-cover{position:relative;overflow:hidden}
+.cover-play{position:absolute;left:12px;bottom:12px;display:grid;place-items:center;width:30px;height:30px;color:white;border:1px solid #ffffffbf;border-radius:50%;background:#20251edc;transition:background .15s,color .15s}
+.cover-play .icon{width:15px;height:15px;margin-left:2px}
+.video-cover:hover .cover-play,.video-cover:focus-visible .cover-play{background:var(--lime);color:var(--ink)}
+.feature-media .cover-play{left:22px;bottom:22px;width:42px;height:42px}
+.feature-media .cover-play .icon{width:21px;height:21px}
+.watch{width:100%;min-width:0;margin-top:12px;padding-top:12px;border-top:1px solid #d8ddcc}
+.watch-bar{display:flex;align-items:center;justify-content:space-between;gap:6px}
+.watch-toggle,.watch-original{display:inline-flex;align-items:center;gap:5px;line-height:1.25;font-size:12px;font-weight:700}
+.watch-toggle{padding:8px 10px;border-radius:4px;background:#e4edc7;color:#34421e}
+.watch-toggle:hover,.watch-toggle:focus-visible{background:var(--lime);color:#22251f}
+.watch-original{padding:6px 1px;color:#5c6850;white-space:nowrap}
+.watch-original:hover{text-decoration:underline}
+.watch-original .icon{width:11px;height:11px}
+.watch-title{margin:7px 0 1px;font-size:12px;font-weight:700;line-height:1.5;overflow-wrap:anywhere}
+.watch-credit{color:#646d58;font-size:11px;line-height:1.5;overflow-wrap:anywhere}
+.watch-credit .watch-original{font:inherit;padding:0;vertical-align:baseline}
+.watch-full{margin-top:4px}
+.watch-full .watch-original{white-space:normal;overflow-wrap:anywhere;font-size:11px;line-height:1.5}
+.feature .watch{margin-top:16px;padding-top:12px;border-color:#494e40}
+.feature .watch-bar{justify-content:flex-start;gap:14px}
+.feature .watch-toggle{background:var(--lime);color:#282b1f}
+.feature .watch-original,.feature .watch-credit{color:#c1c9b2}
+.feature .watch-title{color:#e5e9dc}
+.media-playing>.cover-button,.media-playing>.save{display:none}
+.feature-media.media-playing{background:#10120f;align-items:center}
+.player-stage{display:grid;place-items:center;position:relative;min-height:200px;aspect-ratio:16/9;width:100%;background:#10120f;color:#fff}
+.player-stage>video,.player-stage>iframe{position:absolute;inset:0;display:block;width:100%;height:100%;border:0;background:#10120f}
+.player-error{padding:15px;text-align:center;font-size:13px}
+.player-error .watch-original{color:var(--lime)}
+@media(min-width:391px){.card.video-open{grid-column:span 2}}
 @media(min-width:1550px){.main{padding-top:48px}.feature-art{min-height:365px}}
 @media(max-width:960px){.shell{width:calc(100% - 48px)}.feature{grid-template-columns:1.12fr 1fr}.feature-content{padding:21px}.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.feature-signal{font-size:13px}.wordmark{font-size:10px}}
 @media(max-width:630px){.shell{width:calc(100% - 32px)}.topbar-inner{height:56px;gap:12px}.logo{width:29px;height:29px}.logo svg{width:28px;height:28px}.brand{gap:7px}.brand strong{font-size:18px}.wordmark{display:none}nav{gap:16px}.nav-item{gap:4px;font-size:13px}.main{padding-block:25px 34px}.mast{align-items:flex-end;margin-bottom:16px;gap:6px}.issue-meta{font-size:10px;gap:7px}.meta-line{width:11px}h1{font-size:clamp(32px,8vw,46px);margin-top:7px}.issue-picker{min-height:33px;padding:0 8px;gap:4px}.issue-picker>span{font-size:12px}.issue-picker>.icon:first-child{display:none}.feature{grid-template-columns:1fr;border-radius:9px}.feature-art{min-height:0;aspect-ratio:2.1}.feature-content{padding:17px 18px 19px}.feature-top{margin-bottom:8px}.feature-top .save{width:30px;height:30px}.feature-label{font-size:11px}.feature h2{font-size:34px}.feature-tags{margin-top:7px}.feature-signal{margin-top:11px;font-size:13px}.feature-actions{padding-top:15px}.primary{padding:10px 13px}.section-head{margin:25px 0 12px}.cards{gap:12px}.card-body{padding:10px}.card h3{font-size:17px}.card-info{font-size:10px;gap:4px}.card-blurb{font-size:12px}.card-foot{gap:7px;flex-wrap:wrap}.card-foot button,.card-foot a{font-size:11px}.card .save{width:26px;height:26px;top:6px;right:6px}.card .save .icon{width:13px;height:13px}.card-art{aspect-ratio:1.75}.dialog-main{padding:18px}.footer-brand span{display:none}}

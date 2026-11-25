@@ -14,7 +14,14 @@
           "url": "https://store.steampowered.com/app/3527290/PEAK/?l=schinese",
           "image": "assets/peak-cover.webp",
           "heroImage": "assets/peak-cover.webp",
-          "action": "看 Steam 实机",
+          "action": "查看 Steam 商店",
+          "video": {
+            "provider": "bilibili",
+            "id": "BV1d1tdzTEjH",
+            "title": "四人攀登沙漠方山",
+            "creator": "手残党老杰",
+            "url": "https://www.bilibili.com/video/BV1d1tdzTEjH/"
+          },
           "tags": [
             "协作攀登",
             "体力管理"
@@ -33,7 +40,14 @@
           "prompt": "做两副各五张牌的小牌组，其中一张只能给队友用。怎么设计它，才能让两位玩家愿意商量出牌顺序？",
           "url": "https://store.steampowered.com/app/2868840/Slay_the_Spire_2/?l=schinese",
           "image": "assets/spire-cover.webp",
-          "action": "看 Steam 实机",
+          "action": "查看 Steam 商店",
+          "video": {
+            "provider": "bilibili",
+            "id": "BV1gvHi6rELt",
+            "title": "铁甲战士的塔顶战：选牌、跳过与出牌",
+            "creator": "Trixster",
+            "url": "https://www.bilibili.com/video/BV1gvHi6rELt/"
+          },
           "tags": [
             "卡组构筑",
             "回合制"
@@ -52,6 +66,21 @@
           "url": "https://jbodah.itch.io/admin-play",
           "image": "assets/admin-cover.webp",
           "action": "在浏览器试玩",
+          "video": {
+            "provider": "youtube",
+            "id": "kmkvgPikHLQ",
+            "title": "This Office is a Puzzle! | ADMIN",
+            "creator": "ItzSeam Gaming",
+            "url": "https://www.youtube.com/watch?v=kmkvgPikHLQ",
+            "preview": {
+              "provider": "local",
+              "src": "assets/admin-gameplay.webm",
+              "title": "读便笺、解开密码，再走进办公室",
+              "creator": "游感周刊实录",
+              "silent": true,
+              "url": "https://jbodah.itch.io/admin-play"
+            }
+          },
           "tags": [
             "环境推理",
             "点击解谜"
@@ -70,6 +99,13 @@
           "url": "https://store.steampowered.com/app/3419430/Bongo_Cat/?l=schinese",
           "image": "assets/bongo-cover.webp",
           "action": "前往免费游玩",
+          "video": {
+            "provider": "bilibili",
+            "id": "BV1ZN9ZYPEjm",
+            "title": "桌面拍键与帽子收集演示",
+            "creator": "老蒜名游堂",
+            "url": "https://www.bilibili.com/video/BV1ZN9ZYPEjm/"
+          },
           "tags": [
             "桌面伙伴",
             "轻量收集"
@@ -88,6 +124,21 @@
           "url": "https://nbmachine.itch.io/riba",
           "image": "assets/riba-cover.webp",
           "action": "在浏览器试玩",
+          "video": {
+            "provider": "youtube",
+            "id": "LxaF1-0UtV4",
+            "title": "Riba | Stream Playthrough",
+            "creator": "Dirigitive",
+            "url": "https://www.youtube.com/watch?v=LxaF1-0UtV4",
+            "preview": {
+              "provider": "local",
+              "src": "assets/riba-gameplay.webm",
+              "title": "河边垂钓：抛竿、等待与收线",
+              "creator": "游感周刊实录",
+              "silent": true,
+              "url": "https://nbmachine.itch.io/riba"
+            }
+          },
           "tags": [
             "叙事探索",
             "单键交互"

@@ -12,9 +12,14 @@ import time
 import xml.etree.ElementTree as ET
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
-from urllib.error import URLError
-from urllib.parse import urlsplit
+from urllib.error import HTTPError, URLError
+from urllib.parse import urlencode, urlsplit
 from urllib.request import Request, urlopen
+
+if __package__:
+    from .videos import itch_recording, steam_preview, steam_recording
+else:
+    from videos import itch_recording, steam_preview, steam_recording
 
 ARCHIVE = Path(__file__).resolve().parents[1] / "dist/data/issues.json"
 STEAM_CHART = "https://api.steampowered.com/ISteamChartsService/GetMostPlayedGames/v1/"
@@ -44,6 +49,10 @@ def fetch(url):
         try:
             with urlopen(request, timeout=10) as response:
                 return response.read(4_000_000)
+        except HTTPError as exc:
+            if exc.code < 500 or attempt:
+                raise
+            time.sleep(1)
         except (TimeoutError, URLError):
             if attempt:
                 raise
@@ -99,6 +108,19 @@ def game_key(url):
     return "steam-" + steam[1] if steam else url.split("?")[0].split("#")[0].rstrip("/")
 
 
+def store_items(rows):
+    # One batched request avoids per-game store lookups when checking the chart.
+    query = {
+        "ids": [{"appid": row["appid"]} for row in rows],
+        "context": {"language": "schinese", "country_code": "CN"},
+        "data_request": {"include_basic_info": True, "include_assets": True, "include_screenshots": True,
+                         "include_tag_count": 8, "include_full_description": True, "include_trailers": True},
+    }
+    params = urlencode({"input_json": json.dumps(query, separators=(",", ":"))})
+    data = json.loads(fetch("https://api.steampowered.com/IStoreBrowseService/GetItems/v1/?" + params))
+    return {item["appid"]: item for item in data["response"]["store_items"] if item.get("appid")}
+
+
 def steam_games(seen):
     data = json.loads(fetch(STEAM_CHART))["response"]
     ranks = data["ranks"]
@@ -108,45 +130,66 @@ def steam_games(seen):
 
     # Lead with upward movement. Stable placements break ties in rank order.
     ranked = sorted(ranks, key=lambda row: (-change(row), row["rank"]))
-    checked = 0
+    ranked = [row for row in ranked if f"steam-{row['appid']}" not in seen][:32]
+    if not ranked:
+        return
+    items = store_items(ranked)
+    tag_data = json.loads(fetch("https://api.steampowered.com/IStoreService/GetTagList/v1/?language=schinese"))
+    tag_names = {tag["tagid"]: tag["name"] for tag in tag_data["response"]["tags"]}
     for row in ranked:
         app_id = int(row["appid"])
         url = f"https://store.steampowered.com/app/{app_id}/"
-        if game_key(url) in seen:
+        item = items.get(app_id, {})
+        if item.get("type") != 0 or item.get("success") != 1 or not item.get("name"):
             continue
-        checked += 1
-        if checked > 15:
-            break
+        bbcode = item.get("full_description_bbcode", "")
+        bbcode = re.sub(r"\[img[^\]]*\].*?\[/img\]", "", bbcode, flags=re.S | re.I)
+        paragraphs = re.sub(r"\[/(?:p|h[1-6]|list)\]|\[\*\]", "</p>", bbcode, flags=re.I)
+        description = gameplay_excerpt({
+            "short_description": item.get("basic_info", {}).get("short_description"),
+            "about_the_game": re.sub(r"\[/?[a-z][^\]]*\]", "", paragraphs, flags=re.I),
+        })
+        if not description:
+            continue
         try:
-            item = json.loads(fetch(
-                f"https://store.steampowered.com/api/appdetails?appids={app_id}&cc=cn&l=schinese"
-            )).get(str(app_id), {}).get("data") or {}
+            video = steam_recording(app_id, item["name"], fetch)
+        except HTTPError as exc:
+            if exc.code == 429:
+                raise
+            print(f"Steam community videos for {app_id}: {exc}", file=sys.stderr)
+            continue
         except (OSError, ValueError) as exc:
-            print(f"Steam app {app_id}: {exc}", file=sys.stderr)
+            print(f"Steam community videos for {app_id}: {exc}", file=sys.stderr)
             continue
-
-        description = gameplay_excerpt(item)
-        if item.get("type") != "game" or not description or not item.get("name"):
+        if not video:
             continue
-        tags = [clean(genre["description"]) for genre in item.get("genres", [])][:3]
+        preview = steam_preview(item)
+        if preview:
+            video["preview"] = preview
+        tags = [tag_names[tag] for tag in item.get("tagids", []) if tag in tag_names][:3]
         rank = row["rank"]
         signal = f"Steam 热玩榜第 {rank} 名"
         if change(row) > 0:
             signal += f"，较上周上升 {change(row)} 位"
-        shots = item.get("screenshots") or []
-        artwork = shots[0].get("path_full") if shots else item.get("header_image")
+        shots = item.get("screenshots", {}).get("all_ages_screenshots", [])
+        assets = item.get("assets", {})
+        path = shots[0]["filename"] if shots else assets.get("asset_url_format", "").replace(
+            "${FILENAME}", assets.get("header", ""))
+        artwork = "https://shared.fastly.steamstatic.com/store_item_assets/" + path if path else None
         yield {
             "id": game_key(url), "title": item["name"], "source": "Steam",
             "signal": signal + "。", "signalUrl": STEAM_CHART,
             "mechanic": "「" + description + "」（摘自商店介绍）",
             "prompt": prompt_for(tags), "url": url,
             "image": trusted_url(artwork, "steamstatic.com"),
-            "action": "查看 Steam 商店", "tags": tags,
+            "action": "查看 Steam 商店", "tags": tags, "video": video,
         }
 
 
 def itch_games(seen):
     feed = ET.fromstring(fetch(ITCH_LIST + ".xml"))
+    checked = 0
+    blocks = 0
     for rank, entry in enumerate(feed.findall("./channel/item"), 1):
         url = trusted_url(entry.findtext("link"), "itch.io")
         if not url or game_key(url) in seen or entry.findtext("platforms/html") != "yes":
@@ -154,6 +197,25 @@ def itch_games(seen):
         name = clean(entry.findtext("plainTitle"))
         description = clean(entry.findtext("description"))
         if not name or len(description) < 36:
+            continue
+        checked += 1
+        if checked > 12:
+            break
+        try:
+            video = itch_recording(url, name, fetch)
+        except HTTPError as exc:
+            if exc.code == 429:
+                raise
+            blocks = blocks + 1 if exc.code == 403 else 0
+            print(f"itch.io videos for {name}: {exc}", file=sys.stderr)
+            if blocks >= 3:
+                break
+            continue
+        except (OSError, ValueError) as exc:
+            print(f"itch.io videos for {name}: {exc}", file=sys.stderr)
+            continue
+        blocks = 0
+        if not video:
             continue
         labels = re.findall(r"\[([^\]]+)\]", entry.findtext("title", ""))
         tags = [GENRES[label] for label in labels if label in GENRES] + ["Game Jam"]
@@ -165,7 +227,7 @@ def itch_games(seen):
             "signalUrl": ITCH_LIST, "mechanic": "「" + excerpt(description) + "」（作者原文）",
             "prompt": prompt_for(tags), "url": url,
             "image": trusted_url(entry.findtext("imageurl"), "itch.zone"),
-            "action": "浏览器试玩", "tags": tags,
+            "action": "浏览器试玩", "tags": tags, "video": video,
         }
 
 
