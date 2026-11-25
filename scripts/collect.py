@@ -179,6 +179,31 @@ def add_chapter(video):
         video["segment"] = segment
 
 
+def steam_reference_videos():
+    videos = {}
+    for path in sorted(ARCHIVE.parent.glob("*.json")):
+        if not (path.stem.startswith("reference-") or path.stem == "award-selections"):
+            continue
+        try:
+            games = json.loads(path.read_text(encoding="utf-8-sig"))
+        except (OSError, ValueError) as exc:
+            print(f"Could not read reference videos in {path.name}: {exc}", file=sys.stderr)
+            continue
+        if not isinstance(games, list):
+            continue
+        for game in games:
+            video = game.get("video") or {}
+            if not editorial_segment(video):
+                continue
+            # A store link identifies the exact game even when another edition shares its name.
+            for url in (game.get("url"), game.get("yearSourceUrl"), (video.get("preview") or {}).get("url")):
+                key = game_key(url or "")
+                if key.startswith("steam-"):
+                    videos.setdefault(key, video)
+                    break
+    return videos
+
+
 def steam_games(seen):
     data = json.loads(fetch(STEAM_CHART))["response"]
     ranks = data["ranks"]
@@ -194,7 +219,10 @@ def steam_games(seen):
     items = {}
     for start in range(0, len(ranked), 32):
         items.update(store_items(ranked[start:start + 32]))
+    curated = steam_reference_videos()
     def has_gameplay_clip(row):
+        if f"steam-{row['appid']}" in curated:
+            return True
         trailers = items.get(row["appid"], {}).get("trailers", {})
         return any(clip.get("trailer_category") == 1 and clip.get("microtrailer")
                    for group in ("highlights", "other_trailers") for clip in trailers.get(group, []))
@@ -217,23 +245,25 @@ def steam_games(seen):
         })
         if not description:
             continue
-        preview = steam_preview(item)
-        try:
-            video = None if recordings_limited else steam_recording(app_id, item["name"], fetch)
-        except HTTPError as exc:
-            recordings_limited = exc.code == 429
-            print(f"Steam community videos for {app_id}: {exc}", file=sys.stderr)
-            video = None
-        except (OSError, ValueError) as exc:
-            print(f"Steam community videos for {app_id}: {exc}", file=sys.stderr)
-            video = None
-        if video:
-            add_chapter(video)
-            if preview:
-                video["preview"] = preview
-        elif preview:
+        video = curated.get(game_key(url))
+        preview = (video or {}).get("preview") or steam_preview(item)
+        if video is None:
+            try:
+                video = None if recordings_limited else steam_recording(app_id, item["name"], fetch)
+            except HTTPError as exc:
+                recordings_limited = exc.code == 429
+                print(f"Steam community videos for {app_id}: {exc}", file=sys.stderr)
+                video = None
+            except (OSError, ValueError) as exc:
+                print(f"Steam community videos for {app_id}: {exc}", file=sys.stderr)
+                video = None
+            if video:
+                add_chapter(video)
+        if video and preview:
+            video = {**video, "preview": preview}
+        elif not video:
             video = preview
-        else:
+        if not video:
             continue
         all_tags = [tag_names[tag] for tag in item.get("tagids", []) if tag in tag_names]
         tags = all_tags[:3]
@@ -335,14 +365,14 @@ def reuse_editorial(game, previous_game):
     old = previous_game.get("video") or {}
     old_preview = old.get("preview") or {}
     current = game["video"]
-    if editorial_segment(old):
+    if not editorial_segment(current) and editorial_segment(old):
         # Carry the original player and its interval together: an editor's time
         # on one recording is never applied to the newly discovered recording.
         game["video"] = {key: value for key, value in old.items() if key != "preview"}
         fallback = current.get("preview") or (current if current["provider"] == "steam" else None)
         if fallback:
             game["video"]["preview"] = fallback
-    if editorial_segment(old_preview):
+    if not editorial_segment(current) and editorial_segment(old_preview):
         game["video"]["preview"] = old_preview
     review = previous_game.get("review") or {}
     if review.get("core") and review.get("appeal") and review.get("sources") and review.get("mode") != "excerpts":

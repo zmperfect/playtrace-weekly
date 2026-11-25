@@ -35,9 +35,9 @@
             "creator": "手残党老杰",
             "url": "https://www.bilibili.com/video/BV1d1tdzTEjH/",
             "segment": {
-              "start": 1787,
-              "end": 1816,
-              "cue": "看绿色队友先上岩沿。跟上去的人伸手抓住同一条锁链，沿着队友的路线翻了上去。",
+              "start": 1798,
+              "end": 1818,
+              "cue": "绿色队友沿锁链先爬上去。跟着玩家的黄手看，视角从岩壁下方升到队友脚边，再转身往下看刚才的落脚点。",
               "method": "editor"
             }
           },
@@ -99,13 +99,13 @@
           "video": {
             "provider": "bilibili",
             "id": "BV1gvHi6rELt",
-            "title": "铁甲战士的塔顶战：选牌、跳过与出牌",
+            "title": "铁甲战士的塔顶战",
             "creator": "Trixster",
             "url": "https://www.bilibili.com/video/BV1gvHi6rELt/",
             "segment": {
-              "start": 6,
-              "end": 28,
-              "cue": "先看三张备选牌，再看战斗中的前排怪物。一次出牌之后，伤害数字为什么会接连跳出来？",
+              "start": 47,
+              "end": 69,
+              "cue": "先看玩家把一张攻击牌指向前排，再看他打出一张同时伤到两只怪物的牌。两处一起冒出伤害数字，左下角的能量也随着出牌减少。",
               "method": "editor"
             }
           },
