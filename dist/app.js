@@ -418,6 +418,37 @@ function reviewDigest(game) {
   return section;
 }
 
+function prototypeIdeas(game, headingTag = "h3") {
+  const ideas = Array.isArray(game.prototypeIdeas) ? game.prototypeIdeas.filter(idea =>
+    typeof idea?.title === "string" && idea.title.trim() &&
+    typeof idea.change === "string" && idea.change.trim()
+  ).slice(0, 2) : [];
+  if (!ideas.length) return document.createDocumentFragment();
+  const section = element("section", "prototype-ideas");
+  section.setAttribute("aria-label", `《${game.title}》的周刊原型点子`);
+  section.append(element(headingTag, "prototype-heading", "周刊原型点子"));
+  for (const idea of ideas) {
+    const details = element("details", "prototype-idea");
+    const summary = element("summary");
+    const name = element("span", "prototype-title");
+    name.append(element("strong", "prototype-name", idea.title));
+    if ([1, 2].includes(idea.days)) name.append(element("span", "prototype-days", `约 ${idea.days} 天`));
+    name.append(icon("down"));
+    const rule = element("span", "prototype-change");
+    rule.append(element("strong", "prototype-label", "改动"), document.createTextNode(idea.change));
+    summary.append(name, rule);
+    const plan = element("dl", "prototype-plan");
+    for (const [label, value] of [["保留的乐趣", idea.keep], ["最小做法", idea.build], ["试玩问题", idea.playtest]]) {
+      if (typeof value === "string" && value.trim()) {
+        plan.append(element("dt", "", label), element("dd", "", value));
+      }
+    }
+    details.append(summary, plan);
+    section.append(details);
+  }
+  return section;
+}
+
 function feature(game) {
   const article = element("article", "feature");
   const media = element("div", "feature-media");
@@ -434,7 +465,7 @@ function feature(game) {
   const actions = element("div", "feature-actions");
   actions.append(read, gameLink(game, "external"));
   contents.append(top, element("h2", "", game.title), tags, videoSection(game, article, media));
-  contents.append(reviewDigest(game) || element("p", "feature-signal", game.signal || game.mechanic), actions);
+  contents.append(reviewDigest(game) || element("p", "feature-signal", game.signal || game.mechanic), prototypeIdeas(game), actions);
   article.append(media, contents);
   return article;
 }
@@ -451,7 +482,7 @@ function card(game, index, inNotes = false) {
   const title = element("h3");
   title.append(openButton(game, "", game.title));
   body.append(info, title, videoSection(game, article, artWrap));
-  body.append(reviewDigest(game) || element("p", "card-blurb", game.mechanic || game.signal));
+  body.append(reviewDigest(game) || element("p", "card-blurb", game.mechanic || game.signal), prototypeIdeas(game, "h4"));
   const entry = entries.get(game.id);
   if (inNotes && entry?.note) body.append(element("p", "note-snippet", entry.note));
   const foot = element("div", "card-foot");
@@ -484,6 +515,7 @@ function openDetail(game, opener, target = "") {
   const digest = reviewDigest(game);
   if (digest) wrap.append(digest);
   else if (game.review) wrap.append(element("p", "review-empty", "这款游戏暂未收录可核实的测评。"));
+  wrap.append(prototypeIdeas(game));
   for (const [heading, text] of [["为什么入选", game.signal], ["玩家在做什么选择", game.mechanic]]) {
     if (!text) continue;
     const observation = element("section", "observation");

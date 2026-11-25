@@ -17,9 +17,11 @@ from urllib.parse import urlencode, urlsplit
 from urllib.request import Request, urlopen
 
 if __package__:
+    from .prototypes import add_prototype_ideas, valid_ideas
     from .reviews import itch_review, steam_review, summarize
     from .videos import itch_recording, steam_preview, steam_recording, youtube_segment
 else:
+    from prototypes import add_prototype_ideas, valid_ideas
     from reviews import itch_review, steam_review, summarize
     from videos import itch_recording, steam_preview, steam_recording, youtube_segment
 
@@ -297,6 +299,9 @@ def reuse_editorial(game, previous_game):
     review = previous_game.get("review") or {}
     if review.get("core") and review.get("appeal") and review.get("sources") and review.get("mode") != "excerpts":
         game["review"] = review
+    prior_ideas = valid_ideas(previous_game.get("prototypeIdeas"))
+    if prior_ideas and not valid_ideas(game.get("prototypeIdeas")):
+        game["prototypeIdeas"] = prior_ideas
 
 
 def build_issue(today, issue_id, previous):
@@ -347,6 +352,7 @@ def build_issue(today, issue_id, previous):
             print(f"Steam reviews for {game['id']}: {exc}", file=sys.stderr)
     if errors and not reviewed:
         raise RuntimeError("The review source was unavailable. No archive changes were made.")
+    add_prototype_ideas(games, previous)
     return {"id": issue_id, "date": today.isoformat(), "games": games}
 
 

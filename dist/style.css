@@ -180,6 +180,27 @@ dialog h2{font-size:clamp(28px,4vw,38px);letter-spacing:-.055em;line-height:1.13
 .feature .review-label{color:var(--lime)}
 .feature .review-sources{color:#b9c4ac}
 .review-empty{color:#626959;font-size:13px}
+.prototype-ideas{--idea-bg:#f1f3e8;--idea-line:#d1d8c0;--idea-ink:#343d2c;--idea-label:#536443;width:100%;min-width:0;margin-top:14px;color:var(--idea-ink);font-size:13px;line-height:1.6}
+.prototype-heading{margin:0 0 6px;color:var(--idea-label);font-size:12px;font-weight:750;line-height:1.5}
+.prototype-idea{background:var(--idea-bg);border:1px solid var(--idea-line);border-radius:5px;overflow-wrap:anywhere}
+.prototype-idea+.prototype-idea{margin-top:5px}
+.prototype-idea summary{padding:9px 10px;display:block;cursor:pointer;list-style:none;border-radius:4px}
+.prototype-idea summary::-webkit-details-marker{display:none}
+.prototype-idea summary:focus-visible{outline:3px solid #718c00;outline-offset:2px}
+.prototype-title{display:flex;align-items:baseline;justify-content:space-between;gap:8px;color:var(--idea-ink);font-size:13px;font-weight:750;line-height:1.5}
+.prototype-name{min-width:0;margin-right:auto;font:inherit}
+.prototype-days{flex-shrink:0;white-space:nowrap;font-size:11px;font-weight:550;color:var(--idea-label)}
+.prototype-title .icon{align-self:center;width:14px;height:14px;color:var(--idea-label)}
+.prototype-idea[open] .prototype-title .icon{transform:rotate(180deg)}
+.prototype-idea summary:hover .prototype-title{text-decoration:underline;text-underline-offset:2px}
+.prototype-change{display:block;margin-top:3px;line-height:1.55}
+.prototype-label,.prototype-plan dt{font-size:11px;font-weight:700;color:var(--idea-label)}
+.prototype-label{margin-right:6px}
+.prototype-plan{display:grid;grid-template-columns:max-content minmax(0,1fr);gap:6px 9px;margin:0 10px;padding:9px 0 11px;border-top:1px solid var(--idea-line)}
+.prototype-plan dt,.prototype-plan dd{margin:0}
+.prototype-plan dt{align-self:baseline}
+.feature .prototype-ideas{--idea-bg:#2e3228;--idea-line:#4c543f;--idea-ink:#e5eadb;--idea-label:#c7dc94}
+.feature .prototype-idea summary:focus-visible{outline-color:var(--lime)}
 .watch-credit{color:#646d58;font-size:11px;line-height:1.5;overflow-wrap:anywhere}
 .watch-credit .watch-original{font:inherit;padding:0;vertical-align:baseline}
 .watch-full{margin-top:4px}
