@@ -13,6 +13,7 @@ let dialogOpener = null;
 let storageError = false;
 let activeVideo = null;
 let gamesById = new Map();
+let issueLoadFailed = false;
 
 function readEntries() {
   try {
@@ -28,9 +29,10 @@ function readEntries() {
 
 function remember(game, change) {
   const latest = storageError ? entries : readEntries();
-  const entry = { id: game.id, saved: false, note: "", ...latest.get(game.id), ...change, game };
-  if (entry.saved || entry.note.trim()) latest.set(game.id, entry);
-  else latest.delete(game.id);
+  const id = entryKey(game, latest);
+  const entry = { id, saved: false, note: "", ...latest.get(id), ...change, game };
+  if (entry.saved || entry.note.trim()) latest.set(id, entry);
+  else latest.delete(id);
   entries = latest;
   try {
     localStorage.setItem(notebookKey, JSON.stringify(Array.from(entries.values())));
@@ -115,6 +117,8 @@ function playableSource(video) {
   if (video.provider === "bilibili" && /^BV[A-Za-z0-9]{10}$/.test(video.id)) {
     const url = new URL("https://player.bilibili.com/player.html");
     url.search = new URLSearchParams({ bvid: video.id, isOutside: "true", autoplay: "1", danmaku: "0" });
+    if (Number.isSafeInteger(video.cid) && video.cid > 0) url.searchParams.set("cid", video.cid);
+    if (Number.isSafeInteger(video.page) && video.page > 1) url.searchParams.set("p", video.page);
     if (start) url.searchParams.set("t", start);
     return { url, label: "哔哩哔哩", embed: true };
   }
@@ -336,13 +340,13 @@ function announce(message) {
 
 function bookmark(game, withText = false) {
   const result = button(withText ? "outline-btn" : "save", undefined, () => {
-    const next = remember(game, { saved: !Boolean(entries.get(game.id)?.saved) });
+    const next = remember(game, { saved: !Boolean(entries.get(entryKey(game))?.saved) });
     update();
     announce(storageError ? "当前浏览器无法保存，收藏仅在本次打开时有效。" : next.saved ? "已加入灵感本。" : "已取消收藏。");
     if (inNotebook() && !detail.open) render();
   });
   function update() {
-    const saved = Boolean(entries.get(game.id)?.saved);
+    const saved = Boolean(entries.get(entryKey(game))?.saved);
     result.setAttribute("aria-pressed", String(saved));
     result.setAttribute("aria-label", `${saved ? "取消收藏" : "收藏"}《${game.title}》`);
     result.title = saved ? "取消收藏" : "收藏到灵感本";
@@ -460,6 +464,7 @@ function feature(game) {
   top.append(label, bookmark(game));
   const tags = element("div", "feature-tags");
   for (const item of [game.source, ...tagsOf(game).slice(0, 3)].filter(Boolean)) tags.append(element("span", "", item));
+  tags.append(genreLinks(game));
   const read = openButton(game, "primary", "查看玩法");
   read.append(icon("arrow"));
   const actions = element("div", "feature-actions");
@@ -479,11 +484,12 @@ function card(game, index, inNotes = false) {
   info.append(element("span", "source", game.source || "游戏"));
   const tag = tagsOf(game)[0];
   if (tag) info.append(element("span", "", "·"), element("span", "", tag));
+  info.append(genreLinks(game));
   const title = element("h3");
   title.append(openButton(game, "", game.title));
   body.append(info, title, videoSection(game, article, artWrap));
   body.append(reviewDigest(game) || element("p", "card-blurb", game.mechanic || game.signal), prototypeIdeas(game, "h4"));
-  const entry = entries.get(game.id);
+  const entry = entries.get(entryKey(game));
   if (inNotes && entry?.note) body.append(element("p", "note-snippet", entry.note));
   const foot = element("div", "card-foot");
   const read = openButton(game, "", inNotes && entry?.note ? "编辑笔记" : "查看玩法", inNotes && entry?.note ? "note" : "");
@@ -496,6 +502,7 @@ function card(game, index, inNotes = false) {
 
 function openDetail(game, opener, target = "") {
   stopVideo();
+  game = { ...libraryById.get(game.id), ...game };
   dialogOpener = opener;
   const wrap = element("div", "dialog-main");
   const top = element("div", "dialog-top");
@@ -507,14 +514,19 @@ function openDetail(game, opener, target = "") {
   top.append(kicker, close);
   const title = element("h2", "", game.title);
   title.id = "detail-title";
-  const source = [game.titleEn && game.titleEn !== game.title ? game.titleEn : "", game.source, ...tagsOf(game)].filter(Boolean).join("  /  ");
+  const source = [game.titleEn && game.titleEn !== game.title ? game.titleEn : "", yearText(game), game.source, ...tagsOf(game)].filter(Boolean).join("  /  ");
   wrap.append(top, title, element("p", "detail-source", source));
+  const yearNote = yearEvidence(game);
+  if (yearNote) wrap.append(yearNote);
+  wrap.append(genreLinks(game));
   const actions = element("div", "dialog-actions");
   actions.append(gameLink(game, "primary"), bookmark(game, true));
   wrap.append(actions);
   const digest = reviewDigest(game);
   if (digest) wrap.append(digest);
   else if (game.review) wrap.append(element("p", "review-empty", "这款游戏暂未收录可核实的测评。"));
+  const reference = referenceDigest(game);
+  if (reference) wrap.append(reference);
   wrap.append(prototypeIdeas(game));
   for (const [heading, text] of [["为什么入选", game.signal], ["玩家在做什么选择", game.mechanic]]) {
     if (!text) continue;
@@ -544,7 +556,7 @@ function openDetail(game, opener, target = "") {
   input.id = "game-note";
   input.setAttribute("aria-describedby", "note-prompt note-status");
   input.placeholder = "写下一条你想试试的规则…";
-  input.value = entries.get(game.id)?.note || "";
+  input.value = entries.get(entryKey(game))?.note || "";
   input.addEventListener("input", () => {
     remember(game, { note: input.value });
     noteStatus.textContent = storageError ? "仅本次打开有效" : input.value.trim() ? "已保存到此浏览器" : "保存在此浏览器";
@@ -642,8 +654,8 @@ function notebook() {
   }
   const cards = element("div", "cards");
   visible.forEach((entry, index) => {
-    const game = { ...entry.game, ...gamesById.get(entry.id) };
-    cards.append(card(game, index, true));
+    const game = { ...entry.game, ...(libraryById.get(entry.id) || gamesById.get(entry.id)), id: entry.id };
+    cards.append(game.reference || entry.id.startsWith("ref-") ? libraryCard(game, true) : card(game, index, true));
   });
   return [heading, filters, cards];
 }
@@ -653,19 +665,38 @@ function inNotebook() {
 }
 
 function updateNavigation() {
-  const notes = inNotebook();
-  const weekLink = document.getElementById("weekly-nav");
-  const noteLink = document.getElementById("notes-nav");
-  (notes ? noteLink : weekLink).setAttribute("aria-current", "page");
-  (notes ? weekLink : noteLink).removeAttribute("aria-current");
+  const activeId = inLibrary() ? "library-nav" : inNotebook() ? "notes-nav" : "weekly-nav";
+  for (const link of document.querySelectorAll(".nav-item")) {
+    if (link.id === activeId) link.setAttribute("aria-current", "page");
+    else link.removeAttribute("aria-current");
+  }
   const count = document.getElementById("notes-count");
   count.textContent = String(entries.size);
   count.hidden = entries.size === 0;
 }
 
 function render() {
-  if (!issues.length) return;
   stopVideo();
+  updateNavigation();
+  if (inLibrary()) {
+    loadReferences();
+    main.replaceChildren(...libraryView());
+    refreshLibraryResults();
+    document.title = "游戏库 · 游感周刊";
+    return;
+  }
+  if (inNotebook()) {
+    if ([...entries.keys()].some(id => id.startsWith("ref-"))) loadReferences();
+    main.replaceChildren(...notebook());
+    document.title = "我的灵感本 · 游感周刊";
+    return;
+  }
+  if (!issues.length) {
+    const state = element("div", issueLoadFailed ? "empty" : "load-state", issueLoadFailed ? "暂时无法打开周刊。" : "正在打开周刊…");
+    if (issueLoadFailed) state.append(document.createTextNode(" "), button("outline-btn", "重新加载", load));
+    main.replaceChildren(state);
+    return;
+  }
   if (location.hash.startsWith("#issue/")) {
     let issueId;
     try { issueId = decodeURIComponent(location.hash.slice(7)); } catch { issueId = ""; }
@@ -673,9 +704,8 @@ function render() {
   } else if (location.hash === "#weekly" || !activeIssue) {
     activeIssue = issues[0];
   }
-  updateNavigation();
-  main.replaceChildren(...(inNotebook() ? notebook() : weekly()));
-  document.title = `${inNotebook() ? "我的灵感本" : "游戏观察"} · 游感周刊`;
+  main.replaceChildren(...weekly());
+  document.title = "游戏观察 · 游感周刊";
 }
 
 detail.addEventListener("click", event => {
@@ -720,6 +750,7 @@ window.addEventListener("storage", event => {
 });
 
 async function load() {
+  issueLoadFailed = false;
   try {
     const response = await fetch("./data/issues.json", { cache: "no-cache" });
     if (!response.ok) throw new Error("Cannot load editions");
@@ -731,11 +762,12 @@ async function load() {
       for (const game of issue.games) gamesById.set(game.id, { ...gamesById.get(game.id), ...game });
     }
     activeIssue = issues[0];
+    rebuildLibrary();
     render();
   } catch {
-    const state = element("div", "empty");
-    state.append(element("h2", "", "暂时无法打开周刊"), element("p", "", "请检查网络后重新加载。"), button("outline-btn", "重新加载", load));
-    main.replaceChildren(state);
+    issueLoadFailed = true;
+    render();
   }
 }
+render();
 load();

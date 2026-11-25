@@ -1,0 +1,1014 @@
+[
+  {
+    "id": "ref-portal",
+    "title": "传送门",
+    "titleEn": "Portal",
+    "year": 2007,
+    "genres": [
+      "解谜",
+      "平台跳跃"
+    ],
+    "mechanics": [
+      "成对传送门",
+      "物体搬运"
+    ],
+    "core": "给两面墙各开一个洞，从这面墙进去、从那面墙出来。人走得通的路，也能拿来运送方块。",
+    "lesson": "给角色和道具同一套通行规则。玩家一旦学会穿门，就会主动试试能否让够不着的东西也穿过来。",
+    "sourceLabel": "Valve · 原版玩法说明",
+    "sourceUrl": "https://store.steampowered.com/app/400/Portal/",
+    "url": "https://store.steampowered.com/app/400/Portal/",
+    "yearSourceUrl": "https://store.steampowered.com/app/400/Portal/",
+    "prototypeIdeas": [
+      {
+        "title": "滑轨出口",
+        "keep": "同一对门可以运送人，也能运送箱子。",
+        "change": "每有东西穿过门，出口就沿短轨前进一格。",
+        "build": "做一张俯视格子图，放三格轨道、一只箱子和两个开关。",
+        "playtest": "玩家会先自己穿门探路，还是先算出箱子该从第几个位置出来？",
+        "days": 1
+      }
+    ],
+    "image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/400/header.jpg?t=1745368554",
+    "video": {
+      "provider": "bilibili",
+      "id": "BV11s411K7EK",
+      "title": "【合集】传送门1游戏通关解说（全5p）",
+      "creator": "神旗老纸",
+      "url": "https://www.bilibili.com/video/BV11s411K7EK/",
+      "segment": {
+        "method": "editor",
+        "start": 425,
+        "end": 450,
+        "cue": "先看坑底的方块，再朝地板打出蓝门；玩家抱着方块穿出来，把它放在红色开关上。"
+      },
+      "preview": {
+        "provider": "steam",
+        "src": "https://video.fastly.steamstatic.com/store_trailers/400/336/858d7ae015068388644e14742bd90801fbb8a805/1750108766/microtrailer.mp4",
+        "title": "Portal Trailer",
+        "creator": "Steam 商店官方短片",
+        "url": "https://store.steampowered.com/app/400/",
+        "segment": {
+          "start": 0,
+          "end": 9,
+          "cue": "看双向传送门的示意，以及房间里的方块。",
+          "method": "official"
+        }
+      }
+    }
+  },
+  {
+    "id": "ref-bioshock",
+    "title": "生化奇兵",
+    "titleEn": "BioShock",
+    "year": 2007,
+    "genres": [
+      "射击",
+      "动作"
+    ],
+    "mechanics": [
+      "环境交互",
+      "设备接管"
+    ],
+    "core": "进入海底城的一间屋子，除了正面交手，还可以接管警戒设备，让本来阻拦你的机器改为帮手。",
+    "lesson": "同一台装置换个归属，就能把麻烦变成解法。先让玩家看懂它平时对谁反应，再交给他改变归属的机会。",
+    "sourceLabel": "2K · 原版系统说明",
+    "sourceUrl": "https://store.steampowered.com/app/7670/BioShock/",
+    "url": "https://store.steampowered.com/app/7670/BioShock/",
+    "yearSourceUrl": "https://store.steampowered.com/app/7670/BioShock/",
+    "prototypeIdeas": [
+      {
+        "title": "夜班仓库",
+        "keep": "利用房间里现成的机器改变局面。",
+        "change": "一次只能接管一台设备；切到新设备，旧设备立即恢复原职。",
+        "build": "一屏格子仓库，做一扇闸门、一台传送带和一辆待送出的货车。",
+        "playtest": "什么时候会发生这样的犹豫：还想让传送带走一格，却又得把闸门打开？",
+        "days": 1
+      }
+    ],
+    "yearNote": "此处为 2007 年原版。",
+    "image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/7670/header.jpg?t=1730172622",
+    "video": {
+      "provider": "bilibili",
+      "id": "BV1z4411D7Jo",
+      "url": "https://www.bilibili.com/video/BV1z4411D7Jo/?p=2",
+      "title": "【最高难度漏收集攻略】《生化奇兵1》（7P完结）",
+      "creator": "竹字头的笙",
+      "page": 2,
+      "cid": 109793321,
+      "segment": {
+        "start": 92,
+        "end": 116,
+        "cue": "盯住装置上的管道格盘。玩家翻开几块盖板、把管段接到出口，随后视角回到房间。",
+        "method": "editor"
+      }
+    }
+  },
+  {
+    "id": "ref-world-of-goo",
+    "title": "粘粘世界",
+    "titleEn": "World of Goo",
+    "year": 2008,
+    "genres": [
+      "解谜"
+    ],
+    "mechanics": [
+      "结构搭建",
+      "材料兼作乘客"
+    ],
+    "core": "拖起黏球，把它黏进桥或塔的骨架。结构必须够到管口，还得给剩下的黏球留一条能爬过去的路。",
+    "lesson": "让建材和要救出的角色来自同一群，就会出现一个有意义的停手时机：再用一颗会更稳，却少送走一颗。",
+    "sourceLabel": "2D BOY · 物理建造说明",
+    "sourceUrl": "https://store.steampowered.com/app/22000/World_of_Goo/",
+    "url": "https://store.steampowered.com/app/22000/World_of_Goo/",
+    "yearSourceUrl": "https://store.steampowered.com/app/22000/World_of_Goo/",
+    "prototypeIdeas": [
+      {
+        "title": "一趟纸桥",
+        "keep": "用有限的乘客搭桥，越省材料就能送走越多人。",
+        "change": "每段桥只能通过两名乘客，随后塌掉。",
+        "build": "在纸上画五个桥墩，用八枚棋子兼作桥和乘客，过桥次数拿铅笔标。",
+        "playtest": "发现第一段桥快塌时，玩家会补远端、改道，还是提前让人过桥？",
+        "days": 1
+      }
+    ],
+    "video": {
+      "provider": "bilibili",
+      "id": "BV1Fp4y1q7gR",
+      "cid": 213643186,
+      "title": "【二代视频即将推出…】《World of Goo》 粘粘世界 steam正版 全关卡OCD 新手向攻略 含字幕解析+简单邪道讲解 · 小峡谷-Small divide",
+      "creator": "Arc_S绝尘",
+      "url": "https://www.bilibili.com/video/BV1Fp4y1q7gR/?p=3",
+      "segment": {
+        "start": 11,
+        "end": 38,
+        "cue": "看玩家把软球拉到桥的前端。每添一段三角支架，整座桥都会晃一下，最后探到对岸。",
+        "method": "editor"
+      },
+      "page": 3,
+      "preview": {
+        "provider": "steam",
+        "src": "https://video.fastly.steamstatic.com/store_trailers/22000/221257/21672c15713f01e9302f64b5bc27391533e53923/1751245968/microtrailer.mp4",
+        "title": "World of Goo Trailer 3 2019",
+        "creator": "Steam 商店官方短片",
+        "url": "https://store.steampowered.com/app/22000/",
+        "segment": {
+          "start": 0,
+          "end": 8.833,
+          "cue": "黏球搭成了可以弯曲的长桥。",
+          "method": "official"
+        }
+      }
+    },
+    "image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/22000/header.jpg?t=1764881559"
+  },
+  {
+    "id": "ref-left-4-dead",
+    "title": "求生之路",
+    "titleEn": "Left 4 Dead",
+    "year": 2008,
+    "genres": [
+      "射击",
+      "动作",
+      "社交协作"
+    ],
+    "mechanics": [
+      "合作推进",
+      "动态导演"
+    ],
+    "core": "四名幸存者向安全屋推进。路线可以相同，导演系统会按当下表现改变感染者攻势的频率和强度。",
+    "lesson": "先选一项能被玩家感受到的压力指标，再用它安排紧张与喘息。同一段走廊就有理由多走几次。",
+    "sourceLabel": "Valve · 合作模式与 AI 导演",
+    "sourceUrl": "https://store.steampowered.com/app/500/Left_4_Dead/",
+    "url": "https://store.steampowered.com/app/500/Left_4_Dead/",
+    "yearSourceUrl": "https://store.steampowered.com/app/500/Left_4_Dead/",
+    "prototypeIdeas": [
+      {
+        "title": "末班车的两盏灯",
+        "keep": "同一条路上，队伍状态会改变下一段的压力。",
+        "change": "导演只看领队与跟随者的距离；距离越大，停电越频繁。",
+        "build": "做六段走廊、一名可控领队和一名慢半拍跟随的乘客，用明暗表示停电。",
+        "playtest": "第二趟走到长走廊前，玩家会第一次主动放慢脚步等乘客吗？",
+        "days": 1
+      }
+    ],
+    "image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/500/header.jpg?t=1745368560",
+    "video": {
+      "provider": "bilibili",
+      "id": "BV1fD4y1e7NT",
+      "url": "https://www.bilibili.com/video/BV1fD4y1e7NT/?p=3",
+      "title": "【求生之路1】全战役专家难度流程（完结）",
+      "creator": "野鹤穿竹林_",
+      "page": 3,
+      "cid": 903994876,
+      "segment": {
+        "start": 2584,
+        "end": 2609,
+        "cue": "小屋里有人守门，有人绕上楼梯。跟着蓝色轮廓看，即使队友被墙挡住，你仍能判断谁离自己最近。",
+        "method": "editor"
+      }
+    }
+  },
+  {
+    "id": "ref-plants-vs-zombies",
+    "title": "植物大战僵尸",
+    "titleEn": "Plants vs. Zombies",
+    "year": 2009,
+    "genres": [
+      "策略"
+    ],
+    "mechanics": [
+      "分路塔防",
+      "阳光经济"
+    ],
+    "core": "草坪上几路僵尸同时靠近。同一把阳光可以买一株立即救场的豌豆，也能换一株以后持续产阳光的向日葵。",
+    "lesson": "把收入和防守挤在同一片地上，敌人距离就成了投资期限。玩家看一眼草坪便能判断还来不来得及先种收入。",
+    "sourceLabel": "PopCap / EA · 原版玩家手册",
+    "sourceUrl": "https://akamai.cdn.ea.com/eadownloads/u/f/manuals/GAME-PVZ/en_US_readme.html",
+    "url": "https://store.steampowered.com/app/3590/Plants_vs_Zombies_GOTY_Edition/",
+    "yearSourceUrl": "https://store.steampowered.com/app/3590/Plants_vs_Zombies_GOTY_Edition/",
+    "prototypeIdeas": [
+      {
+        "title": "隔行的阳光",
+        "keep": "把眼前防守和未来收入放在同一块有限的地里。",
+        "change": "向日葵产的阳光只能用在它所在的那一行。",
+        "build": "做两行各四格，只放向日葵、豌豆和四波来客，每波提前亮出入口。",
+        "playtest": "空行第一次亮出入口时，玩家还愿意在忙的那行补第二株向日葵吗？",
+        "days": 1
+      }
+    ],
+    "yearNote": "按 2009 年 PC 原版收录，商店现列年度版。",
+    "video": {
+      "provider": "bilibili",
+      "id": "BV1tA411Y7ny",
+      "cid": 218717655,
+      "title": "【植物大战僵尸】原版中文版冒险模式攻略实况(附赠一点小游戏番外) · 1-3",
+      "creator": "你爱小蓝",
+      "url": "https://www.bilibili.com/video/BV1tA411Y7ny/?p=3",
+      "segment": {
+        "start": 35,
+        "end": 60,
+        "cue": "看向日葵后面的资源栏，再看僵尸先进入哪一行。玩家在那一行补豌豆射手，火力沿着直线打出去。",
+        "method": "editor"
+      },
+      "page": 3,
+      "preview": {
+        "provider": "steam",
+        "src": "https://video.fastly.steamstatic.com/store_trailers/3590/1872/82d45bb1a27d4352d0d0dc2c360c790e6d396b1e/1750483994/microtrailer.mp4",
+        "title": "Plants vs. Zombies Trailer",
+        "creator": "Steam 商店官方短片",
+        "url": "https://store.steampowered.com/app/3590/",
+        "segment": {
+          "start": 0,
+          "end": 8.583,
+          "cue": "注意豌豆弹道所在的草坪行与僵尸的走向。",
+          "method": "official"
+        }
+      }
+    },
+    "image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3590/header.jpg?t=1777394124"
+  },
+  {
+    "id": "ref-machinarium",
+    "title": "机械迷城",
+    "titleEn": "Machinarium",
+    "year": 2009,
+    "genres": [
+      "解谜",
+      "叙事冒险"
+    ],
+    "mechanics": [
+      "图像对白",
+      "道具解谜"
+    ],
+    "core": "机器人头顶冒出一串小图，把请求演给你看。玩家再观察房间里的零件，找出能回应请求的物品。",
+    "lesson": "图像能同时承担对白与线索，前提是画面里有可辨认的对应物。理解角色想要什么，本身就能成为谜题。",
+    "sourceLabel": "Amanita Design · 原版沟通与谜题说明",
+    "sourceUrl": "https://store.steampowered.com/app/40700/Machinarium/",
+    "url": "https://store.steampowered.com/app/40700/Machinarium/",
+    "yearSourceUrl": "https://store.steampowered.com/app/40700/Machinarium/",
+    "prototypeIdeas": [
+      {
+        "title": "漏掉一格的修理单",
+        "keep": "读懂图像，再从现场找对应的工具。",
+        "change": "机器人的三格修理图总缺中间一步，由玩家把实物拖进去补上。",
+        "build": "画一张维修台、三样零件、两张修理单，接对后播一秒齿轮转动。",
+        "playtest": "玩家会凭零件外形瞎试，还是先指出最后一格和第一格之间发生了什么？",
+        "days": 1
+      }
+    ],
+    "video": {
+      "provider": "bilibili",
+      "id": "BV1FE41187in",
+      "cid": 126607292,
+      "title": "机械迷城 全中文剧情流程攻略解说全集",
+      "creator": "侠隐书生",
+      "url": "https://www.bilibili.com/video/BV1FE41187in/",
+      "segment": {
+        "start": 150,
+        "end": 174,
+        "cue": "观察桥旁亭子、拦杆和小机器人。角色与物件怎样互动，靠姿势和机关的位置就能辨认。",
+        "method": "editor"
+      },
+      "preview": {
+        "provider": "steam",
+        "src": "https://video.fastly.steamstatic.com/store_trailers/40700/389370408/10e89c200a802f127294239f4dd2fdfe436fbfc8/1750485470/microtrailer.mp4",
+        "title": "Machinarium Short Trailer",
+        "creator": "Steam 商店官方短片",
+        "url": "https://store.steampowered.com/app/40700/",
+        "segment": {
+          "start": 0,
+          "end": 6,
+          "cue": "看小机器人在桥边、台阶和工厂机关前的位置。",
+          "method": "official"
+        }
+      }
+    },
+    "image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/40700/header.jpg?t=1791501193"
+  },
+  {
+    "id": "ref-super-meat-boy",
+    "title": "超级食肉男孩",
+    "titleEn": "Super Meat Boy",
+    "year": 2010,
+    "genres": [
+      "平台跳跃",
+      "动作"
+    ],
+    "mechanics": [
+      "连续蹬墙",
+      "快速重试"
+    ],
+    "core": "在布满旋转锯片的短关卡里蹬墙、换向、落地。一次失手就能迅速回到起点，下一跳马上检验刚才的判断。",
+    "lesson": "短距离与快速重试一起用，失败才像一次有信息的测量。把障碍放在玩家还记得上次按键时机的地方。",
+    "sourceLabel": "Team Meat · 原版关卡与蹬墙说明",
+    "sourceUrl": "https://store.steampowered.com/app/40800/Super_Meat_Boy/",
+    "url": "https://store.steampowered.com/app/40800/Super_Meat_Boy/",
+    "yearSourceUrl": "https://news.xbox.com/en-us/2010/10/20/arcade-super-meat-boy/",
+    "prototypeIdeas": [
+      {
+        "title": "跌落的脚印",
+        "keep": "在一秒内用下一跳检验刚才的失误。",
+        "change": "上一次跌落的位置会在重试时留下一块只可踩一次的小平台。",
+        "build": "做一间横屏小屋、两面墙、三条沟，只保存最近一个落点。",
+        "playtest": "玩家什么时候会故意落到某处，为下一回合铺个踏脚点？",
+        "days": 2
+      }
+    ],
+    "yearNote": "2010 年先在 Xbox 360 上推出，Steam 版同年发行。",
+    "image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/40800/header.jpg?t=1700669950",
+    "video": {
+      "provider": "bilibili",
+      "id": "BV12jcEz7ELU",
+      "title": "【超级食肉男孩】全收集个人实况（更新中）",
+      "creator": "゚゙1657゚゙゙゚",
+      "url": "https://www.bilibili.com/video/BV12jcEz7ELU/",
+      "segment": {
+        "method": "editor",
+        "start": 288,
+        "end": 304,
+        "cue": "肉块从左侧跳向中央高台，碰到锯齿后立刻回到起点；下一次越过锯齿碰到右边的角色，画面跳出通关提示。"
+      }
+    }
+  },
+  {
+    "id": "ref-civilization-v",
+    "title": "文明 V",
+    "titleEn": "Sid Meier’s Civilization V",
+    "year": 2010,
+    "genres": [
+      "策略"
+    ],
+    "mechanics": [
+      "六角格站位",
+      "同类单位占格"
+    ],
+    "core": "在六角格地图上推进，同一格不能塞两支战斗单位。窄山口里，前排能否换位，取决于你有没有给后排留路。",
+    "lesson": "每格只准一支队伍，会让让路本身成为战术。地图必须留有绕行或轮换的位置，否则拥堵只剩下排队。",
+    "sourceLabel": "Firaxis / 2K · 原版规则手册",
+    "sourceUrl": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/8930/manuals/Civ_V_Manual_EN_Combined.pdf",
+    "url": "https://store.steampowered.com/app/8930/Sid_Meiers_Civilization_V/",
+    "yearSourceUrl": "https://store.steampowered.com/app/8930/Sid_Meiers_Civilization_V/",
+    "prototypeIdeas": [
+      {
+        "title": "山口换班",
+        "keep": "在窄路上替另一队腾出位置。",
+        "change": "所有队伍先写下移动指令，再同时执行；同一落点发生冲突时双方都留下。",
+        "build": "摆七枚六角纸片、三枚队伍棋子，用六回合把伤员送到谷外。",
+        "playtest": "玩家会在第二次堵车前安排哪队先退到侧边？",
+        "days": 1
+      }
+    ],
+    "yearNote": "按原版收录，未并入后续资料片的制度。",
+    "image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/8930/header.jpg?t=1724341158",
+    "video": {
+      "provider": "bilibili",
+      "id": "BV1jt411q7aU",
+      "url": "https://www.bilibili.com/video/BV1jt411q7aU/",
+      "title": "文明5 德国刷野早战开局",
+      "creator": "caesarfox",
+      "page": 1,
+      "cid": 66493732,
+      "segment": {
+        "start": 351,
+        "end": 378,
+        "cue": "镜头拉近后，看几支单位分占哪些六角格。选中单位的亮圈挨着另一支部队，周围还剩哪格适合下一次移动？",
+        "method": "editor"
+      }
+    }
+  },
+  {
+    "id": "ref-minecraft",
+    "title": "我的世界",
+    "titleEn": "Minecraft",
+    "year": 2011,
+    "genres": [
+      "生存建造"
+    ],
+    "mechanics": [
+      "方块拆建",
+      "采集与合成"
+    ],
+    "core": "拆下眼前的方块，再把材料做成工具、阶梯或一面墙。刚才挡路的地形，可以亲手改成下次出门的路。",
+    "lesson": "让采集留下看得见的地形变化。同一份材料能当工具原料，也能原地铺路，玩家才会为自己定目标。",
+    "sourceLabel": "Xbox · Mojang 游戏发展回顾",
+    "sourceUrl": "https://news.xbox.com/en-us/2024/05/17/minecraft-15-years-most-important-moments/",
+    "url": "https://www.minecraft.net/en-us/about-minecraft",
+    "yearSourceUrl": "https://news.xbox.com/en-us/2024/05/17/minecraft-15-years-most-important-moments/",
+    "prototypeIdeas": [
+      {
+        "title": "口袋只有一格",
+        "keep": "拆下地形，再用原材料创造新的通路。",
+        "change": "角色一次只搬得动一块材料。",
+        "build": "做一张 8×8 俯视岛图，一处浅滩、一座高台，泥块可在浅滩铺出路。",
+        "playtest": "去高台途中，玩家会拆掉刚走过的路，还是绕远去拿新的泥块？",
+        "days": 1
+      }
+    ],
+    "yearNote": "按 Java 1.0 正式版记为 2011 年；公开的 Classic 版本始于 2009 年。",
+    "image": "https://www.minecraft.net/content/dam/minecraftnet/games/minecraft/key-art/About-Minecraft_Featured-Image-0_570x321.jpg",
+    "video": {
+      "provider": "bilibili",
+      "id": "BV1xCWEzuEg9",
+      "url": "https://www.bilibili.com/video/BV1xCWEzuEg9/",
+      "title": "新手生存前期可建小木屋，你们要的教程来啦",
+      "creator": "MC_shadow",
+      "page": 1,
+      "cid": 33154140103,
+      "segment": {
+        "start": 20,
+        "end": 46,
+        "cue": "看玩家把地基中间的空格铺成木地板，再沿外围加墙、立柱。留出哪几格，就能让一面墙变成入口？",
+        "method": "editor"
+      }
+    }
+  },
+  {
+    "id": "ref-dark-souls",
+    "title": "黑暗之魂",
+    "titleEn": "Dark Souls",
+    "year": 2011,
+    "genres": [
+      "动作",
+      "角色扮演"
+    ],
+    "mechanics": [
+      "篝火休整",
+      "死亡掉落回收"
+    ],
+    "core": "带着未花的灵魂走进陌生路段，倒下后从篝火再出发。赶在下次死亡前回到血痕，可取回这笔积蓄。",
+    "lesson": "让失去的积蓄留下地点，失败就会生成一个有名字的短期目标。玩家知道可以回收，才会认真权衡原路和绕路。",
+    "sourceLabel": "FromSoftware · 复刻版沿用的篝火与血痕规则",
+    "sourceUrl": "https://www.fromsoftware.jp/manual/darksoulsremastered/xone/basic.html",
+    "url": "https://www.darksouls.jp/detail_ds1.html",
+    "yearSourceUrl": "https://www.darksouls.jp/detail_ds1.html",
+    "prototypeIdeas": [
+      {
+        "title": "失物的另一面",
+        "keep": "上次的失败地点变成下一趟要找回的目标。",
+        "change": "失物只能从上一次跌落点的另一侧拾回。",
+        "build": "画九格环路、一个营地和两块会塌的地砖，用筹码记失物。",
+        "playtest": "想拿回一大堆筹码时，玩家会在什么时候改走此前没走的半圈？",
+        "days": 1
+      }
+    ],
+    "yearNote": "按 2011 年日本 PS3 原版收录，所引线上手册来自后来的复刻版。",
+    "image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/211420/header.jpg?t=1721682669",
+    "video": {
+      "provider": "bilibili",
+      "id": "BV13s411x7jQ",
+      "url": "https://www.bilibili.com/video/BV13s411x7jQ/",
+      "title": "【大合集】黑暗之魂1 全剧情全道具分析全流程攻略解说",
+      "creator": "球魂",
+      "page": 1,
+      "cid": 11331961,
+      "segment": {
+        "start": 703,
+        "end": 732,
+        "cue": "角色走到庭院中央的篝火旁，脚边亮起火光，随后去推对面的门。试着用这两个地标记住重来时的方向。",
+        "method": "editor"
+      }
+    }
+  },
+  {
+    "id": "ref-journey",
+    "title": "风之旅人",
+    "titleEn": "Journey",
+    "year": 2012,
+    "genres": [
+      "叙事冒险",
+      "社交协作"
+    ],
+    "mechanics": [
+      "无字呼唤",
+      "匿名结伴"
+    ],
+    "core": "穿过沙丘时可能遇见另一名旅人。一声呼唤、一次停步就能表达“跟我来”或“我等你”，目的地始终是天边的山。",
+    "lesson": "只留一种信号时，距离、停顿和重复都会带上意思。给双方共同可见的目的地，简单信号才会长出共同语境。",
+    "sourceLabel": "陈星汉 · PlayStation 开发者访谈",
+    "sourceUrl": "https://blog.playstation.com/2011/01/11/jenova-chen-explains-journey-social-relevance-and-artistic-inspirations/",
+    "url": "https://thatgamecompany.com/journey/",
+    "yearSourceUrl": "https://blog.playstation.com/2012/03/13/your-journey-begins-journey-comes-to-psn-today/",
+    "prototypeIdeas": [
+      {
+        "title": "墙后的回声",
+        "keep": "让一次呼唤代替文字指路。",
+        "change": "同伴只听得见从墙上弹回的鸣声。",
+        "build": "做两段俯视沙廊和一名会朝声源走的电脑同伴，用扩散圆环显示回声。",
+        "playtest": "同伴没跟上时，玩家会反复按键，还是换个站位让回声拐进另一条廊？",
+        "days": 2
+      }
+    ],
+    "yearNote": "按 2012 年 PS3 原版收录。",
+    "image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/638230/header.jpg?t=1729099361",
+    "video": {
+      "provider": "bilibili",
+      "id": "BV11e411p7ju",
+      "url": "https://www.bilibili.com/video/BV11e411p7ju/?p=4",
+      "title": "【风之旅人】 关键成就流程 白袍黄花先祖",
+      "creator": "苜小锐",
+      "page": 4,
+      "cid": 189492584,
+      "segment": {
+        "start": 129,
+        "end": 154,
+        "cue": "看沙坡上的旅人发出一圈白光，再循着坡面前行。没有文字的呼唤，在这么空旷的画面里会有多显眼？",
+        "method": "editor"
+      }
+    }
+  },
+  {
+    "id": "ref-ftl",
+    "title": "超越光速",
+    "titleEn": "FTL: Faster Than Light",
+    "year": 2012,
+    "genres": [
+      "策略",
+      "Roguelike"
+    ],
+    "mechanics": [
+      "舰船配电",
+      "暂停下令"
+    ],
+    "core": "护盾掉线时先暂停，给船员指派修理，再把有限电力从一个系统拨到另一个。恢复时间后，几道命令会在同一艘船上一起见效。",
+    "lesson": "把几个系统的需求做成同时可见，再允许暂停。压力来自只能保住其中一部分，而不必来自点鼠标够不够快。",
+    "sourceLabel": "Subset Games · 舰船系统说明",
+    "sourceUrl": "https://store.steampowered.com/app/212680/FTL_Faster_Than_Light/",
+    "url": "https://store.steampowered.com/app/212680/FTL_Faster_Than_Light/",
+    "yearSourceUrl": "https://store.steampowered.com/app/212680/FTL_Faster_Than_Light/",
+    "prototypeIdeas": [
+      {
+        "title": "晚两拍的总闸",
+        "keep": "同一份电力抢救几处同时吃紧的设备。",
+        "change": "每次改配电力，要等两个节拍才生效。",
+        "build": "一块仪表盘放舱门、护罩和引擎，玩家分三格电力，应付六张已亮出预告的事件牌。",
+        "playtest": "玩家会在险情发生前预拨电，还是总到故障发生才关掉别的系统？",
+        "days": 1
+      }
+    ],
+    "video": {
+      "provider": "bilibili",
+      "id": "BV13y4y1e7wy",
+      "cid": 297898599,
+      "title": "【FTL超越光速】流程攻略合集 —— FTL: Faster Than Light",
+      "creator": "云东GAME",
+      "url": "https://www.bilibili.com/video/BV13y4y1e7wy/",
+      "segment": {
+        "start": 1850,
+        "end": 1877,
+        "cue": "留意左边自己的船舱和右边敌舰的剖面。双方交火时，仍能看到各舱室和武器的状态。",
+        "method": "editor"
+      },
+      "preview": {
+        "provider": "steam",
+        "src": "https://video.fastly.steamstatic.com/store_trailers/212680/9010/3b8455f5c0716335bcf4719fcbe479b01da86a82/1750480987/microtrailer.mp4",
+        "title": "FTL Faster Than Light Trailer",
+        "creator": "Steam 商店官方短片",
+        "url": "https://store.steampowered.com/app/212680/",
+        "segment": {
+          "start": 0,
+          "end": 8.442,
+          "cue": "看船舱剖面、系统升级和航线地图三种不同的决策画面。",
+          "method": "official"
+        }
+      }
+    },
+    "image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/212680/f21426ac9ad51338fa33becce88984758e07c38b/header.jpg?t=1748969356"
+  },
+  {
+    "id": "ref-papers-please",
+    "title": "请出示文件",
+    "titleEn": "Papers, Please",
+    "year": 2013,
+    "genres": [
+      "模拟经营",
+      "解谜",
+      "叙事冒险"
+    ],
+    "mechanics": [
+      "证件交叉核对",
+      "入境裁决"
+    ],
+    "core": "访客把证件摊上桌，你在规则本、姓名、日期之间来回核对，最后盖准许或拒绝章。相似的纸张可能通向完全不同的处境。",
+    "lesson": "要让审查产生取舍，矛盾必须能从桌面上查到，来人又必须有值得听完的理由。少一方，玩家就只剩猜谜或跟着故事走。",
+    "sourceLabel": "Lucas Pope · 原版边检玩法说明",
+    "sourceUrl": "https://store.steampowered.com/app/239030/Papers_Please/",
+    "url": "https://store.steampowered.com/app/239030/Papers_Please/",
+    "yearSourceUrl": "https://store.steampowered.com/app/239030/Papers_Please/",
+    "prototypeIdeas": [
+      {
+        "title": "最后一张补件条",
+        "keep": "证件不齐时，对照规则也得听来人的解释。",
+        "change": "每班有且只有一张补件条，能让一名来客改日再办。",
+        "build": "做八张访客卡、三条入馆规则和三枚印章，给两名有疑点的来客各写一句缘由。",
+        "playtest": "玩家把补件条留给了哪一位？盖章前最后看的是证据，还是对方那句话？",
+        "days": 1
+      }
+    ],
+    "image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/239030/header.jpg?t=1678266428",
+    "video": {
+      "provider": "bilibili",
+      "id": "BV1Js411U7Hy",
+      "url": "https://www.bilibili.com/video/BV1Js411U7Hy/",
+      "title": "【路米实况】请出示文件，另类模拟海关盖章游戏，简直看到眼瞎",
+      "creator": "路痴糖小米",
+      "page": 1,
+      "cid": 3737302,
+      "segment": {
+        "start": 1213,
+        "end": 1238,
+        "cue": "旅客的脸、护照照片和另一份文件并排摆着。看玩家核对到哪一步才拉出红绿印章，又把什么递回了窗口。",
+        "method": "editor"
+      }
+    }
+  },
+  {
+    "id": "ref-rogue-legacy",
+    "title": "盗贼遗产",
+    "titleEn": "Rogue Legacy",
+    "year": 2013,
+    "genres": [
+      "Roguelike",
+      "平台跳跃",
+      "动作"
+    ],
+    "mechanics": [
+      "后代特质",
+      "跨代成长"
+    ],
+    "core": "一代人倒在城堡里，由有不同特质的后代接手。前一回带回的金币可以扩建庄园，改变继任者出门时的条件。",
+    "lesson": "失败能成为交接，而不只是结算分数。前一次至少要留下能改变下一次决定的东西，换一个角色才像接班。",
+    "sourceLabel": "Cellar Door Games · 血脉与庄园规则",
+    "sourceUrl": "https://store.steampowered.com/app/241600/Rogue_Legacy/",
+    "url": "https://store.steampowered.com/app/241600/Rogue_Legacy/",
+    "yearSourceUrl": "https://store.steampowered.com/app/241600/Rogue_Legacy/",
+    "prototypeIdeas": [
+      {
+        "title": "遗嘱留一扇门",
+        "keep": "前一代走过的路会影响下一代起步。",
+        "change": "把传给继任者的金币改为一扇曾经打开的门，由玩家指定它保持开启。",
+        "build": "画五间相连的房，给三代角色不同跳距，做两把钥匙和三扇门。",
+        "playtest": "第一代会留下离起点最近的门，还是考虑下一代短腿可能够不到哪里？",
+        "days": 2
+      }
+    ],
+    "video": {
+      "provider": "bilibili",
+      "id": "BV1J4411E72m",
+      "cid": 92545061,
+      "title": "《盗贼遗产》全BOSS无伤合集 （含REMIX）",
+      "creator": "井哥baby",
+      "url": "https://www.bilibili.com/video/BV1J4411E72m/",
+      "segment": {
+        "start": 150,
+        "end": 174,
+        "cue": "看骑士在同一间房里躲过一排弹幕，再绕回巨大骷髅旁；平台的位置决定了他能在哪儿落脚。",
+        "method": "editor"
+      }
+    },
+    "image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/241600/header.jpg?t=1743078622"
+  },
+  {
+    "id": "ref-this-war-of-mine",
+    "title": "这是我的战争",
+    "titleEn": "This War of Mine",
+    "year": 2014,
+    "genres": [
+      "生存建造",
+      "模拟经营",
+      "叙事冒险"
+    ],
+    "mechanics": [
+      "昼夜分工",
+      "物资取舍"
+    ],
+    "core": "白天生火、做床、照料伤病，入夜再派一位居民外出找物资。今晚谁离开、带回食物还是药，会决定屋里的人明早能做什么。",
+    "lesson": "把决策的代价落到具体住户身上。玩家要能看到“谁因此多撑了一天”，而不只是库存数字加减。",
+    "sourceLabel": "11 bit studios · 原版昼夜及居民机制",
+    "sourceUrl": "https://store.steampowered.com/app/282070/This_War_of_Mine/",
+    "url": "https://store.steampowered.com/app/282070/This_War_of_Mine/",
+    "yearSourceUrl": "https://store.steampowered.com/app/282070/This_War_of_Mine/",
+    "prototypeIdeas": [
+      {
+        "title": "一只保温盒",
+        "keep": "夜里带回的东西，第二天会帮到屋里某个具体的人。",
+        "change": "夜班只带一只保温盒，一趟只能携带食物或药品其中一类。",
+        "build": "用纸卡做三名住户、两个领取点、三个夜班，翻卡看次晨每人还能做哪项工作。",
+        "playtest": "有人同时饿着和发烧时，玩家出门前会先看谁的情况、选哪只盒子标签？",
+        "days": 1
+      }
+    ],
+    "yearNote": "按 2014 年原版收录，商店同时介绍后来的 Final Cut 内容。",
+    "video": {
+      "provider": "bilibili",
+      "id": "BV1ewjP6LEaa",
+      "cid": 39216286181,
+      "title": "【这是我的战争】庇护所开局开荒教学（户型三——礼堂）",
+      "creator": "寻切真爱打游戏",
+      "url": "https://www.bilibili.com/video/BV1ewjP6LEaa/",
+      "segment": {
+        "start": 88,
+        "end": 112,
+        "cue": "看白天的避难所剖面。幸存者在不同楼层活动，屋里的搜寻点、楼梯和门都在同一幅画里。",
+        "method": "editor"
+      }
+    },
+    "image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/282070/26fb8c9bb7b9e3a17469d8026ee3fa510ee7f8f5/header.jpg?t=1795519118"
+  },
+  {
+    "id": "ref-the-talos-principle",
+    "title": "塔洛斯的法则",
+    "titleEn": "The Talos Principle",
+    "year": 2014,
+    "genres": [
+      "解谜"
+    ],
+    "mechanics": [
+      "激光中继",
+      "颜色匹配"
+    ],
+    "core": "站在两道屏障之间，把中继器挪到既能看见光源又能照到同色接收器的位置。信号一通，先前挡路的门才会打开。",
+    "lesson": "光束把因果直接画在空间里。保证玩家能从断开的那一段追到原因，移动装置就能成为推理，而不是逐格试错。",
+    "sourceLabel": "Croteam · 连接器与接收器手册",
+    "sourceUrl": "https://taloseditor.croteam.com/device_reference/",
+    "url": "https://store.steampowered.com/app/257510/The_Talos_Principle/",
+    "yearSourceUrl": "https://store.steampowered.com/app/257510/The_Talos_Principle/",
+    "prototypeIdeas": [
+      {
+        "title": "三秒余光",
+        "keep": "看着光路找出是哪段中继让门打开。",
+        "change": "搬起中继器时，原位置的光路还能维持三秒。",
+        "build": "做两道门、一个可搬的中继器、一块遮光墙；光路用直线，余光用渐淡表示。",
+        "playtest": "玩家是在光还亮着时冲门，还是先找好新位置再拿起支架？",
+        "days": 2
+      }
+    ],
+    "yearNote": "按 2014 年原版收录，只采用初代已有的光路元件。",
+    "image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/257510/header.jpg?t=1744327639",
+    "video": {
+      "provider": "bilibili",
+      "id": "BV1Gf4y1W7iV",
+      "url": "https://www.bilibili.com/video/BV1Gf4y1W7iV/?p=4",
+      "title": "【塔罗斯的法则】【The Talos Principle】全流程+全收集攻略",
+      "creator": "Benzolamps",
+      "page": 4,
+      "cid": 333551174,
+      "segment": {
+        "start": 229,
+        "end": 254,
+        "cue": "看玩家拿着连接器找位置，再看红色光束汇到同一点。试着从交点往回追，哪些装置能彼此看见？",
+        "method": "editor"
+      }
+    }
+  },
+  {
+    "id": "ref-undertale",
+    "title": "传说之下",
+    "titleEn": "Undertale",
+    "year": 2015,
+    "genres": [
+      "角色扮演",
+      "叙事冒险"
+    ],
+    "mechanics": [
+      "非暴力交涉",
+      "弹幕闪避"
+    ],
+    "core": "在菜单里试着与怪物交流，轮到对方时则操纵一颗心躲过弹幕。理解怪物的反应，有机会让一场战斗以宽恕收尾。",
+    "lesson": "把对手的性格放进它表达与行动的方式里。温和的解法也需要观察和判断，才会像一次赢得的理解。",
+    "sourceLabel": "Toby Fox · 原版战斗与交涉说明",
+    "sourceUrl": "https://store.steampowered.com/app/391540/Undertale/",
+    "url": "https://store.steampowered.com/app/391540/Undertale/",
+    "yearSourceUrl": "https://store.steampowered.com/app/391540/Undertale/",
+    "prototypeIdeas": [
+      {
+        "title": "请跟我画个圈",
+        "keep": "通过反应读懂对手，并用温和的行动结束冲突。",
+        "change": "安抚动作改由躲避时走出的轨迹表达，不再从菜单中选择。",
+        "build": "做一个方形场地、一只想学跳舞的小怪和两轮环形波纹，走满半圈就会得到回应。",
+        "playtest": "玩家第一次只顾闪躲；看到小怪转圈后，会不会主动跟着走出相似的弧？",
+        "days": 2
+      }
+    ],
+    "image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/391540/header.jpg?t=1757349115",
+    "video": {
+      "provider": "bilibili",
+      "id": "BV15z4y1D73Z",
+      "url": "https://www.bilibili.com/video/BV15z4y1D73Z/?p=4",
+      "title": "【Undertale/传说之下】萌新必看，超全仁慈攻略",
+      "creator": "xiaosuday",
+      "page": 4,
+      "cid": 210870567,
+      "segment": {
+        "start": 19,
+        "end": 46,
+        "cue": "红心先躲开小幽灵的泪滴，指针再回到行动菜单。留意小幽灵戴上帽子时，画面怎样把躲避变成了一次对话。",
+        "method": "editor"
+      }
+    }
+  },
+  {
+    "id": "ref-rocket-league",
+    "title": "火箭联盟",
+    "titleEn": "Rocket League",
+    "year": 2015,
+    "genres": [
+      "体育",
+      "社交协作"
+    ],
+    "mechanics": [
+      "车身击球",
+      "物理反弹"
+    ],
+    "core": "把车开到球侧面，靠撞击角度把球送向球门。擦到边墙的球会折返，有时比正对球门的直线更容易接到下一脚。",
+    "lesson": "球、车、墙共用可预期的碰撞规则，一脚传偏也能变成下一次机会。场地越小，反弹角度越容易让新手看懂。",
+    "sourceLabel": "Psyonix · 原版车辆足球说明",
+    "sourceUrl": "https://store.steampowered.com/app/252950/Rocket_League/",
+    "url": "https://www.rocketleague.com/en",
+    "yearSourceUrl": "https://store.steampowered.com/app/252950/Rocket_League/",
+    "prototypeIdeas": [
+      {
+        "title": "借一次边线",
+        "keep": "用撞击角度和反弹判断下一脚。",
+        "change": "球进门前必须至少碰一次侧墙才算得分。",
+        "build": "画一个俯视球场、一辆车、一个球门，做三个固定开球位和一个碰墙指示灯。",
+        "playtest": "第二个开球位上，玩家会绕到球的哪一侧，开始有意安排反弹角？",
+        "days": 2
+      }
+    ],
+    "yearNote": "按 2015 年原版收录；当前下载入口为游戏官网。",
+    "image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/252950/3abd9ab079c8896a4762dbe34a853d89b7f704df/header_alt_assets_17.jpg?t=1791210513",
+    "video": {
+      "provider": "bilibili",
+      "id": "BV1FsYzzLEcX",
+      "url": "https://www.bilibili.com/video/BV1FsYzzLEcX/",
+      "title": "【EWC火箭联盟】高光时刻 Team Secret精彩进球",
+      "creator": "EWC电竞世俱杯官方账号",
+      "page": 1,
+      "cid": 31744985941,
+      "segment": {
+        "start": 0,
+        "end": 19,
+        "cue": "开球后比分几乎立刻变了。回放从上方切到球门边，留意球的来路，以及门前那辆车来不及补住的角度。",
+        "method": "editor"
+      }
+    }
+  },
+  {
+    "id": "ref-stardew-valley",
+    "title": "星露谷物语",
+    "titleEn": "Stardew Valley",
+    "year": 2016,
+    "genres": [
+      "模拟经营",
+      "角色扮演"
+    ],
+    "mechanics": [
+      "农田养护",
+      "每日行程"
+    ],
+    "core": "早晨先看田，再决定把今天花在钓鱼、采矿还是见人。作物要多天才能收成，今天多种一排，就给后面几天也添了一项活。",
+    "lesson": "让长期目标在每日行程里占一个看得见的位置，玩家才会为扩大规模付出真正的时间，而不是永远选择种得最多。",
+    "sourceLabel": "ConcernedApe · 农场及生活玩法",
+    "sourceUrl": "https://store.steampowered.com/app/413150/Stardew_Valley/",
+    "url": "https://www.stardewvalley.net/",
+    "yearSourceUrl": "https://store.steampowered.com/app/413150/Stardew_Valley/",
+    "prototypeIdeas": [
+      {
+        "title": "小桶菜园",
+        "keep": "今天种多少，会改变之后几天的照料负担。",
+        "change": "每日可用的灌溉水固定为一小桶，玩家须选哪些地先浇。",
+        "build": "做六格田、三格水和七天日历，放两种成熟天数不同的种子，只记浇过水的生长日。",
+        "playtest": "第三天水不够时，玩家更愿意保快熟的菜，还是留水给利润高的慢苗？",
+        "days": 1
+      }
+    ],
+    "video": {
+      "provider": "bilibili",
+      "id": "BV1oR4y1A7Zz",
+      "cid": 718490446,
+      "title": "【星露谷物语】夏天第一天干什么？——森林农场实况夏1、2",
+      "creator": "废柴宇川",
+      "url": "https://www.bilibili.com/video/BV1oR4y1A7Zz/",
+      "segment": {
+        "start": 425,
+        "end": 450,
+        "cue": "留意房子前面一行行的耕地，以及玩家手里当前选中的工具。每次操作落到具体的一格田里。",
+        "method": "editor"
+      },
+      "preview": {
+        "provider": "steam",
+        "src": "https://video.fastly.steamstatic.com/store_trailers/413150/336433/0058de516bf7c46986ba1e81172ffd3c2ca6cad7/1750527541/microtrailer.mp4",
+        "title": "Stardew Valley Trailer 1080p",
+        "creator": "Steam 商店官方短片",
+        "url": "https://store.steampowered.com/app/413150/",
+        "segment": {
+          "start": 0,
+          "end": 7.917,
+          "cue": "从农田、畜舍切到菜单，观察同一座农场的不同活动。",
+          "method": "official"
+        }
+      }
+    },
+    "image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/413150/header.jpg?t=1786554168"
+  },
+  {
+    "id": "ref-superhot",
+    "title": "燥热",
+    "titleEn": "SUPERHOT",
+    "year": 2016,
+    "genres": [
+      "射击",
+      "动作",
+      "解谜"
+    ],
+    "mechanics": [
+      "移动推进时间",
+      "轨迹预判"
+    ],
+    "core": "停下脚步，眼前的危险几乎凝住。向侧面挪一点，才看到轨迹向前推进；玩家可以用很小的一步验证刚才的判断。",
+    "lesson": "把时间的推进交给一项明确动作，实时场面也能给人思考空间。必须让每一步推进了什么在画面上清楚可见。",
+    "sourceLabel": "SUPERHOT Team · 原版时间机制",
+    "sourceUrl": "https://store.steampowered.com/app/322500/SUPERHOT/",
+    "url": "https://store.steampowered.com/app/322500/SUPERHOT/",
+    "yearSourceUrl": "https://store.steampowered.com/app/322500/SUPERHOT/",
+    "prototypeIdeas": [
+      {
+        "title": "转身才响的秒针",
+        "keep": "先在暂停般的画面里判断轨迹，再用一个动作检验。",
+        "change": "把时钟的触发动作从走路换成转身；每改变一次朝向，危险物才前进一格。",
+        "build": "做一间俯视回廊、三辆来回走的小车和一处终点；画箭头显示每辆车的下一格。",
+        "playtest": "玩家会提前挑好朝向少转一次，还是借一次转身故意把车引到身后？",
+        "days": 1
+      }
+    ],
+    "yearNote": "2013 年已有游戏创作赛原型；此处收录 2016 年正式版。",
+    "video": {
+      "provider": "bilibili",
+      "id": "BV19V4y1G73B",
+      "cid": 875392427,
+      "title": "【1080P 60FPS】《燥热superhot》全流程游戏通关视频（完结）",
+      "creator": "淘气精灵BOUNCYELF",
+      "url": "https://www.bilibili.com/video/BV19V4y1G73B/",
+      "segment": {
+        "start": 65,
+        "end": 90,
+        "cue": "盯着走廊里的红色人物和弹道。玩家移动、瞄准、开枪，红色碎片留在白色背景上。",
+        "method": "editor"
+      },
+      "preview": {
+        "provider": "steam",
+        "src": "https://video.fastly.steamstatic.com/store_trailers/322500/95873/ec0a2a897a1ee7eadb94d930eede6fbf9737c5d1/1750508348/microtrailer.mp4",
+        "title": "SUPERHOT is the most innovative FPS I've played in years",
+        "creator": "Steam 商店官方短片",
+        "url": "https://store.steampowered.com/app/322500/",
+        "segment": {
+          "start": 0,
+          "end": 6,
+          "cue": "留意白色房间里红色对手的位置和弹道。",
+          "method": "official"
+        }
+      }
+    },
+    "image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/322500/header.jpg?t=1726509130"
+  }
+]

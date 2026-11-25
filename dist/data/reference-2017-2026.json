@@ -1,0 +1,1047 @@
+[
+  {
+    "id": "ref-breath-of-the-wild",
+    "title": "塞尔达传说：旷野之息",
+    "titleEn": "The Legend of Zelda: Breath of the Wild",
+    "year": 2017,
+    "genres": [
+      "动作",
+      "解谜"
+    ],
+    "mechanics": [
+      "高处侦察",
+      "滑翔选线"
+    ],
+    "core": "爬上山头，拿出希卡之石看远处的地标，再跳下悬崖朝自己选的方向滑翔。山顶既是观察台，也是下一段旅程的起点。",
+    "lesson": "让同一个高点同时提供视野和出发优势，玩家就有理由自己登高找路。远处的目的地需要能从轮廓上辨认。",
+    "sourceLabel": "任天堂 · 海拉鲁探索与移动方式",
+    "sourceUrl": "https://www.nintendo.com/en-gb/Games/Nintendo-Switch-games/The-Legend-of-Zelda-Breath-of-the-Wild-1173609.html",
+    "url": "https://www.nintendo.com/en-gb/Games/Nintendo-Switch-games/The-Legend-of-Zelda-Breath-of-the-Wild-1173609.html",
+    "prototypeIdeas": [
+      {
+        "title": "山顶投信人",
+        "keep": "登高之后才看清目的地的相对位置。",
+        "change": "改为把信折成纸飞机，从山顶选择一个方向投递。",
+        "build": "画一座山、三座不同轮廓的屋顶，做登顶、转向和滑翔落点三个动作。",
+        "playtest": "第一次落空后，试玩者会不会先认屋顶，再改变起飞方向？",
+        "days": 1
+      }
+    ],
+    "video": {
+      "provider": "bilibili",
+      "id": "BV18PuVz8EkU",
+      "url": "https://www.bilibili.com/video/BV18PuVz8EkU/",
+      "title": "塞尔达快速拿到滑翔伞 防寒衣 离开初始台地详细流程",
+      "creator": "刺猬索尼子",
+      "segment": {
+        "start": 656,
+        "end": 682,
+        "cue": "跟着林克攀上神殿的高处，看他拿到滑翔伞后跃入空中。屋顶把平地上看不清的道路和地形都展现在眼前。",
+        "method": "editor"
+      }
+    },
+    "image": "https://www.nintendo.com/eu/media/images/10_share_images/games_15/wiiu_14/SI_WiiU_TheLegendOfZeldaBreathOfTheWild_image1280w.jpg"
+  },
+  {
+    "id": "ref-gorogoa",
+    "title": "画中世界",
+    "titleEn": "Gorogoa",
+    "year": 2017,
+    "genres": [
+      "解谜",
+      "叙事冒险"
+    ],
+    "mechanics": [
+      "画格拼接",
+      "图层重叠"
+    ],
+    "core": "拖动画格，把两幅画里的楼梯首尾接上；原本互不相干的地点突然变成一条可以走过去的路。画框的位置就是解谜工具。",
+    "lesson": "让接合处在拼好之前就留下半个图形，玩家能凭视觉提出猜测。拼合后立刻出现运动，比弹出正确提示更能说明因果。",
+    "sourceLabel": "Jason Roberts · Steam 开发者介绍",
+    "sourceUrl": "https://store.steampowered.com/app/557600/",
+    "url": "https://store.steampowered.com/app/557600/",
+    "prototypeIdeas": [
+      {
+        "title": "四格漏雨图",
+        "keep": "用画面接缝建立空间关系。",
+        "change": "把人物换成一滴沿管道流动的水，只有接缝对齐时才能跨过画框。",
+        "build": "画四张可拖动的管道图、一只水桶和两种可行拼法，点击屋檐放出水滴。",
+        "playtest": "看试玩者第一次漏水后，会调整哪两幅画的相对位置。",
+        "days": 1
+      }
+    ],
+    "video": {
+      "provider": "bilibili",
+      "id": "BV1QpRdBjEzu",
+      "url": "https://www.bilibili.com/video/BV1QpRdBjEzu/",
+      "title": "【画中世界GOROGOA】全成就|全流程攻略",
+      "creator": "孤羽单只影",
+      "page": 1,
+      "cid": 38218895000,
+      "segment": {
+        "start": 72,
+        "end": 98,
+        "cue": "留意上方两格怎样拼成一根完整的树枝，再看装蓝碗的画格怎样移到果实下面。移动一张画也改变了另一张画里能发生的事。",
+        "method": "editor"
+      }
+    },
+    "image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/557600/header.jpg?t=1729099787"
+  },
+  {
+    "id": "ref-into-the-breach",
+    "title": "陷阵之志",
+    "titleEn": "Into the Breach",
+    "year": 2018,
+    "genres": [
+      "策略"
+    ],
+    "mechanics": [
+      "敌方意图预告",
+      "位移解围"
+    ],
+    "core": "敌虫先亮出攻击格，你再移动机甲。把敌虫推开一格，它的攻击便会沿新的位置落下，原本要被击中的建筑得以保全。",
+    "lesson": "把下一步伤害摆到棋盘上，玩家能比较每个动作救下了什么。目标多过可用行动时，预告也不会让选择变得显然。",
+    "sourceLabel": "Subset Games · 机甲战术设计",
+    "sourceUrl": "https://www.subsetgames.com/itb.html",
+    "url": "https://store.steampowered.com/app/590380/",
+    "prototypeIdeas": [
+      {
+        "title": "风暴指挥台",
+        "keep": "每轮先看见即将落下的危险，再分配有限行动。",
+        "change": "改成在风暴前推移避雷车，保护它身后的市集摊位。",
+        "build": "做一个五乘五棋盘、两辆可推动车、三个摊位和四轮固定落雷。",
+        "playtest": "让人指出一次操作救下了哪个摊位，又把哪处风险留到了下一轮。",
+        "days": 1
+      }
+    ],
+    "yearSourceUrl": "https://store.steampowered.com/app/590380/",
+    "image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/590380/header.jpg?t=1755610784",
+    "video": {
+      "provider": "bilibili",
+      "id": "BV1Rt4y1G7VD",
+      "title": "【Into the Breach】全队伍不公难度4岛完美通关（高级版内容全开启，不含秘密战队）",
+      "creator": "Luv_Cocoa",
+      "url": "https://www.bilibili.com/video/BV1Rt4y1G7VD/",
+      "segment": {
+        "method": "editor",
+        "start": 183,
+        "end": 199,
+        "cue": "选中机甲先看绿色移动范围，再瞄准右侧敌人；箭头预告推移方向，确认攻击后敌人换了一格。"
+      },
+      "preview": {
+        "provider": "steam",
+        "src": "https://video.fastly.steamstatic.com/store_trailers/590380/89558/de5e87f7edee39b31eb3f4810d5a04f9cbe2aaf0/1750557552/microtrailer.mp4",
+        "title": "Into The Breach - Announcement Trailer",
+        "creator": "Steam 商店官方短片",
+        "url": "https://store.steampowered.com/app/590380/",
+        "segment": {
+          "start": 0,
+          "end": 7.241,
+          "cue": "敌人的攻击线和建筑、机甲的位置同时显示在小棋盘上。",
+          "method": "official"
+        }
+      }
+    }
+  },
+  {
+    "id": "ref-celeste",
+    "title": "蔚蓝",
+    "titleEn": "Celeste",
+    "year": 2018,
+    "genres": [
+      "平台跳跃",
+      "动作"
+    ],
+    "mechanics": [
+      "离台起跳宽限",
+      "提前输入缓存"
+    ],
+    "core": "在平台边缘晚按跳跃，角色仍有短暂机会起跳；落地前稍早按下跳跃，游戏会记住输入，在接触地面时执行。",
+    "lesson": "用窄小的宽限窗接住玩家已经表达的意图。关卡仍然可以很难，但失误更容易被理解成路线问题。",
+    "sourceLabel": "Maddy Thorson · Celeste & Forgiveness",
+    "sourceUrl": "https://www.mattmakesgames.com/articles/celeste_and_forgiveness/index.html",
+    "url": "https://store.steampowered.com/app/504230/",
+    "prototypeIdeas": [
+      {
+        "title": "灯灭前起跳",
+        "keep": "保留跑到边缘、按键跨过缺口的动作。",
+        "change": "地板灯会一格格熄灭，只在熄灭后的短窗内补认这次起跳。",
+        "build": "做一屏三个缺口和一个可调宽限窗，记录按键与离地相差多少毫秒。",
+        "playtest": "让人依次试玩两种宽限值，看看哪种既敢冲刺又能解释摔落原因。",
+        "days": 1
+      }
+    ],
+    "yearSourceUrl": "https://store.steampowered.com/app/504230/",
+    "image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/504230/header.jpg?t=1714089525",
+    "video": {
+      "provider": "bilibili",
+      "id": "BV1Pf4y187b2",
+      "title": "【Celeste/蔚蓝】1A 速通教程/个人路线讲解：能Sub58的路线教学",
+      "creator": "linsyking",
+      "url": "https://www.bilibili.com/video/BV1Pf4y187b2/",
+      "segment": {
+        "method": "editor",
+        "start": 1891,
+        "end": 1914,
+        "cue": "玩家从尖刺旁贴墙上攀，借空中冲刺抓住悬空石台的边缘，再翻到台面上。"
+      },
+      "preview": {
+        "provider": "steam",
+        "src": "https://video.fastly.steamstatic.com/store_trailers/504230/143846/608cb7d60c10278f3107baf57a528e483a7cbc7b/1750539057/microtrailer.mp4",
+        "title": "Launch",
+        "creator": "Steam 商店官方短片",
+        "url": "https://store.steampowered.com/app/504230/",
+        "segment": {
+          "start": 0,
+          "end": 8.1,
+          "cue": "留意平台、尖刺与角色冲刺的距离。",
+          "method": "official"
+        }
+      }
+    }
+  },
+  {
+    "id": "ref-outer-wilds",
+    "title": "星际拓荒",
+    "titleEn": "Outer Wilds",
+    "year": 2019,
+    "genres": [
+      "叙事冒险",
+      "解谜"
+    ],
+    "mechanics": [
+      "时间循环",
+      "限时地貌"
+    ],
+    "core": "在循环的一次飞行里发现藏在地下的城市，抵达时沙已淹没通道。下一轮可以直接飞过去，利用上次摸清的时间差进入。",
+    "lesson": "让线索告诉玩家何时去，而不仅是去哪。只要环境变化的顺序稳定，记住一条规律本身就是进度。",
+    "sourceLabel": "Mobius Digital · 探索随时间变化的行星",
+    "sourceUrl": "https://www.mobiusdigitalgames.com/outer-wilds.html",
+    "url": "https://www.mobiusdigitalgames.com/outer-wilds.html",
+    "prototypeIdeas": [
+      {
+        "title": "潮汐钟楼",
+        "keep": "重复同一段时间，靠记住环境变化进入新区域。",
+        "change": "换成三层钟楼，潮水升起时会托起木箱，同时淹没下层的线索。",
+        "build": "制作六十秒固定潮汐、两扇门和一只木箱，水位到顶就复位。",
+        "playtest": "观察第二轮有人是否直接去等木箱，而不再搜索整座楼。",
+        "days": 2
+      }
+    ],
+    "yearNote": "2019 年先在 Xbox One 和 Epic Games Store 发售，Steam 版随后推出。",
+    "video": {
+      "provider": "bilibili",
+      "id": "BV1jT4y1T7jo",
+      "url": "https://www.bilibili.com/video/BV1jT4y1T7jo/",
+      "title": "【星际拓荒】：余烬双星之到达庇护所",
+      "creator": "老猫吃闲鱼",
+      "segment": {
+        "start": 38,
+        "end": 64,
+        "cue": "看玩家把翻译器对准余烬双星石壁上的螺旋文字，读完收起工具，再沿暗红的通道前进。找信息也需要亲自抵达现场。",
+        "method": "editor"
+      },
+      "preview": {
+        "provider": "steam",
+        "src": "https://video.fastly.steamstatic.com/store_trailers/753640/273682/2f2fdd9086d95ee6dde3cd4dc7d70975d6c6bc81/1750579139/microtrailer.mp4",
+        "title": "Outer Wilds | Accolades Trailer",
+        "creator": "Steam 商店官方短片",
+        "url": "https://store.steampowered.com/app/753640/",
+        "segment": {
+          "start": 0,
+          "end": 6.817,
+          "cue": "从星球表面切到飞船驾驶舱，再回到步行探索。",
+          "method": "official"
+        }
+      }
+    },
+    "image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/753640/079ae4a7ff4b5875adc5c63c4c0b84e5a3e6966b/header.jpg?t=1785424341"
+  },
+  {
+    "id": "ref-disco-elysium",
+    "title": "极乐迪斯科",
+    "titleEn": "Disco Elysium",
+    "year": 2019,
+    "genres": [
+      "角色扮演",
+      "叙事冒险"
+    ],
+    "mechanics": [
+      "言行触发思维",
+      "思维内化"
+    ],
+    "core": "在对话里反复把自己说成某种人，心中的声音可能提出一个新想法。把它放进思维柜，花游戏内时间琢磨，才看见它怎样改变角色。",
+    "lesson": "让玩家说过的话在几场戏之后回来改变选项，角色身份就有了可追溯的来由。兑现结论时最好能让人想起最初那句话。",
+    "sourceLabel": "ZA/UM · 思维柜设计说明",
+    "sourceUrl": "https://discoelysium.com/devblog/2019/09/30/introducing-the-thought-cabinet",
+    "url": "https://store.steampowered.com/app/632470/",
+    "prototypeIdeas": [
+      {
+        "title": "值班员的口头禅",
+        "keep": "重复的谈话选择逐渐沉淀成角色习惯。",
+        "change": "把技能变化换成新的追问方式，先前总问时间的人最后能追问证词的先后顺序。",
+        "build": "写三个报失者、两种追问和一个末场证词矛盾，用两个计数器决定末场选项。",
+        "playtest": "玩家看到新问题时，能否说清是自己哪几次提问让它出现的？",
+        "days": 1
+      }
+    ],
+    "yearNote": "按 2019 年原版归档；现售版本为 The Final Cut。",
+    "yearSourceUrl": "https://store.steampowered.com/app/632470/",
+    "video": {
+      "provider": "bilibili",
+      "id": "BV1cY4y1p77v",
+      "url": "https://www.bilibili.com/video/BV1cY4y1p77v/",
+      "title": "极乐迪斯科全思维解锁方式",
+      "creator": "找寻asd的frank",
+      "page": 1,
+      "cid": 576011117,
+      "segment": {
+        "start": 100,
+        "end": 130,
+        "cue": "看柜台旁的对话如何收尾。角色离开后出现了一张带插画和说明的思维卡，一段谈话留下了可以继续研究的想法。",
+        "method": "editor"
+      }
+    },
+    "image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/632470/816ea59d6d8ac525f79a07c3a7afa94eddb3437c/header.jpg?t=1780913406"
+  },
+  {
+    "id": "ref-hades",
+    "title": "哈迪斯",
+    "titleEn": "Hades",
+    "year": 2020,
+    "genres": [
+      "动作",
+      "Roguelike"
+    ],
+    "mechanics": [
+      "神恩组合",
+      "败退推进关系"
+    ],
+    "core": "一次逃脱途中挑选神恩，临时改变出招方式。战败返回冥府后，又能遇见家人和朋友，下一趟逃脱接着展开关系与故事。",
+    "lesson": "给回到起点这件事安排新内容。玩家还记得上一局的选择时，一句有来由的反馈足以推动下一局。",
+    "sourceLabel": "Supergiant Games · Steam 开发者介绍",
+    "sourceUrl": "https://store.steampowered.com/app/1145360/",
+    "url": "https://store.steampowered.com/app/1145360/",
+    "prototypeIdeas": [
+      {
+        "title": "回炉的玻璃匠",
+        "keep": "每趟尝试结束都回到熟悉的地方，并带回一次新的反馈。",
+        "change": "把战败改为吹制失败，工作台旁的师傅会根据瓶子裂在哪里给出下一句提示。",
+        "build": "画一个充气条、三个模具、三种裂纹和六句反馈。每趟只操作吹气与停手。",
+        "playtest": "第二只瓶子失败后，玩家会不会根据上一句反馈改变停手时机？",
+        "days": 1
+      }
+    ],
+    "yearNote": "按 2020 年 1.0 正式版归档；Epic 抢先体验始于 2018 年，Steam 抢先体验始于 2019 年。",
+    "yearSourceUrl": "https://www.supergiantgames.com/blog/hades-faq/",
+    "video": {
+      "provider": "bilibili",
+      "id": "BV1QJ411k7ge",
+      "cid": 135113313,
+      "title": "【混沌王】《Hades哈迪斯》地狱模式实况解说（更新20骷髅）",
+      "creator": "混沌王的末日",
+      "url": "https://www.bilibili.com/video/BV1QJ411k7ge/",
+      "segment": {
+        "start": 350,
+        "end": 375,
+        "cue": "玩家先停在三项奖励的选择框前，做完选择继续探索冥界。注意菜单和移动何时交替。",
+        "method": "editor"
+      },
+      "preview": {
+        "provider": "steam",
+        "src": "https://video.fastly.steamstatic.com/store_trailers/1145360/312747/37b96035b5c9c7b12455eadc7bbc7d2b3afbd2fd/1750627553/microtrailer.mp4",
+        "title": "Hades - v1.0 Gameplay Showcase",
+        "creator": "Steam 商店官方短片",
+        "url": "https://store.steampowered.com/app/1145360/",
+        "segment": {
+          "start": 0,
+          "end": 8.141,
+          "cue": "看玩家在俯视战场上的移动和不同攻击方式。",
+          "method": "official"
+        }
+      }
+    },
+    "image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1145360/header.jpg?t=1758127023"
+  },
+  {
+    "id": "ref-spiritfarer",
+    "title": "灵魂摆渡人",
+    "titleEn": "Spiritfarer",
+    "year": 2020,
+    "genres": [
+      "模拟经营",
+      "叙事冒险"
+    ],
+    "mechanics": [
+      "船上照料",
+      "乘客告别"
+    ],
+    "core": "给乘客盖住处、做饭，在海上一次次碰面。照顾到告别那天，亲手送走的正是之前每日要去探望的人。",
+    "lesson": "先建立一条熟练的生活路线，再让其中一站空下来。少做一次原本习惯的动作，比额外说明更能表现离别。",
+    "sourceLabel": "Thunder Lotus · 官方资料包",
+    "sourceUrl": "https://thunderlotusgames.com/press-kits/spiritfarer-press-kit/",
+    "url": "https://thunderlotusgames.com/games/spiritfarer/",
+    "prototypeIdeas": [
+      {
+        "title": "末班早餐车",
+        "keep": "每天用同一项小事照顾熟悉的客人。",
+        "change": "乘客到站后留下自己的空杯，此后早餐车还会经过座位，却不再接到那份订单。",
+        "build": "做两位乘客、三天行程、两种早餐和一次告别，最后一趟允许再次点击空杯。",
+        "playtest": "观察最后一趟试玩者是否主动去看已经不再点餐的座位。",
+        "days": 1
+      }
+    ],
+    "video": {
+      "provider": "bilibili",
+      "id": "BV1dy4y1C7z5",
+      "cid": 229495535,
+      "title": "【小而美15】《Spiritfarer灵魂摆渡者/灵魂旅人》全流程攻略解说，资源全收集。1.25倍食用更佳哦。 · 05各种任务，送走葛文",
+      "creator": "鸠木采",
+      "url": "https://www.bilibili.com/video/BV1dy4y1C7z5/?p=5",
+      "segment": {
+        "start": 1734,
+        "end": 1762,
+        "cue": "看斯黛拉和鹿灵葛温乘小船穿过红色水面。镜头把穿过大门的这段路留给玩家和乘客。",
+        "method": "editor"
+      },
+      "page": 5,
+      "preview": {
+        "provider": "steam",
+        "src": "https://video.fastly.steamstatic.com/store_trailers/972660/423466/535fcbb644a2abde20769c379d1fdb9c4912e42f/1750602600/microtrailer.mp4",
+        "title": "Farewell Edition Launch Trailer",
+        "creator": "Steam 商店官方短片",
+        "url": "https://store.steampowered.com/app/972660/",
+        "segment": {
+          "start": 0,
+          "end": 8.333,
+          "cue": "看船上可攀越的楼层和能收获果实的树。",
+          "method": "official"
+        }
+      }
+    },
+    "image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/972660/header.jpg?t=1752503178"
+  },
+  {
+    "id": "ref-it-takes-two",
+    "title": "双人成行",
+    "titleEn": "It Takes Two",
+    "year": 2021,
+    "genres": [
+      "平台跳跃",
+      "动作",
+      "社交协作"
+    ],
+    "mechanics": [
+      "互补角色能力",
+      "实时搭建落脚点"
+    ],
+    "core": "花园里，科迪引导藤蔓伸长，梅则踩着叶片向前跳。一个人的移动路线，是另一个人正在生成的地形。",
+    "lesson": "让两种能力分别控制原因与结果，合作就会出现在动作中。造平台的人需要看见伙伴的落脚位置，伙伴也需要看见平台正在长向哪里。",
+    "sourceLabel": "Josef Fares · 花园关卡设计",
+    "sourceUrl": "https://blog.playstation.com/2021/03/18/new-it-takes-two-gameplay-footage-blooms-from-the-garden/",
+    "url": "https://store.steampowered.com/app/1426210/",
+    "prototypeIdeas": [
+      {
+        "title": "先栽桥，再过桥",
+        "keep": "让一个角色造落脚点，另一个角色踩过去。",
+        "change": "把同时操作改成录制与回放。先录五秒藤蔓生长，再控制小虫跟着这段录像过沟。",
+        "build": "做一个沟、三片可生长的叶子和录制按钮，支持重录后立即再跳。",
+        "playtest": "小虫摔下去后，试玩者会改起跳，还是会重录那一段藤蔓？",
+        "days": 2
+      }
+    ],
+    "yearSourceUrl": "https://store.steampowered.com/app/1426210/",
+    "video": {
+      "provider": "bilibili",
+      "id": "BV1Uw411y7oV",
+      "cid": 1294023285,
+      "title": "【02榔头/锤子钉子+工具箱Boss】双人成行浓缩干货精剪向新手攻略",
+      "creator": "听宇Teandy",
+      "url": "https://www.bilibili.com/video/BV1Uw411y7oV/",
+      "segment": {
+        "start": 135,
+        "end": 159,
+        "cue": "同时看两半屏幕的位置。黄钉在转动机关旁提供了可利用的支点，另一名角色在相邻平台回应。",
+        "method": "editor"
+      },
+      "preview": {
+        "provider": "steam",
+        "src": "https://video.fastly.steamstatic.com/store_trailers/1426210/356092/0165ad2494097e40af29c015e8948175c3fb97a8/1750688156/microtrailer.mp4",
+        "title": "Official Trailer",
+        "creator": "Steam 商店官方短片",
+        "url": "https://store.steampowered.com/app/1426210/",
+        "segment": {
+          "start": 0,
+          "end": 8.041,
+          "cue": "同一个障碍在两个角色的分屏中有不同的位置和角度。",
+          "method": "official"
+        }
+      }
+    },
+    "image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1426210/header.jpg?t=1777395376"
+  },
+  {
+    "id": "ref-inscryption",
+    "title": "邪恶冥刻",
+    "titleEn": "Inscryption",
+    "year": 2021,
+    "genres": [
+      "卡牌",
+      "Roguelike",
+      "解谜"
+    ],
+    "mechanics": [
+      "献祭出牌",
+      "桌外机关"
+    ],
+    "core": "桌上要牺牲弱小生物，才有位置和代价打出更强的牌。两局之间可以站起来搜木屋，解开实物谜题又会给桌上的对局带来能力。",
+    "lesson": "让两个操作空间共用一项结果，玩家自然会在卡住时换个角度找出路。桌外谜题的奖励要能在下一局立刻试出来。",
+    "sourceLabel": "Daniel Mullins · 木屋与牌桌的设计",
+    "sourceUrl": "https://blog.playstation.com/?p=366772",
+    "url": "https://store.steampowered.com/app/1092790/",
+    "prototypeIdeas": [
+      {
+        "title": "抽屉里的第五格",
+        "keep": "保留桌面牌局与桌外机关相互影响的结构。",
+        "change": "抽屉里藏着一块延长桌板，解出锁盒就能给已有牌阵多添一格。",
+        "build": "做一副四张管道牌、一个三格桌面和一个抽屉锁；添格后水管才能连到第二个出口。",
+        "playtest": "试玩者发现空间不够时，会不会离开桌面去检查抽屉？",
+        "days": 1
+      }
+    ],
+    "yearSourceUrl": "https://store.steampowered.com/app/1092790/",
+    "video": {
+      "provider": "bilibili",
+      "id": "BV1JL411u7SY",
+      "cid": 439833485,
+      "title": "《邪恶冥刻》最简单易懂新手攻略视频",
+      "creator": "我卡费了之神",
+      "url": "https://www.bilibili.com/video/BV1JL411u7SY/",
+      "segment": {
+        "start": 144,
+        "end": 169,
+        "cue": "盯住桌上对齐的四个牌位。结算后镜头转向天平，再回到手牌和下一次落牌的位置。",
+        "method": "editor"
+      },
+      "preview": {
+        "provider": "steam",
+        "src": "https://video.fastly.steamstatic.com/store_trailers/1092790/302287/ab0d21c6b888e99deba7fb8ca48e0f34ebba0332/1750618102/microtrailer.mp4",
+        "title": "Inscryption - Trailer",
+        "creator": "Steam 商店官方短片",
+        "url": "https://store.steampowered.com/app/1092790/",
+        "segment": {
+          "start": 0,
+          "end": 8.408,
+          "cue": "观察木桌上生物牌的相对位置，以及桌外的路线图。",
+          "method": "official"
+        }
+      }
+    },
+    "image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1092790/header.jpg?t=1777572925"
+  },
+  {
+    "id": "ref-elden-ring",
+    "title": "艾尔登法环",
+    "titleEn": "Elden Ring",
+    "year": 2022,
+    "genres": [
+      "动作",
+      "角色扮演"
+    ],
+    "mechanics": [
+      "自由绕行",
+      "探索改变应战手段"
+    ],
+    "core": "路上遇到打不过的对手，可以骑马转向另一片区域，找到新的武器、法术或战斗技巧，再回来试另一套打法。",
+    "lesson": "早早摆出一堵看得见的墙，再给玩家能找到东西的岔路。绕行有具体收获时，离开挑战也会成为主动决策。",
+    "sourceLabel": "Bandai Namco · 探索与战斗方式",
+    "sourceUrl": "https://en.bandainamcoent.eu/elden-ring/elden-ring",
+    "url": "https://store.steampowered.com/app/1245620/",
+    "prototypeIdeas": [
+      {
+        "title": "先别敲大钟",
+        "keep": "保留遇到障碍后可以绕路学习另一种办法。",
+        "change": "把强敌换成听不清的钟门。先去两条岔路中的一条，分别练习分辨长音或短音，回来可以用不同节奏开门。",
+        "build": "做一扇钟门、两个练习点、两套三拍节奏；练习和开门共用同一组按键。",
+        "playtest": "看第一次失败后玩家是否主动绕路，回来能否演示自己学会的节奏。",
+        "days": 1
+      }
+    ],
+    "video": {
+      "provider": "bilibili",
+      "id": "BV1K3411H7DQ",
+      "cid": 563636951,
+      "title": "如何躲大树守卫跳跃和盾技能",
+      "creator": "平街gai",
+      "url": "https://www.bilibili.com/video/BV1K3411H7DQ/",
+      "segment": {
+        "start": 26,
+        "end": 51,
+        "cue": "看大树守卫的坐骑转身、武器抬起，以及角色在攻击前后怎样改变与它的距离。",
+        "method": "editor"
+      },
+      "preview": {
+        "provider": "steam",
+        "src": "https://video.fastly.steamstatic.com/store_trailers/1245620/377844/2912096cfadf6d63b7a35b7e7bc4e488c91cb31e/1750649918/microtrailer.mp4",
+        "title": "ELDEN RING - Official Gameplay Trailer",
+        "creator": "Steam 商店官方短片",
+        "url": "https://store.steampowered.com/app/1245620/",
+        "segment": {
+          "start": 0,
+          "end": 7.858,
+          "cue": "关注角色和巨大敌人之间的距离。",
+          "method": "official"
+        }
+      }
+    },
+    "image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1245620/header.jpg?t=1790290043"
+  },
+  {
+    "id": "ref-vampire-survivors",
+    "title": "吸血鬼幸存者",
+    "titleEn": "Vampire Survivors",
+    "year": 2022,
+    "genres": [
+      "动作",
+      "Roguelike"
+    ],
+    "mechanics": [
+      "周期自动攻击",
+      "折返拾取经验"
+    ],
+    "core": "武器按自己的节奏发动，玩家负责挪位置。打倒怪物留下的经验宝石不会立刻消失，于是绕开怪群和折返捡经验形成了两条不同路线。",
+    "lesson": "把一次攻击交给计时器，移动就能同时承担躲避、对位、拾取三种决定。掉落物保留在原地，才值得为它计划第二次经过。",
+    "sourceLabel": "poncle · Steam 开发者介绍与游玩提示",
+    "sourceUrl": "https://store.steampowered.com/app/1794680/",
+    "url": "https://store.steampowered.com/app/1794680/",
+    "prototypeIdeas": [
+      {
+        "title": "定时开伞的采珠人",
+        "keep": "保留周期效果与积在原地的掉落物。",
+        "change": "把自动攻击换成定时开伞，伞会把雨珠弹到地上；下次折返才能把珠子收进桶里。",
+        "build": "做一个雨点生成器、一个自动开合的圆形伞和一块积水障碍；六十秒结束称珠子。",
+        "playtest": "第二局玩家会不会故意在安全角落开伞，给之后的折返留一堆珠子？",
+        "days": 1
+      }
+    ],
+    "yearNote": "按 2022 年 1.0 正式版归档；Steam 抢先体验始于 2021 年。",
+    "video": {
+      "provider": "bilibili",
+      "id": "BV1Ce4y1R7gY",
+      "cid": 772644098,
+      "title": "【骁帮主】吸血鬼幸存者 开荒 1 疯狂森林",
+      "creator": "骁无恨",
+      "url": "https://www.bilibili.com/video/BV1Ce4y1R7gY/",
+      "segment": {
+        "start": 150,
+        "end": 174,
+        "cue": "看人物在草地上绕开接近的蝙蝠。攻击周期性出现，地上的蓝色经验宝石给走位提供了另一个目标。",
+        "method": "editor"
+      },
+      "preview": {
+        "provider": "steam",
+        "src": "https://video.fastly.steamstatic.com/store_trailers/1794680/598026/b3a9771de005c30237b53d84932fd2e792f298c0/1750736849/microtrailer.mp4",
+        "title": "Refreshed Trailer",
+        "creator": "Steam 商店官方短片",
+        "url": "https://store.steampowered.com/app/1794680/",
+        "segment": {
+          "start": 0,
+          "end": 8.683,
+          "cue": "看成群敌人、自动攻击的覆盖范围和散落的经验宝石。",
+          "method": "official"
+        }
+      }
+    },
+    "image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1794680/2ca07b690dde645771125ed9d9206c4c5fde4dd4/header.jpg?t=1794307910"
+  },
+  {
+    "id": "ref-baldurs-gate-3",
+    "title": "博德之门 3",
+    "titleEn": "Baldur’s Gate 3",
+    "year": 2023,
+    "genres": [
+      "角色扮演",
+      "策略"
+    ],
+    "mechanics": [
+      "可见技能检定",
+      "掷骰前加成"
+    ],
+    "core": "说服对方时先看检定目标，再决定要不要加上伙伴能给的法术或其他加成。骰子终于停下时，玩家知道自己动用过哪些筹码。",
+    "lesson": "把目标、可花的资源和随机结果分开呈现。玩家能看见自己改善了什么，失败时也比较容易理解要换哪条路。",
+    "sourceLabel": "Larian Studios · Active Roll 开发说明",
+    "sourceUrl": "https://forums.larian.com/ubbthreads.php?Number=779588&an=&ubb=showthreaded",
+    "url": "https://store.steampowered.com/app/1086940/",
+    "prototypeIdeas": [
+      {
+        "title": "最后一份旁证",
+        "keep": "保留掷骰前决定是否使用有限加成的选择。",
+        "change": "把加成换成只能出示一次的旁证；早点用能过眼前一关，却会让终场听证少一张底牌。",
+        "build": "做两场听证、一颗六面骰、三张旁证卡，明示目标点数，检定失败走一条备用对白。",
+        "playtest": "把最后一场的门槛提前告诉试玩者，他还愿不愿意在第一场交出旁证？",
+        "days": 1
+      }
+    ],
+    "yearNote": "PC 正式版在 2023 年推出；2020 年已开放抢先体验。",
+    "yearSourceUrl": "https://larian.com/support/faqs/general-information_46",
+    "video": {
+      "provider": "bilibili",
+      "id": "BV1vP411h7nB",
+      "url": "https://www.bilibili.com/video/BV1vP411h7nB/",
+      "title": "【博得之门3】掷骰子原来这么多学问！ ？游戏基础规则战斗介绍！武器附魔、属性加点、豁免检定 D&D5E",
+      "creator": "YT达尔",
+      "segment": {
+        "start": 72,
+        "end": 96,
+        "cue": "先看蓝骰子上方被圈出的检定目标，再看下方被圈出的加值。掷骰之前，玩家已经能看到哪些数值会影响成败。",
+        "method": "editor"
+      }
+    },
+    "image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1086940/48a2fcbda8565bb45025e98fd8ebde8a7203f6a0/header.jpg?t=1777363040"
+  },
+  {
+    "id": "ref-cocoon",
+    "title": "COCOON",
+    "titleEn": "COCOON",
+    "year": 2023,
+    "genres": [
+      "解谜"
+    ],
+    "mechanics": [
+      "嵌套世界",
+      "搬运可进入的球体"
+    ],
+    "core": "背上的球体既是能搬动的物体，也是能跳进去的世界。把球放进另一层世界，原先隔开的机关就有了新的连接顺序。",
+    "lesson": "同一物件在不同尺度下采用两种操作，少量道具也能产生许多路径。出入边界的动作需要始终一致，否则玩家会分不清自己在哪一层。",
+    "sourceLabel": "Annapurna Interactive · 世界球玩法说明",
+    "sourceUrl": "https://annapurnainteractive.com/games/cocoon",
+    "url": "https://store.steampowered.com/app/1497440/",
+    "prototypeIdeas": [
+      {
+        "title": "口袋温室",
+        "keep": "保留一个空间既能进入、又能被当成物件移动的关系。",
+        "change": "改为把温室盒搬到不同窗台，窗台的光线决定盒内哪一株藤能长成梯子。",
+        "build": "做一间屋、两个窗台、一个可进入的盒子和两株藤，用同一个按钮在内外切换。",
+        "playtest": "试玩者在盒内遇到不长的藤时，会不会想到出去移动整个盒子？",
+        "days": 2
+      }
+    ],
+    "yearSourceUrl": "https://store.steampowered.com/app/1497440/",
+    "video": {
+      "provider": "bilibili",
+      "id": "BV1mb4y1L7fN",
+      "cid": 1358621804,
+      "title": "【小而美95】《茧cocoon》全流程+全收集+全成就攻略解说。",
+      "creator": "鸠木采",
+      "url": "https://www.bilibili.com/video/BV1mb4y1L7fN/",
+      "segment": {
+        "start": 150,
+        "end": 174,
+        "cue": "角色越过岩台，来到地面的圆形装置旁。留意同一个小角色与机关的尺寸和位置。",
+        "method": "editor"
+      },
+      "preview": {
+        "provider": "steam",
+        "src": "https://video.fastly.steamstatic.com/store_trailers/1497440/612785/ccaa0c1e3a0a9f922eb74c51a83e59db2f0d58c5/1750695526/microtrailer.mp4",
+        "title": "COCOON | Available Now",
+        "creator": "Steam 商店官方短片",
+        "url": "https://store.steampowered.com/app/1497440/",
+        "segment": {
+          "start": 0,
+          "end": 7.783,
+          "cue": "看微小角色走进平台中央的机关。",
+          "method": "official"
+        }
+      }
+    },
+    "image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1497440/header.jpg?t=1763721043"
+  },
+  {
+    "id": "ref-balatro",
+    "title": "小丑牌",
+    "titleEn": "Balatro",
+    "year": 2024,
+    "genres": [
+      "卡牌",
+      "Roguelike"
+    ],
+    "mechanics": [
+      "扑克牌型计分",
+      "小丑牌叠加"
+    ],
+    "core": "先用手牌凑对子、顺子等牌型，再让手边的小丑牌按自己的条件追加效果。每轮要跨过分数门槛，平常不起眼的牌也可能成为整套组合的支点。",
+    "lesson": "保留读者认识的基础规则，每加一张牌只改变一个计分条件。分数逐项跳出时，玩家才能看清是哪条规则让组合成立。",
+    "sourceLabel": "Playstack · 牌型与小丑牌组合",
+    "sourceUrl": "https://www.playstack.com/games/balatro/",
+    "url": "https://store.steampowered.com/app/2379780/",
+    "prototypeIdeas": [
+      {
+        "title": "三章盖邮戳",
+        "keep": "保留基础组合和附加计分条件的叠加。",
+        "change": "把扑克牌型换成三格邮戳，原本无分的空格也能触发一枚特制邮章。",
+        "build": "做红、蓝两色戳、三个位置和三枚加分邮章；一格一格显示计分过程，三封信递增门槛。",
+        "playtest": "试玩者看完第一封的计分，能不能主动留一格空白来改善第二封？",
+        "days": 1
+      }
+    ],
+    "image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2379780/7a85430784e4d613cdb0547414d8cf16ffa45747/header.jpg?t=1790693638",
+    "video": {
+      "provider": "bilibili",
+      "id": "BV1Tt421h71n",
+      "title": "【谜之声实况】终于在小丑牌里打出了科学计数法 Balatro",
+      "creator": "谜之声",
+      "url": "https://www.bilibili.com/video/BV1Tt421h71n/",
+      "segment": {
+        "method": "editor",
+        "start": 216,
+        "end": 242,
+        "cue": "从手牌里挑出三张同点数的牌，左侧开始结算筹码和倍率；再打一组三条，总分从约 878 万涨到约 1696 万。"
+      },
+      "preview": {
+        "provider": "steam",
+        "src": "https://video.fastly.steamstatic.com/store_trailers/2379780/581550014/e9a47276c1efe4165c2e25e35a06d417d78e1724/1758033766/microtrailer.mp4",
+        "title": "Accolades Gameplay Video",
+        "creator": "Steam 商店官方短片",
+        "url": "https://store.steampowered.com/app/2379780/",
+        "segment": {
+          "start": 0,
+          "end": 8.417,
+          "cue": "看卡包、星球牌和手里的扑克牌如何依次出现。",
+          "method": "official"
+        }
+      }
+    }
+  },
+  {
+    "id": "ref-animal-well",
+    "title": "动物井",
+    "titleEn": "Animal Well",
+    "year": 2024,
+    "genres": [
+      "解谜",
+      "平台跳跃"
+    ],
+    "mechanics": [
+      "道具多用",
+      "重访隐藏通路"
+    ],
+    "core": "在密集相连的房间找到新物件，先试它对眼前动物或机关有什么反应；再把同一物件带回熟悉的通道，尝试之前没想到的用途。",
+    "lesson": "让道具的同一个物理行为作用在几种对象上。玩家先安全试出一种结果，再在旧房间自行推导另一种用途，会产生真正的发现感。",
+    "sourceLabel": "Billy Basso · Steam 开发者介绍",
+    "sourceUrl": "https://store.steampowered.com/app/813230/",
+    "url": "https://store.steampowered.com/app/813230/",
+    "prototypeIdeas": [
+      {
+        "title": "会反弹的门铃",
+        "keep": "保留同一道具在两种场景里显出不同用途。",
+        "change": "门铃改成会弹回来的小球，回程既能再敲一次铃，也能撞开从正面够不到的闩。",
+        "build": "做相连的三个房间、一个投球键、一个门铃和一根门闩，两种机关共用碰撞逻辑。",
+        "playtest": "先教敲铃后撤掉说明，看玩家回到旧门时能否自行利用球的回程。",
+        "days": 1
+      }
+    ],
+    "video": {
+      "provider": "bilibili",
+      "id": "BV1UdACeNEbt",
+      "url": "https://www.bilibili.com/video/BV1UdACeNEbt/",
+      "title": "【动物井】2分半学会花式飞盘跳",
+      "creator": "魔芋的掉色人",
+      "segment": {
+        "start": 77,
+        "end": 102,
+        "cue": "盯住角色脚下的飞盘，再对照右侧手柄输入。作者换到另一处地形继续飞盘跳，同一件道具改变了角色在空中的移动方式。",
+        "method": "editor"
+      },
+      "preview": {
+        "provider": "steam",
+        "src": "https://video.fastly.steamstatic.com/store_trailers/813230/671218/4d8ae53ccb68b78247874236d27d39a2c8617e3c/1750586027/microtrailer.mp4",
+        "title": "Release Date Trailer",
+        "creator": "Steam 商店官方短片",
+        "url": "https://store.steampowered.com/app/813230/",
+        "segment": {
+          "start": 0,
+          "end": 8.483,
+          "cue": "看微小角色与房间里的动物、平台和狭窄通道。",
+          "method": "official"
+        }
+      }
+    },
+    "image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/813230/header.jpg?t=1788379439"
+  },
+  {
+    "id": "ref-blue-prince",
+    "title": "蓝途王子",
+    "titleEn": "Blue Prince",
+    "year": 2025,
+    "genres": [
+      "解谜",
+      "策略"
+    ],
+    "mechanics": [
+      "三选一房间",
+      "出口规划"
+    ],
+    "core": "走到一扇未开的门，先从三间房里选一间放在门后。选储藏室能找工具，选走廊能增加出口；拿到眼前的好处，可能就把后面的路线封死了。",
+    "lesson": "让空间连接与奖励出现在同一次选择里。入口和出口在选之前就应看清，堵路才是玩家能够预料并承担的后果。",
+    "sourceLabel": "Tonda Ros · 三选一房间设计",
+    "sourceUrl": "https://blog.playstation.com/2025/04/08/a-tour-of-blue-princes-shifting-rooms-available-april-10-with-playstation-plus-game-catalog/",
+    "url": "https://store.steampowered.com/app/1569580/",
+    "prototypeIdeas": [
+      {
+        "title": "开门送快件",
+        "keep": "保留开门前在资源与出口之间做选择。",
+        "change": "改成只有四次开门机会的送件任务，拿快件的房间通常只有一个出口。",
+        "build": "画三乘三地板、六张房牌、两份快件和固定三选一牌序。最后能把两份快件送到出口就完成。",
+        "playtest": "给人重送同一单，观察他会不会为多留出口，主动跳过近处的快件。",
+        "days": 1
+      }
+    ],
+    "video": {
+      "provider": "bilibili",
+      "id": "BV1C3zgBAEiw",
+      "url": "https://www.bilibili.com/video/BV1C3zgBAEiw/",
+      "title": "蓝途王子 | 蓝途王子实况 Day1",
+      "creator": "水成文丶",
+      "page": 1,
+      "cid": 35567240198,
+      "segment": {
+        "start": 1851,
+        "end": 1877,
+        "cue": "门前同时摆出卧室、储藏室和走廊三个房间方案。留意选择结束的瞬间：原本未知的门后立刻变成一条可以走进去的走廊。",
+        "method": "editor"
+      }
+    },
+    "image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1569580/879ac248a3b548a6bbc32771b950756378e7e922/header.jpg?t=1794319403"
+  },
+  {
+    "id": "ref-rematch",
+    "title": "开球！REMATCH",
+    "titleEn": "REMATCH",
+    "year": 2025,
+    "genres": [
+      "体育",
+      "动作",
+      "社交协作"
+    ],
+    "mechanics": [
+      "单人固定角色",
+      "无球接应"
+    ],
+    "core": "传球后镜头还跟着自己，队友接球时你仍要跑向可接应的空当。五人一起踢球，每个人都得对自己没有球时的位置负责。",
+    "lesson": "让交出控制物的人继续有事可做。下一次传球的机会取决于刚刚那几步跑位，传球才不会成为操作的终点。",
+    "sourceLabel": "Sloclap · 第三人称五人足球",
+    "sourceUrl": "https://www.sloclap.com/sloclap-games/rematch",
+    "url": "https://store.steampowered.com/app/2138720/",
+    "prototypeIdeas": [
+      {
+        "title": "传完球再跑",
+        "keep": "保留把球交给别人后继续无球跑位的判断。",
+        "change": "队友换成只会沿固定轨道移动的接球车，三秒后一定回传给刚才传球的人。",
+        "build": "做半块俯视球场、两道挡板、一辆接球车和一个终点。鼠标传球，方向键移动，记录传球和接回的位置。",
+        "playtest": "试玩者能否在球还未返回时就跑到下一道挡板的另一边？",
+        "days": 1
+      }
+    ],
+    "video": {
+      "provider": "bilibili",
+      "id": "BV1HyMbzsE2U",
+      "url": "https://www.bilibili.com/video/BV1HyMbzsE2U/",
+      "title": "过人一条龙！【纯干货】盘带过人原理拆分 --《开球！rematch》盘带教学基础篇",
+      "creator": "年轻的九老师",
+      "segment": {
+        "start": 331,
+        "end": 354,
+        "cue": "视角一直跟着红衣球员。看他从边路移动到防守人身旁，随后带球留下身后的对手，身边的队友仍各自跑位。",
+        "method": "editor"
+      }
+    },
+    "image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2138720/header.jpg?t=1792763934"
+  },
+  {
+    "id": "ref-forza-horizon-6",
+    "title": "极限竞速：地平线 6",
+    "titleEn": "Forza Horizon 6",
+    "year": 2026,
+    "genres": [
+      "竞速"
+    ],
+    "mechanics": [
+      "自由驾驶发现",
+      "旅行手记收集"
+    ],
+    "core": "以游客身份开车探索日本。正式赛事之外，沿路遇见的地标和内容也能填进收藏手记，让偏离比赛路线的一段驾驶有独立的目的。",
+    "lesson": "给自由移动留下可回看的记录，玩家才有理由自己挑一段路。可收集的东西要能沿途发现，不能全靠菜单逐项领取。",
+    "sourceLabel": "Playground Games · 初次驾驶指南",
+    "sourceUrl": "https://forza.net/news/forza-horizon-6-first-drive",
+    "url": "https://forza.net/news/forza-horizon-6-now-available",
+    "prototypeIdeas": [
+      {
+        "title": "弯道邮戳册",
+        "keep": "保留驶离最快路线、靠沿途发现填满旅行记录的动机。",
+        "change": "每座邮局只在车低速经过时盖戳，玩家得决定在哪条路放弃速度。",
+        "build": "画一张带两条捷径的俯视公路、三座邮局和一页印戳。做一辆自动前行的小车，支持转向和刹车。",
+        "playtest": "第一圈只跑到终点后，试玩者会不会自选另一条路线补上漏掉的邮戳？",
+        "days": 2
+      }
+    ],
+    "yearNote": "按 2026 年 5 月 Xbox Series X|S 与 PC 首发归档。",
+    "yearSourceUrl": "https://forza.net/news/forza-horizon-6-now-available",
+    "video": {
+      "provider": "bilibili",
+      "id": "BV1vE5a6nEPE",
+      "url": "https://www.bilibili.com/video/BV1vE5a6nEPE/",
+      "title": "【地平线6】第一次进游戏！慢慢闲逛看看细节",
+      "creator": "yawood",
+      "segment": {
+        "start": 60,
+        "end": 89,
+        "cue": "车从公路旁开进树丛，又穿到田地里。看驾驶者如何根据前方地形调整方向，自由探索也在用开车这个动作。",
+        "method": "editor"
+      }
+    },
+    "image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2483190/c53fe3362cc3267a5d34aca3e796b90963e0e23f/header_alt_assets_6.jpg?t=1795104806"
+  },
+  {
+    "id": "ref-mewgenics",
+    "title": "喵喵的结合",
+    "titleEn": "Mewgenics",
+    "year": 2026,
+    "genres": [
+      "策略",
+      "Roguelike"
+    ],
+    "mechanics": [
+      "跨代特质继承",
+      "回合队伍搭配"
+    ],
+    "core": "从家里的猫中选出一队去打回合战，途中挑能力、捡物品。回家后再决定让哪些猫繁育，上一代擅长的事会影响下一队的潜力。",
+    "lesson": "让配置下一队成为本轮结果的延续。继承要能改变下一次出场的决定，玩家才会关心队员表现之外的特质。",
+    "sourceLabel": "Edmund McMillen 与 Tyler Glaiel · Steam 开发者介绍",
+    "sourceUrl": "https://store.steampowered.com/app/686060/",
+    "url": "https://store.steampowered.com/app/686060/",
+    "prototypeIdeas": [
+      {
+        "title": "两代修桥队",
+        "keep": "保留上一队的特质影响下一队配置的关系。",
+        "change": "把继承改成师徒传艺：徒弟只能从两位师傅中各学一项，用两项组合修下一座桥。",
+        "build": "做四张师傅卡、两名徒弟和三张断桥图。每桥用一次测量和一次搭接，记录哪两项技能被传下去。",
+        "playtest": "把第三座桥提前露出轮廓，看玩家会不会牺牲第一座桥的省时方案，改选适合徒弟的师傅。",
+        "days": 1
+      }
+    ],
+    "video": {
+      "provider": "bilibili",
+      "id": "BV1gyPWzLEnw",
+      "url": "https://www.bilibili.com/video/BV1gyPWzLEnw/",
+      "title": "从零开始到10变异全7轻度猫【喵喵的结合】",
+      "creator": "故障机器人乙型",
+      "segment": {
+        "start": 708,
+        "end": 736,
+        "cue": "看作者如何在猫屋切换不同的猫，打开属性栏比较数值，再谈哪些个体适合留下繁育。一次选择会影响下一代的候选队员。",
+        "method": "editor"
+      }
+    },
+    "image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/686060/aa8075d11165fef4d4d0d09c156f0da0623b5da1/header.jpg?t=1788661023"
+  }
+]

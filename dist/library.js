@@ -1,0 +1,373 @@
+"use strict";
+
+const libraryGenres = ["动作", "射击", "平台跳跃", "解谜", "策略", "角色扮演", "卡牌", "Roguelike", "模拟经营", "生存建造", "叙事冒险", "节奏", "竞速", "体育", "休闲", "社交协作", "其他"];
+const referenceFiles = ["2007-2016", "2017-2026"].map(period => ({ period, state: "idle", games: [] }));
+let libraryRows = [];
+let libraryById = new Map();
+
+function inLibrary() {
+  return location.hash === "#library" || location.hash.startsWith("#library?");
+}
+
+function releaseYear(game) {
+  const value = Number(game.year);
+  return Number.isInteger(value) && value >= 1900 && value <= 2200 ? value : null;
+}
+
+function genresOf(game) {
+  const genres = Array.isArray(game.genres) && game.genres.length ? game.genres : tagsOf(game);
+  const recognized = libraryGenres.filter(genre => genres.includes(genre));
+  return recognized.length ? recognized : ["其他"];
+}
+
+function identityKeys(game) {
+  const normalize = name => name.normalize("NFKC").toLowerCase().replace(/[^\p{L}\p{N}]/gu, "");
+  const keys = [game.title, game.titleEn].filter(value => typeof value === "string" && value.trim()).map(normalize);
+  const steam = safeUrl(game.url).match(/^https?:\/\/store\.steampowered\.com\/app\/(\d+)(?:\/|$)/i);
+  if (steam) keys.unshift("steam:" + steam[1]);
+  return keys.filter(Boolean);
+}
+
+function sameGame(left, right) {
+  if (left.id === right.id) return true;
+  const keys = identityKeys(left);
+  const shared = identityKeys(right).filter(key => keys.includes(key));
+  if (shared.some(key => key.startsWith("steam:"))) return true;
+  return shared.length > 0 && (!releaseYear(left) || !releaseYear(right) || releaseYear(left) === releaseYear(right));
+}
+
+function entryKey(game, stored = entries) {
+  if (stored.has(game.id)) return game.id;
+  for (const entry of stored.values()) {
+    if (libraryById.get(entry.id)?.id === game.id || sameGame(entry.game, game)) return entry.id;
+  }
+  return game.id;
+}
+
+function rebuildLibrary() {
+  const rows = [];
+  const byId = new Map();
+  const byNameOrStore = new Map();
+  const weekly = [];
+  const seen = new Set();
+  for (const issue of issues) {
+    for (const game of issue.games) {
+      if (seen.has(game.id)) continue;
+      seen.add(game.id);
+      weekly.push({ ...gamesById.get(game.id), issueId: issue.id });
+    }
+  }
+  function add(game, reference) {
+    const keys = identityKeys(game);
+    let row = byId.get(game.id);
+    if (!row) {
+      for (const key of keys) {
+        const matches = byNameOrStore.get(key);
+        row = matches?.find(item => key.startsWith("steam:") || !releaseYear(item) || !releaseYear(game) || releaseYear(item) === releaseYear(game));
+        if (row) break;
+      }
+    }
+    if (!row) {
+      row = { ...game, genres: genresOf(game) };
+      rows.push(row);
+    } else {
+      row.genres = libraryGenres.filter(genre => row.genres.includes(genre) || genresOf(game).includes(genre));
+      if (row.genres.length > 1) row.genres = row.genres.filter(genre => genre !== "其他");
+      if (!row.titleEn && game.titleEn) row.titleEn = game.titleEn;
+      if (!releaseYear(row) && releaseYear(game)) {
+        row.year = game.year;
+        row.yearNote = game.yearNote;
+      }
+      if (releaseYear(row) === releaseYear(game) && !row.yearSourceUrl) row.yearSourceUrl = game.yearSourceUrl;
+      if (!row.video && game.video) row.video = game.video;
+      if (!row.prototypeIdeas?.length && game.prototypeIdeas?.length) row.prototypeIdeas = game.prototypeIdeas;
+    }
+    if (reference && !row.reference) row.reference = game;
+    byId.set(game.id, row);
+    for (const key of keys) {
+      if (!byNameOrStore.has(key)) byNameOrStore.set(key, []);
+      const matches = byNameOrStore.get(key);
+      if (!matches.includes(row)) matches.push(row);
+    }
+  }
+  weekly.forEach(game => add(game, false));
+  referenceFiles.forEach(file => file.games.forEach(game => add(game, true)));
+  libraryById = byId;
+  libraryRows = rows.sort((a, b) => (releaseYear(b) || 0) - (releaseYear(a) || 0) || a.title.localeCompare(b.title, "zh-CN"));
+}
+
+function loadReferences(retry = false) {
+  const pending = referenceFiles.filter(file => file.state === "idle" || (retry && file.state === "failed"));
+  if (!pending.length) return;
+  for (const file of pending) file.state = "loading";
+  Promise.all(pending.map(async file => {
+    try {
+      const response = await fetch(`./data/reference-${file.period}.json`, { cache: "no-cache" });
+      if (!response.ok) throw new Error("Archive unavailable");
+      const data = await response.json();
+      const games = Array.isArray(data) ? data : data.games;
+      if (!Array.isArray(games) || !games.length || !games.every(game => typeof game?.id === "string" && typeof game.title === "string")) throw new Error("Invalid archive");
+      file.games = games;
+      file.state = "ready";
+    } catch {
+      file.state = "failed";
+    }
+  })).then(() => {
+    rebuildLibrary();
+    if (inLibrary() && !detail.open) refreshLibraryResults();
+    else if (inNotebook() && !detail.open) render();
+  });
+}
+
+function libraryFilters() {
+  const params = new URLSearchParams(inLibrary() ? location.hash.split("?")[1] : "");
+  return {
+    genre: params.get("genre") || "",
+    year: params.get("year") || "",
+    period: params.get("period") || "",
+    q: params.get("q") || ""
+  };
+}
+
+function libraryUrl(filters = {}) {
+  const params = new URLSearchParams();
+  for (const key of ["genre", "year", "period", "q"]) if (filters[key]) params.set(key, filters[key]);
+  const query = params.toString();
+  return query ? "#library?" + query : "#library";
+}
+
+function genreLinks(game) {
+  const box = element("span", "genre-links");
+  for (const genre of genresOf(game)) {
+    const link = element("a", "genre-link", genre);
+    link.href = libraryUrl({ ...(inLibrary() ? libraryFilters() : {}), genre });
+    link.setAttribute("aria-label", `在游戏库查看${genre}游戏`);
+    link.addEventListener("click", () => { if (detail.open) detail.close(); });
+    box.append(link);
+  }
+  return box;
+}
+
+function yearText(game) {
+  const year = releaseYear(game);
+  return year ? `${year} 年发行` : "发行年份未知";
+}
+
+function yearEvidence(game) {
+  const note = element("p", "library-year-note");
+  if (game.yearNote) note.append(document.createTextNode(game.yearNote));
+  const url = safeUrl(game.yearSourceUrl);
+  const references = [game.sourceUrl || game.signalUrl, game.reference?.sourceUrl].map(value => safeUrl(value));
+  if (url && !references.includes(url)) {
+    note.append(watchLink(url, "发行依据", `查看《${game.title}》的发行年份依据`));
+  }
+  return note.childNodes.length ? note : null;
+}
+
+function referenceDigest(game) {
+  const reference = game.reference || (game.id.startsWith("ref-") ? game : null);
+  if (!reference) return null;
+  const box = element("section", "reference-digest");
+  box.setAttribute("aria-label", `${game.title}的设计参考`);
+  for (const [label, value] of [["玩法核心", reference.core], ["设计借鉴", reference.lesson]]) {
+    if (!value) continue;
+    const p = element("p", "review-line");
+    p.append(element("strong", "review-label", label), document.createTextNode(value));
+    box.append(p);
+  }
+  const url = safeUrl(reference.sourceUrl);
+  if (url) {
+    const label = reference.sourceLabel || "查看出处";
+    const source = element("div", "reference-source");
+    source.append(element("span", "", "参考来源"), watchLink(url, label, `阅读《${game.title}》的参考来源 · ${label}`));
+    box.append(source);
+  }
+  return box;
+}
+
+function libraryCard(game, inNotes = false) {
+  const article = element("article", "library-card");
+  const head = element("div", "library-card-head");
+  const names = element("div");
+  const meta = element("p", "library-card-meta", yearText(game));
+  meta.append(element("span", "", game.issueId ? "周刊选游" : "历年参考"));
+  const heading = element("h3");
+  heading.append(openButton(game, "", game.title));
+  names.append(meta, heading);
+  if (game.titleEn && game.titleEn !== game.title) names.append(element("p", "library-en", game.titleEn));
+  const imageUrl = safeUrl(game.image, true);
+  if (imageUrl) {
+    const image = element("img", "library-thumb");
+    image.alt = "";
+    image.loading = "lazy";
+    image.decoding = "async";
+    image.addEventListener("error", () => image.remove(), { once: true });
+    image.src = imageUrl;
+    head.append(image);
+  }
+  head.append(names, bookmark(game));
+  article.append(head, genreLinks(game));
+  const evidence = yearEvidence(game);
+  if (evidence) article.append(evidence);
+  const mechanisms = game.reference?.mechanics || game.mechanics || tagsOf(game);
+  if (Array.isArray(mechanisms) && mechanisms.length) article.append(element("p", "library-mechanics", mechanisms.join(" / ")));
+  const digest = referenceDigest(game) || reviewDigest(game);
+  if (digest) article.append(digest);
+  else if (game.mechanic) article.append(element("p", "library-mechanics", game.mechanic));
+  const media = element("div", "library-media");
+  const watch = videoSection(game, article, media);
+  article.append(media, watch, prototypeIdeas(game, "h4"));
+  const note = entries.get(entryKey(game))?.note;
+  if (inNotes && note) article.append(element("p", "note-snippet", note));
+  const foot = element("div", "card-foot");
+  const read = openButton(game, "", inNotes && note ? "编辑笔记" : "玩法与笔记", inNotes && note ? "note" : "");
+  read.append(icon(inNotes && note ? "pencil" : "arrow"));
+  foot.append(read, gameLink(game, ""));
+  article.append(foot);
+  return article;
+}
+
+function filteredLibrary(filters) {
+  const terms = filters.q.normalize("NFKC").toLocaleLowerCase().trim().split(/\s+/).filter(Boolean);
+  return libraryRows.filter(game => {
+    const year = releaseYear(game);
+    const genres = genresOf(game);
+    if (filters.genre && !genres.includes(filters.genre)) return false;
+    if (filters.year && (filters.year === "unknown" ? year !== null : year !== Number(filters.year))) return false;
+    if (filters.period) {
+      const [start, end] = filters.period.split("-").map(Number);
+      if (!year || !Number.isInteger(start) || !Number.isInteger(end) || year < start || year > end) return false;
+    }
+    const reference = game.reference || {};
+    const text = [game.title, game.titleEn, game.mechanic, game.review?.core, game.review?.appeal, reference.title, reference.titleEn,
+      reference.core, reference.lesson, ...(reference.mechanics || []), ...genres, ...tagsOf(game)].filter(Boolean).join(" ").normalize("NFKC").toLocaleLowerCase();
+    return terms.every(term => text.includes(term));
+  });
+}
+
+function libraryYearOptions(select, filters) {
+  const selected = filters.year ? "year:" + filters.year : filters.period ? "period:" + filters.period : "";
+  select.replaceChildren(new Option("全部发行时间", ""));
+  const periods = element("optgroup");
+  periods.label = "发行时期";
+  for (const file of referenceFiles) periods.append(new Option(file.period.replace("-", "–") + " 年", "period:" + file.period));
+  select.append(periods);
+  const group = element("optgroup");
+  group.label = "具体发行年份";
+  const years = new Set(libraryRows.map(releaseYear).filter(Boolean));
+  if (/^\d{4}$/.test(filters.year)) years.add(Number(filters.year));
+  for (const year of [...years].sort((a, b) => b - a)) group.append(new Option(year + " 年", "year:" + year));
+  group.append(new Option("发行年份未知", "year:unknown"));
+  select.append(group);
+  select.value = selected;
+}
+
+function refreshLibraryResults() {
+  const results = document.getElementById("library-results");
+  if (!results) return;
+  stopVideo();
+  const filters = libraryFilters();
+  const category = document.getElementById("library-genre");
+  const present = new Set(libraryRows.flatMap(genresOf));
+  category.replaceChildren(new Option("全部分类", ""));
+  for (const genre of libraryGenres) {
+    if (genre === filters.genre || present.has(genre)) category.append(new Option(genre, genre));
+  }
+  category.value = filters.genre;
+  libraryYearOptions(document.getElementById("library-year"), filters);
+  const games = filteredLibrary(filters);
+  document.getElementById("library-count").textContent = `${games.length} 款游戏`;
+  document.getElementById("library-clear").hidden = !Object.values(filters).some(Boolean);
+  const notice = document.getElementById("library-status");
+  notice.replaceChildren();
+  const failed = referenceFiles.filter(file => file.state === "failed");
+  if (failed.length) {
+    notice.append(document.createTextNode(`${failed.map(file => file.period.replace("-", "–")).join("、")} 年的参考库暂时无法载入。 `),
+      button("outline-btn", "重新加载参考库", () => { loadReferences(true); refreshLibraryResults(); }));
+  } else if (referenceFiles.some(file => file.state === "loading")) {
+    notice.textContent = "正在载入历年参考…";
+  }
+  if (issueLoadFailed) {
+    notice.append(document.createTextNode(" 周刊选游暂时无法载入。 "), button("outline-btn", "重新加载周刊", load));
+  }
+  notice.hidden = !notice.childNodes.length;
+  if (games.length) {
+    results.replaceChildren(...games.map(game => libraryCard(game)));
+  } else if (referenceFiles.some(file => file.state === "loading") && !failed.length) {
+    results.replaceChildren();
+  } else {
+    const empty = element("div", "empty");
+    empty.append(element("h2", "", "没有符合条件的游戏"), element("p", "", "可以换个玩法关键词，或清除筛选查看全部游戏。"));
+    const reset = element("a", "", "查看全部游戏");
+    reset.href = "#library";
+    empty.append(reset);
+    results.replaceChildren(empty);
+  }
+}
+
+function libraryView() {
+  const filters = libraryFilters();
+  const head = element("div", "library-head");
+  head.append(element("h1", "", "游戏库"), element("p", "", "从周刊选游和历年作品中，找一个值得借鉴的玩法。"));
+  const form = element("form", "library-filters");
+  form.setAttribute("role", "search");
+  form.setAttribute("aria-label", "筛选游戏库");
+  const search = element("input");
+  search.type = "search";
+  search.placeholder = "搜中英文游戏名或玩法关键词";
+  search.value = filters.q;
+  const category = element("select");
+  category.id = "library-genre";
+  const year = element("select");
+  year.id = "library-year";
+  libraryYearOptions(year, filters);
+  for (const [label, control] of [["搜索游戏", search], ["游戏分类", category], ["发行时间", year]]) {
+    const field = element("label");
+    field.append(element("span", "", label), control);
+    form.append(field);
+  }
+  function apply(push = false) {
+    const [kind, value] = year.value.split(":");
+    const hash = libraryUrl({ q: search.value.trim(), genre: category.value, [kind]: value });
+    if (location.hash !== hash) history[push ? "pushState" : "replaceState"](null, "", hash);
+    refreshLibraryResults();
+  }
+  search.addEventListener("input", event => { if (!event.isComposing) apply(); });
+  search.addEventListener("compositionend", () => apply());
+  category.addEventListener("change", () => apply(true));
+  year.addEventListener("change", () => apply(true));
+  form.addEventListener("submit", event => { event.preventDefault(); apply(); });
+  const bar = element("div", "library-result-head");
+  const count = element("p", "library-count");
+  count.id = "library-count";
+  count.setAttribute("role", "status");
+  const clear = element("a", "library-clear", "清除筛选");
+  clear.href = "#library";
+  clear.id = "library-clear";
+  const actions = element("div", "library-filter-actions");
+  const copy = button("library-clear", "复制筛选链接", async () => {
+    actions.querySelector("input")?.remove();
+    try {
+      await navigator.clipboard.writeText(location.href);
+      announce("筛选链接已复制。");
+      copy.textContent = "已复制";
+      setTimeout(() => { copy.textContent = "复制筛选链接"; }, 1600);
+    } catch {
+      const field = element("input", "library-share-url");
+      field.value = location.href;
+      field.readOnly = true;
+      field.setAttribute("aria-label", "复制此筛选链接");
+      actions.append(field);
+      field.focus();
+      field.select();
+    }
+  });
+  actions.append(copy, clear);
+  bar.append(count, actions);
+  const notice = element("div", "library-status");
+  notice.id = "library-status";
+  notice.setAttribute("role", "status");
+  const results = element("div", "library-results");
+  results.id = "library-results";
+  return [head, form, bar, notice, results];
+}

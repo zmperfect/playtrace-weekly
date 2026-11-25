@@ -34,7 +34,10 @@ jobs:
       - name: Check static site
         run: |
           test -s dist/index.html
-          python3 -m json.tool dist/data/issues.json > /dev/null
+          test -s dist/library.js
+          for archive in issues reference-2007-2016 reference-2017-2026; do
+            python3 -m json.tool "dist/data/$archive.json" > /dev/null
+          done
       - uses: actions/upload-pages-artifact@v4
         with:
           path: dist

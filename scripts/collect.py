@@ -46,6 +46,48 @@ PROMPTS = {
     "冒险": "把探索范围缩到一个房间，怎样让玩家愿意再搜一次？",
 }
 
+# Match store labels to the reader's categories. Keep decorative tags such as
+# pixel art in the original tags array, where they remain searchable.
+LIBRARY_GENRES = {
+    "动作": ("动作", "动作冒险", "格斗", "清版动作", "砍杀", "动作类 Rogue", "类魂系列", "动作角色扮演"),
+    "射击": ("射击", "第一人称射击", "第三人称射击", "英雄射击", "双摇杆射击", "俯视射击", "战术射击", "弹幕射击"),
+    "平台跳跃": ("平台跳跃", "平台游戏", "平台解谜", "2D 平台", "3D 平台", "精确平台", "类银河战士恶魔城"),
+    "解谜": ("解谜", "益智", "平台解谜", "逻辑", "推理", "隐藏物体", "密室逃脱"),
+    "策略": ("策略", "即时战略", "大战略", "回合战略", "回合制战术", "自走棋", "塔防", "4X"),
+    "角色扮演": ("角色扮演", "日系角色扮演", "动作角色扮演", "团队角色扮演", "CRPG", "JRPG"),
+    "卡牌": ("卡牌", "卡牌游戏", "卡牌战斗", "牌组构建", "卡组构筑", "牌组构建式类 Rogue"),
+    "Roguelike": ("Roguelike", "Roguelite", "类 Rogue", "轻度 Rogue", "动作类 Rogue", "传统类 Rogue", "牌组构建式类 Rogue"),
+    "模拟经营": ("模拟", "模拟经营", "农场模拟", "生活模拟", "管理", "城市营造", "殖民模拟"),
+    "生存建造": ("生存", "建造", "开放世界生存制作", "基地建设", "制作"),
+    "叙事冒险": ("叙事", "冒险", "文字游戏", "互动小说", "视觉小说", "选择取向", "剧情丰富", "指向点击"),
+    "节奏": ("节奏", "音乐节奏"), "竞速": ("竞速", "赛车", "汽车模拟"),
+    "体育": ("体育", "足球", "橄榄球", "篮球", "滑板", "网球"),
+    "社交协作": ("社交", "合作", "在线合作", "本地合作", "不对称 VR", "团队导向", "多人派对"),
+    "休闲": ("休闲", "放置", "点击游戏", "舒适惬意"),
+}
+
+
+def library_genres(tags):
+    result = []
+    for tag in tags:
+        for genre, labels in LIBRARY_GENRES.items():
+            if tag in labels and genre not in result:
+                result.append(genre)
+    return result[:3] or ["其他"]
+
+
+def release_fields(item, url):
+    release = item.get("release") or {}
+    for field, label in (("original_release_date", "Steam 标注的原版发行年份"),
+                         ("steam_release_date", "Steam 平台发行年份")):
+        timestamp = release.get(field)
+        if isinstance(timestamp, int) and 0 < timestamp <= time.time():
+            year = datetime.fromtimestamp(timestamp, timezone.utc).year
+            if release.get("is_early_access") and field == "steam_release_date":
+                label = "Steam 抢先体验年份"
+            return {"year": year, "yearNote": label, "yearSourceUrl": url}
+    return {}
+
 
 def fetch(url):
     request = Request(url, headers={"User-Agent": "PlaytraceWeekly/1.0 (weekly game discovery)"})
@@ -118,7 +160,8 @@ def store_items(rows):
         "ids": [{"appid": row["appid"]} for row in rows],
         "context": {"language": "schinese", "country_code": "CN"},
         "data_request": {"include_basic_info": True, "include_assets": True, "include_screenshots": True,
-                         "include_tag_count": 8, "include_full_description": True, "include_trailers": True},
+                         "include_release": True, "include_tag_count": 16, "include_full_description": True,
+                         "include_trailers": True},
     }
     params = urlencode({"input_json": json.dumps(query, separators=(",", ":"))})
     data = json.loads(fetch("https://api.steampowered.com/IStoreBrowseService/GetItems/v1/?" + params))
@@ -190,7 +233,8 @@ def steam_games(seen):
             video = preview
         else:
             continue
-        tags = [tag_names[tag] for tag in item.get("tagids", []) if tag in tag_names][:3]
+        all_tags = [tag_names[tag] for tag in item.get("tagids", []) if tag in tag_names]
+        tags = all_tags[:3]
         rank = row["rank"]
         signal = f"Steam 热玩榜第 {rank} 名"
         if change(row) > 0:
@@ -206,7 +250,8 @@ def steam_games(seen):
             "mechanic": "「" + description + "」（摘自商店介绍）",
             "prompt": prompt_for(tags), "url": url,
             "image": trusted_url(artwork, "steamstatic.com"),
-            "action": "查看 Steam 商店", "tags": tags, "video": video,
+            "action": "查看 Steam 商店", "tags": tags, "genres": library_genres(all_tags), "video": video,
+            **release_fields(item, url),
         }
 
 
@@ -253,7 +298,8 @@ def itch_games(seen):
             "signalUrl": ITCH_LIST, "mechanic": "「" + excerpt(description) + "」（作者原文）",
             "prompt": prompt_for(tags), "url": url,
             "image": trusted_url(entry.findtext("imageurl"), "itch.zone"),
-            "action": "浏览器试玩", "tags": tags, "video": video, "review": itch_review(page, url),
+            "action": "浏览器试玩", "tags": tags, "genres": library_genres(tags), "video": video,
+            "review": itch_review(page, url),
         }
 
 

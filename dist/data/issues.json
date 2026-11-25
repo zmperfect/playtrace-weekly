@@ -7,6 +7,9 @@
         {
           "id": "steam-3527290",
           "title": "PEAK",
+          "year": 2025,
+          "yearSourceUrl": "https://store.steampowered.com/app/3527290/PEAK/",
+          "genres": ["社交协作", "动作"],
           "source": "Steam",
           "signal": "11 月 25 日入选 Steam 在线人数前 100。值得看的是，先爬上去的人还能回头改变队友的路线。",
           "mechanic": "爬到岩沿后，你可以继续赶路，也可以回身拉队友一把。受伤会压缩体力上限，同一段峭壁，落在后面的人可能爬不上来。",
@@ -63,6 +66,10 @@
         {
           "id": "steam-2868840",
           "title": "杀戮尖塔 2",
+          "year": 2026,
+          "yearNote": "抢先体验版",
+          "yearSourceUrl": "https://megacrit.com/faq/",
+          "genres": ["卡牌", "Roguelike", "策略"],
           "titleEn": "Slay the Spire 2",
           "source": "Steam",
           "signal": "11 月 25 日进入 Steam 在线人数前十。合作模式给同一套构筑玩法多出一个选择对象。",
@@ -127,6 +134,10 @@
         {
           "id": "itch-jbodah-admin-play",
           "title": "Admin",
+          "year": 2021,
+          "yearNote": "My First Game Jam 冬季版",
+          "yearSourceUrl": "https://jbodah.itch.io/admin-play",
+          "genres": ["解谜", "叙事冒险"],
           "source": "itch.io",
           "signal": "入选 itch.io 的 Game Jam 高评分榜。作者把「上锁」这个命题放进了人人熟悉的办公室。",
           "mechanic": "同事们过完年都忘了电脑密码。你得在办公室找线索、猜答案。卡住时每分钟会多一条提示，什么时候求助由你决定。",
@@ -190,6 +201,10 @@
         {
           "id": "steam-3419430",
           "title": "Bongo Cat",
+          "year": 2025,
+          "yearNote": "Steam 桌面游戏版",
+          "yearSourceUrl": "https://store.steampowered.com/app/3419430/Bongo_Cat/",
+          "genres": ["休闲"],
           "source": "Steam",
           "signal": "11 月 25 日进入 Steam 在线人数前十。一只待在任务栏上的猫，把日常打字变成了游戏输入。",
           "mechanic": "每按一次键或点一下鼠标，猫就拍一下桌子。继续正常工作也能累积点数、收集帽子，你决定什么时候停下来看看它。",
@@ -245,6 +260,10 @@
         {
           "id": "itch-nbmachine-riba",
           "title": "Riba",
+          "year": 2021,
+          "yearNote": "Global Game Jam 参赛版",
+          "yearSourceUrl": "https://nbmachine.itch.io/riba",
+          "genres": ["叙事冒险", "休闲"],
           "source": "itch.io",
           "signal": "入选 itch.io 的 Game Jam 高评分榜。创作者用一次只需几分钟的垂钓，讲了一场告别。",
           "mechanic": "来到河边，抛下鱼钩、等待、收线。你要寻回的是祖母的遗骨；重复同一个钓鱼动作时，每次等候也有了不同的意味。",
