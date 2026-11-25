@@ -116,6 +116,10 @@ function loadReferences(retry = false) {
     rebuildLibrary();
     if (inLibrary() && !detail.open) refreshLibraryResults();
     else if (inNotebook() && !detail.open) render();
+    else {
+      const weekly = document.getElementById("weekly-genres");
+      if (weekly) showGenreOptions(weekly, {}, libraryRows);
+    }
   });
 }
 
@@ -134,6 +138,61 @@ function libraryUrl(filters = {}) {
   for (const key of ["genre", "year", "period", "q"]) if (filters[key]) params.set(key, filters[key]);
   const query = params.toString();
   return query ? "#library?" + query : "#library";
+}
+
+function genreNavigation(weekly) {
+  const section = element("section", "genre-browser");
+  section.id = weekly ? "weekly-genres" : "library-genres";
+  const head = element("div", "genre-browser-head");
+  const heading = element("h2", "", weekly ? "按分类找游戏" : "游戏分类");
+  heading.id = section.id + "-title";
+  const status = element("p", "genre-browser-status");
+  status.setAttribute("role", "status");
+  head.append(heading, status);
+  const links = element("nav", "genre-options");
+  links.setAttribute("aria-labelledby", heading.id);
+  section.append(head, links);
+  return section;
+}
+
+function showGenreOptions(section, filters, games) {
+  const weekly = section.id === "weekly-genres";
+  const status = section.querySelector(".genre-browser-status");
+  const links = section.querySelector(".genre-options");
+  const focusedGenre = links.contains(document.activeElement) ? document.activeElement.dataset.genre : undefined;
+  const loading = referenceFiles.some(file => file.state === "loading") || (!issues.length && !issueLoadFailed);
+  const failed = referenceFiles.some(file => file.state === "failed");
+  const counts = new Map();
+  for (const game of games) {
+    for (const genre of genresOf(game)) counts.set(genre, (counts.get(genre) || 0) + 1);
+  }
+  status.replaceChildren();
+  if (loading) status.textContent = "正在补齐分类，数量按已载入的游戏统计";
+  else if (failed || issueLoadFailed) {
+    status.textContent = "仅统计已载入的游戏";
+    if (weekly && failed) status.append(button("genre-retry", "重新加载", () => {
+      loadReferences(true);
+      showGenreOptions(section, filters, libraryRows);
+    }));
+  } else if (weekly) status.textContent = `游戏库共 ${games.length} 款`;
+  status.hidden = !status.childNodes.length;
+
+  function chip(genre, count) {
+    const label = genre || "全部分类";
+    const link = element("a", "genre-option", label);
+    link.href = libraryUrl({ ...filters, genre });
+    link.dataset.genre = genre;
+    link.append(element("span", "genre-option-count", String(count)));
+    link.setAttribute("aria-label", `${label}，${count} 款游戏`);
+    if (!weekly && genre === (filters.genre || "")) link.setAttribute("aria-current", "page");
+    return link;
+  }
+  const items = weekly ? [] : [chip("", games.length)];
+  const available = libraryGenres.filter(genre => counts.has(genre) || genre === filters.genre);
+  if (filters.genre && !available.includes(filters.genre)) available.push(filters.genre);
+  for (const genre of available) items.push(chip(genre, counts.get(genre) || 0));
+  links.replaceChildren(...items);
+  if (focusedGenre !== undefined) items.find(link => link.dataset.genre === focusedGenre)?.focus({ preventScroll: true });
 }
 
 function genreLinks(game) {
@@ -267,15 +326,13 @@ function refreshLibraryResults() {
   if (!results) return;
   stopVideo();
   const filters = libraryFilters();
-  const category = document.getElementById("library-genre");
-  const present = new Set(libraryRows.flatMap(genresOf));
-  category.replaceChildren(new Option("全部分类", ""));
-  for (const genre of libraryGenres) {
-    if (genre === filters.genre || present.has(genre)) category.append(new Option(genre, genre));
-  }
-  category.value = filters.genre;
+  const heading = filters.genre ? filters.genre + "游戏" : "游戏库";
+  document.getElementById("library-heading").textContent = heading;
+  document.title = heading + " · 游感周刊";
+  const matches = filteredLibrary({ ...filters, genre: "" });
+  showGenreOptions(document.getElementById("library-genres"), filters, matches);
   libraryYearOptions(document.getElementById("library-year"), filters);
-  const games = filteredLibrary(filters);
+  const games = filters.genre ? matches.filter(game => genresOf(game).includes(filters.genre)) : matches;
   document.getElementById("library-count").textContent = `${games.length} 款游戏`;
   document.getElementById("library-clear").hidden = !Object.values(filters).some(Boolean);
   const notice = document.getElementById("library-status");
@@ -308,7 +365,18 @@ function refreshLibraryResults() {
 function libraryView() {
   const filters = libraryFilters();
   const head = element("div", "library-head");
-  head.append(element("h1", "", "游戏库"), element("p", "", "从周刊选游和历年作品中，找一个值得借鉴的玩法。"));
+  const heading = element("h1", "", "游戏库");
+  heading.id = "library-heading";
+  head.append(heading, element("p", "", "从周刊选游和历年作品中，找一个值得借鉴的玩法。"));
+  const categories = genreNavigation(false);
+  categories.addEventListener("click", event => {
+    const link = event.target.closest("a.genre-option");
+    if (!link || event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+    event.preventDefault();
+    if (location.hash === link.hash) return;
+    history.pushState(null, "", link.hash);
+    refreshLibraryResults();
+  });
   const form = element("form", "library-filters");
   form.setAttribute("role", "search");
   form.setAttribute("aria-label", "筛选游戏库");
@@ -316,25 +384,22 @@ function libraryView() {
   search.type = "search";
   search.placeholder = "搜中英文游戏名或玩法关键词";
   search.value = filters.q;
-  const category = element("select");
-  category.id = "library-genre";
   const year = element("select");
   year.id = "library-year";
   libraryYearOptions(year, filters);
-  for (const [label, control] of [["搜索游戏", search], ["游戏分类", category], ["发行时间", year]]) {
+  for (const [label, control] of [["搜索游戏", search], ["发行时间", year]]) {
     const field = element("label");
     field.append(element("span", "", label), control);
     form.append(field);
   }
   function apply(push = false) {
     const [kind, value] = year.value.split(":");
-    const hash = libraryUrl({ q: search.value.trim(), genre: category.value, [kind]: value });
+    const hash = libraryUrl({ q: search.value.trim(), genre: libraryFilters().genre, [kind]: value });
     if (location.hash !== hash) history[push ? "pushState" : "replaceState"](null, "", hash);
     refreshLibraryResults();
   }
   search.addEventListener("input", event => { if (!event.isComposing) apply(); });
   search.addEventListener("compositionend", () => apply());
-  category.addEventListener("change", () => apply(true));
   year.addEventListener("change", () => apply(true));
   form.addEventListener("submit", event => { event.preventDefault(); apply(); });
   const bar = element("div", "library-result-head");
@@ -369,5 +434,5 @@ function libraryView() {
   notice.setAttribute("role", "status");
   const results = element("div", "library-results");
   results.id = "library-results";
-  return [head, form, bar, notice, results];
+  return [head, categories, form, bar, notice, results];
 }

@@ -609,7 +609,9 @@ function weekly() {
   select.addEventListener("change", () => { location.hash = "issue/" + encodeURIComponent(select.value); });
   picker.append(icon("layers"), element("span", "", "期刊档案"), icon("down"), select);
   mast.append(heading, picker);
-  const nodes = [mast, feature(issue.games[0])];
+  const categories = genreNavigation(true);
+  showGenreOptions(categories, {}, libraryRows);
+  const nodes = [mast, categories, feature(issue.games[0])];
   const rest = issue.games.slice(1);
   if (rest.length) {
     const section = element("section");
@@ -682,7 +684,6 @@ function render() {
     loadReferences();
     main.replaceChildren(...libraryView());
     refreshLibraryResults();
-    document.title = "游戏库 · 游感周刊";
     return;
   }
   if (inNotebook()) {
@@ -704,6 +705,7 @@ function render() {
   } else if (location.hash === "#weekly" || !activeIssue) {
     activeIssue = issues[0];
   }
+  loadReferences();
   main.replaceChildren(...weekly());
   document.title = "游戏观察 · 游感周刊";
 }
