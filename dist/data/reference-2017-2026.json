@@ -44,6 +44,15 @@
   },
   {
     "id": "ref-gorogoa",
+    "awards": [
+      {
+        "event": "BAFTA Games Awards",
+        "year": 2018,
+        "category": "Debut Game",
+        "status": "winner",
+        "url": "https://static.bafta.org/uploads_pre_202411/baftagames1718winnersrelease.pdf"
+      }
+    ],
     "title": "画中世界",
     "titleEn": "Gorogoa",
     "year": 2017,
@@ -145,6 +154,15 @@
   },
   {
     "id": "ref-celeste",
+    "awards": [
+      {
+        "event": "The Game Awards",
+        "year": 2018,
+        "category": "Best Independent Game",
+        "status": "winner",
+        "url": "https://thegameawards.com/rewind/year-2018"
+      }
+    ],
     "title": "蔚蓝",
     "titleEn": "Celeste",
     "year": 2018,
@@ -202,6 +220,15 @@
   },
   {
     "id": "ref-outer-wilds",
+    "awards": [
+      {
+        "event": "BAFTA Games Awards",
+        "year": 2020,
+        "category": "Game Design",
+        "status": "winner",
+        "url": "https://www.bafta.org/media-centre/press-releases/winners-announced-british-academy-games-awards-2020/"
+      }
+    ],
     "title": "星际拓荒",
     "titleEn": "Outer Wilds",
     "year": 2019,
@@ -306,6 +333,15 @@
   },
   {
     "id": "ref-hades",
+    "awards": [
+      {
+        "event": "BAFTA Games Awards",
+        "year": 2021,
+        "category": "Game Design",
+        "status": "winner",
+        "url": "https://www.bafta.org/awards/games/game-design/"
+      }
+    ],
     "title": "哈迪斯",
     "titleEn": "Hades",
     "year": 2020,
@@ -482,6 +518,15 @@
   },
   {
     "id": "ref-inscryption",
+    "awards": [
+      {
+        "event": "BAFTA Games Awards",
+        "year": 2022,
+        "category": "Game Design",
+        "status": "winner",
+        "url": "https://www.bafta.org/awards/games/game-design/"
+      }
+    ],
     "title": "邪恶冥刻",
     "titleEn": "Inscryption",
     "year": 2021,
@@ -598,6 +643,15 @@
   },
   {
     "id": "ref-vampire-survivors",
+    "awards": [
+      {
+        "event": "BAFTA Games Awards",
+        "year": 2023,
+        "category": "Game Design",
+        "status": "winner",
+        "url": "https://www.bafta.org/awards/games/game-design/"
+      }
+    ],
     "title": "吸血鬼幸存者",
     "titleEn": "Vampire Survivors",
     "year": 2022,
@@ -701,6 +755,15 @@
   },
   {
     "id": "ref-cocoon",
+    "awards": [
+      {
+        "event": "BAFTA Games Awards",
+        "year": 2024,
+        "category": "Game Design",
+        "status": "nominee",
+        "url": "https://www.bafta.org/awards/games/game-design/"
+      }
+    ],
     "title": "COCOON",
     "titleEn": "COCOON",
     "year": 2023,
@@ -758,6 +821,22 @@
   },
   {
     "id": "ref-balatro",
+    "awards": [
+      {
+        "event": "BAFTA Games Awards",
+        "year": 2025,
+        "category": "Debut Game",
+        "status": "winner",
+        "url": "https://www.bafta.org/awards/games/?award-year=2025"
+      },
+      {
+        "event": "BAFTA Games Awards",
+        "year": 2025,
+        "category": "Game Design",
+        "status": "nominee",
+        "url": "https://www.bafta.org/awards/games/?award-year=2025"
+      }
+    ],
     "title": "小丑牌",
     "titleEn": "Balatro",
     "year": 2024,
@@ -814,6 +893,15 @@
   },
   {
     "id": "ref-animal-well",
+    "awards": [
+      {
+        "event": "BAFTA Games Awards",
+        "year": 2025,
+        "category": "Game Design",
+        "status": "nominee",
+        "url": "https://www.bafta.org/awards/games/game-design/"
+      }
+    ],
     "title": "动物井",
     "titleEn": "Animal Well",
     "year": 2024,
@@ -870,6 +958,15 @@
   },
   {
     "id": "ref-blue-prince",
+    "awards": [
+      {
+        "event": "BAFTA Games Awards",
+        "year": 2026,
+        "category": "Game Design",
+        "status": "winner",
+        "url": "https://www.bafta.org/awards/games/game-design/"
+      }
+    ],
     "title": "蓝途王子",
     "titleEn": "Blue Prince",
     "year": 2025,

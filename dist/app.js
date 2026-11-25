@@ -470,6 +470,7 @@ function feature(game) {
   const actions = element("div", "feature-actions");
   actions.append(read, gameLink(game, "external"));
   contents.append(top, element("h2", "", game.title), tags, videoSection(game, article, media));
+  contents.append(awardEvidence(game));
   contents.append(reviewDigest(game) || element("p", "feature-signal", game.signal || game.mechanic), prototypeIdeas(game), actions);
   article.append(media, contents);
   return article;
@@ -488,6 +489,7 @@ function card(game, index, inNotes = false) {
   const title = element("h3");
   title.append(openButton(game, "", game.title));
   body.append(info, title, videoSection(game, article, artWrap));
+  body.append(awardEvidence(game));
   body.append(reviewDigest(game) || element("p", "card-blurb", game.mechanic || game.signal), prototypeIdeas(game, "h4"));
   const entry = entries.get(entryKey(game));
   if (inNotes && entry?.note) body.append(element("p", "note-snippet", entry.note));
@@ -522,6 +524,7 @@ function openDetail(game, opener, target = "") {
   const actions = element("div", "dialog-actions");
   actions.append(gameLink(game, "primary"), bookmark(game, true));
   wrap.append(actions);
+  wrap.append(awardEvidence(game));
   const digest = reviewDigest(game);
   if (digest) wrap.append(digest);
   else if (game.review) wrap.append(element("p", "review-empty", "这款游戏暂未收录可核实的测评。"));
@@ -687,7 +690,7 @@ function render() {
     return;
   }
   if (inNotebook()) {
-    if ([...entries.keys()].some(id => id.startsWith("ref-"))) loadReferences();
+    if (entries.size) loadReferences();
     main.replaceChildren(...notebook());
     document.title = "我的灵感本 · 游感周刊";
     return;
@@ -761,7 +764,10 @@ async function load() {
     if (!issues.length) throw new Error("No editions");
     gamesById = new Map();
     for (const issue of [...issues].reverse()) {
-      for (const game of issue.games) gamesById.set(game.id, { ...gamesById.get(game.id), ...game });
+      for (const game of issue.games) {
+        const previous = gamesById.get(game.id);
+        gamesById.set(game.id, { ...previous, ...game, awards: mergeAwards(previous?.awards, game.awards) });
+      }
     }
     activeIssue = issues[0];
     rebuildLibrary();

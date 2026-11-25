@@ -35,7 +35,7 @@ jobs:
         run: |
           test -s dist/index.html
           test -s dist/library.js
-          for archive in issues reference-2007-2016 reference-2017-2026; do
+          for archive in issues reference-2007-2016 reference-2017-2026 award-selections; do
             python3 -m json.tool "dist/data/$archive.json" > /dev/null
           done
       - uses: actions/upload-pages-artifact@v4

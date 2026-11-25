@@ -1,6 +1,15 @@
 [
   {
     "id": "ref-portal",
+    "awards": [
+      {
+        "event": "GDCA",
+        "year": 2008,
+        "category": "Innovation Award",
+        "status": "winner",
+        "url": "https://gamechoiceawards.com/archive-gdca-2008/"
+      }
+    ],
     "title": "传送门",
     "titleEn": "Portal",
     "year": 2007,
@@ -58,6 +67,22 @@
   },
   {
     "id": "ref-bioshock",
+    "awards": [
+      {
+        "event": "GDCA",
+        "year": 2008,
+        "category": "Best Design",
+        "status": "nominee",
+        "url": "https://gamechoiceawards.com/archive-gdca-2008/"
+      },
+      {
+        "event": "GDCA",
+        "year": 2008,
+        "category": "Best Visual Art",
+        "status": "winner",
+        "url": "https://gamechoiceawards.com/archive-gdca-2008/"
+      }
+    ],
     "title": "生化奇兵",
     "titleEn": "BioShock",
     "year": 2007,
@@ -616,6 +641,15 @@
   },
   {
     "id": "ref-papers-please",
+    "awards": [
+      {
+        "event": "IGF",
+        "year": 2014,
+        "category": "Seumas McNally Grand Prize",
+        "status": "winner",
+        "url": "https://igf.com/archive-2014/"
+      }
+    ],
     "title": "请出示文件",
     "titleEn": "Papers, Please",
     "year": 2013,

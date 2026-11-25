@@ -1,0 +1,769 @@
+[
+  {
+    "id": "ref-baba-is-you",
+    "title": "Baba Is You",
+    "titleEn": "Baba Is You",
+    "year": 2019,
+    "genres": [
+      "解谜"
+    ],
+    "mechanics": [
+      "推移词块",
+      "改写胜利条件"
+    ],
+    "core": "房间里的词块写着「墙 是 停止」和「旗子 是 胜利」。推散第一句，角色就能穿墙；给第二句换一个物件名，碰到它才算过关。",
+    "lesson": "把规则放进玩家已经会操作的空间。同样是推一格，推石头改变位置，推句子可以改变整张地图；两种结果都要马上看得见。",
+    "sourceLabel": "Hempuli · 正式版规则说明",
+    "sourceUrl": "https://store.steampowered.com/app/736260/",
+    "url": "https://store.steampowered.com/app/736260/",
+    "yearSourceUrl": "https://store.steampowered.com/app/736260/",
+    "prototypeIdeas": [
+      {
+        "title": "三步通行证",
+        "keep": "在地板上推词块，拼出的句子能直接改变房间。",
+        "change": "每个刚拼好的句子只生效三步，拆开重拼才能续时。",
+        "build": "做一间 7×7 的房间，两扇门、一块「开」字牌和倒数三格的灯。",
+        "playtest": "过远的门第一次关上时，玩家会先挪词块靠近门，还是重新规划门前的三步？",
+        "days": 2
+      }
+    ],
+    "image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/736260/header.jpg",
+    "video": {
+      "provider": "bilibili",
+      "id": "BV1wb411p7ja",
+      "url": "https://www.bilibili.com/video/BV1wb411p7ja/",
+      "title": "【Baba Is You】通关攻略（完结，已补充至7.1更新内容）",
+      "creator": "rjdimo",
+      "page": 1,
+      "cid": 81286220,
+      "segment": {
+        "start": 22,
+        "end": 39,
+        "cue": "看白色角色把下方的词块逐格推出原来的位置。走到房间左下方之后，画面才出现过关字样。",
+        "method": "editor"
+      }
+    },
+    "awards": [
+      {
+        "event": "IGF",
+        "year": 2018,
+        "category": "Excellence in Design",
+        "status": "winner",
+        "url": "https://igf.com/archive-2018/"
+      },
+      {
+        "event": "IGF",
+        "year": 2018,
+        "category": "Best Student Game",
+        "status": "winner",
+        "url": "https://igf.com/archive-2018/"
+      }
+    ],
+    "yearNote": "原型参加了 2017 年 Nordic Game Jam，这里采用 2019 年商业版的发行年份。",
+    "criticNote": {
+      "text": "评测举了一个走出密室的办法。推歪「WALL IS STOP」中的一个词，墙还画在那里，人却可以穿过去了。",
+      "label": "PC Gamer",
+      "url": "https://www.pcgamer.com/baba-is-you-review/"
+    }
+  },
+  {
+    "id": "ref-return-of-the-obra-dinn",
+    "title": "奥伯拉丁的回归",
+    "titleEn": "Return of the Obra Dinn",
+    "year": 2018,
+    "genres": [
+      "解谜",
+      "叙事冒险"
+    ],
+    "mechanics": [
+      "定格现场勘察",
+      "名册交叉比对"
+    ],
+    "core": "用怀表回到某人遇难的瞬间，在凝固的人群中换位置看清面孔。翻开名册，对照合照、称呼和先前见过的人，填入死者的身份与遭遇。",
+    "lesson": "让一条线索管一件事。称呼能缩小候选名单，画面里谁和谁站在一起又能排掉另一人，玩家才有充分理由回到旧场景。",
+    "sourceLabel": "Lucas Pope · 关于身份与命运线索的访谈",
+    "sourceUrl": "https://www.gamedeveloper.com/business/road-to-the-igf-lucas-pope-s-i-return-of-the-obra-dinn-i-",
+    "url": "https://store.steampowered.com/app/653530/",
+    "yearSourceUrl": "https://store.steampowered.com/app/653530/",
+    "prototypeIdeas": [
+      {
+        "title": "末班车合照",
+        "keep": "把不同时间留下的人物位置和随身物品对起来，判断谁是谁。",
+        "change": "每张合照只能用一束窄手电照亮局部。",
+        "build": "画三张静止车厢图与四位乘客，重复出现两把相似的伞，允许拖动光圈并给四张票署名。",
+        "playtest": "两人都拿黑伞时，玩家会回到哪张旧照片确认？能指出让自己改判的细节吗？",
+        "days": 1
+      }
+    ],
+    "image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/653530/header.jpg",
+    "video": {
+      "provider": "bilibili",
+      "id": "BV1Px411R7pw",
+      "url": "https://www.bilibili.com/video/BV1Px411R7pw/",
+      "title": "《奥伯拉丁的回归》全流程攻略向解说",
+      "creator": "花夜絮痕",
+      "page": 1,
+      "cid": 100042928,
+      "segment": {
+        "start": 2138,
+        "end": 2164,
+        "cue": "先看名册里的姓名与职务，再看玩家回到船员合照，把框移向另一张脸。哪一栏资料能帮你排除长相相似的人？",
+        "method": "editor"
+      }
+    },
+    "awards": [
+      {
+        "event": "IGF",
+        "year": 2019,
+        "category": "Seumas McNally Grand Prize",
+        "status": "winner",
+        "url": "https://igf.com/archive-2019/"
+      },
+      {
+        "event": "IGF",
+        "year": 2019,
+        "category": "Excellence in Narrative",
+        "status": "winner",
+        "url": "https://igf.com/archive-2019/"
+      }
+    ],
+    "criticNote": {
+      "text": "定格画面往往一眼就能看出死因。要认出死者是谁，还得听别人怎么喊他，再拿他的工位和船员名册互相印证。",
+      "label": "PC Gamer",
+      "url": "https://www.pcgamer.com/return-of-the-obra-dinn-review/"
+    }
+  },
+  {
+    "id": "ref-her-story",
+    "title": "她的故事",
+    "titleEn": "Her Story",
+    "year": 2015,
+    "genres": [
+      "叙事冒险",
+      "解谜"
+    ],
+    "mechanics": [
+      "按台词检索",
+      "非线性录像拼读"
+    ],
+    "core": "在旧电脑上输入一个词，数据库就列出说过这个词的审讯录像。看完一段，从回答里挑一个可疑的人名或物件重新搜索，自己决定追哪条线索。",
+    "lesson": "给每段口供留一个能拿去查的新词，同时让两个看似无关的片段提到同一件事。玩家换搜索词时，就是在改变调查方向。",
+    "sourceLabel": "Sam Barlow · 游戏数据库与检索玩法",
+    "sourceUrl": "https://store.steampowered.com/app/368370/",
+    "url": "https://store.steampowered.com/app/368370/",
+    "yearSourceUrl": "https://store.steampowered.com/app/368370/",
+    "prototypeIdeas": [
+      {
+        "title": "误送的语音",
+        "keep": "听上一位当事人的用词，拿词去找下一份证词。",
+        "change": "下一次搜索只能选刚读完的留言中出现的词。",
+        "build": "用十条短信代替录音，放进同一次送错包裹的三个版本，做六个可点选关键词。",
+        "playtest": "走进只会绕回原处的关键词时，玩家会改查哪个不起眼的物件，又从哪条留言看出了用处？",
+        "days": 1
+      }
+    ],
+    "image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/368370/header.jpg",
+    "video": {
+      "provider": "bilibili",
+      "id": "BV1kW411o7R5",
+      "url": "https://www.bilibili.com/video/BV1kW411o7R5/",
+      "title": "单机解谜【Her story她的故事】完结 含所有录像汇总",
+      "creator": "薄荷汽水304",
+      "page": 1,
+      "cid": 54108214,
+      "segment": {
+        "start": 175,
+        "end": 193,
+        "cue": "同一排搜索结果里有四段录像。看玩家点开其中一段，缩略图变成了带日期和房间编号的完整口供。",
+        "method": "editor"
+      }
+    },
+    "awards": [
+      {
+        "event": "IGF",
+        "year": 2016,
+        "category": "Seumas McNally Grand Prize",
+        "status": "winner",
+        "url": "https://igf.com/archive-2016/"
+      },
+      {
+        "event": "IGF",
+        "year": 2016,
+        "category": "Excellence in Narrative",
+        "status": "winner",
+        "url": "https://igf.com/archive-2016/"
+      }
+    ],
+    "criticNote": {
+      "text": "两个人从同一段口供里挑出不同的词去搜，便会以不同顺序看见证据。一段新搜出的录像就可能让人推翻先前的猜测。",
+      "label": "PC Gamer",
+      "url": "https://www.pcgamer.com/her-story-review/"
+    }
+  },
+  {
+    "id": "ref-nidhogg",
+    "title": "尼德霍格",
+    "titleEn": "Nidhogg",
+    "year": 2014,
+    "genres": [
+      "动作"
+    ],
+    "mechanics": [
+      "通行权易手",
+      "前方重生拦截"
+    ],
+    "core": "两名剑手迎面相遇。赢下交锋的一方获得沿箭头前进的机会，对手却会在前方重新出现。该留下纠缠还是趁空跑过下一屏，随时都可能变。",
+    "lesson": "胜负可以先兑现成一小段路程。只要守方能很快在前方再次截住人，夺回主动权后仍有下一次选择。",
+    "sourceLabel": "Messhof · 对决和反复拦截的规则",
+    "sourceUrl": "https://www.messhof.com/nidhogg",
+    "url": "https://store.steampowered.com/app/94400/",
+    "yearSourceUrl": "https://store.steampowered.com/app/94400/",
+    "prototypeIdeas": [
+      {
+        "title": "过门夺旗",
+        "keep": "每次赢下交锋都只换来一段前进机会，对手还会回来拦。",
+        "change": "只有在门槛上抢到对方的旗，通行权才会易手。",
+        "build": "用三个相连的单屏走廊、两道门槛和一个会追旗的电脑对手；只做跑、急停、抢旗。",
+        "playtest": "玩家会在门外继续追，还是故意退半步把对手引到门槛上？",
+        "days": 2
+      }
+    ],
+    "image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/94400/header.jpg",
+    "video": {
+      "provider": "bilibili",
+      "id": "BV1zs411R7Nq",
+      "url": "https://www.bilibili.com/video/BV1zs411R7Nq/",
+      "title": "【Nidhogg】你可见过如此蛋疼的击剑游戏？",
+      "creator": "kareid",
+      "page": 1,
+      "cid": 5800340,
+      "segment": {
+        "start": 687,
+        "end": 716,
+        "cue": "盯住画面上方的 GO 箭头。黄色与蓝色剑手交错后，箭头会换边；看看谁还能向前跑，谁又出现在路上拦截。",
+        "method": "editor"
+      }
+    },
+    "awards": [
+      {
+        "event": "IGF",
+        "year": 2011,
+        "category": "Nuovo Award",
+        "status": "winner",
+        "url": "https://ubmchannelnews.mediaroom.com/index.php?item=88200&s=29573"
+      }
+    ],
+    "yearNote": "2011 年参展版本获得 Nuovo Award，原作于 2014 年在 PC 正式发行。",
+    "criticNote": {
+      "text": "评测者看见对手把剑举到不同高度，就猜出按上下来变招。赢下交锋后，屏幕上的箭头又教会他下一步要向前跑。",
+      "label": "PC Gamer",
+      "url": "https://www.pcgamer.com/nidhogg-review/"
+    }
+  },
+  {
+    "id": "ref-crypt-of-the-necrodancer",
+    "title": "节奏地牢",
+    "titleEn": "Crypt of the NecroDancer",
+    "year": 2015,
+    "genres": [
+      "节奏",
+      "Roguelike",
+      "动作"
+    ],
+    "mechanics": [
+      "合拍走格",
+      "敌人步点预判"
+    ],
+    "core": "屏幕下方的拍点收向心形标记，合拍按方向就走一格、挖一面墙或攻击相邻的怪物。敌人也跟着节奏行动，抢到下一格宝物前要先看谁会走过来。",
+    "lesson": "把时机和位置放进同一个计量单位。玩家既能听出下一拍何时到，又能预判敌人要落在哪一格，才有机会选择绕路或等它过来。",
+    "sourceLabel": "Brace Yourself Games · 合拍移动与地牢规则",
+    "sourceUrl": "https://braceyourselfgames.com/crypt-of-the-necrodancer/",
+    "url": "https://store.steampowered.com/app/247080/",
+    "yearSourceUrl": "https://store.steampowered.com/app/247080/",
+    "prototypeIdeas": [
+      {
+        "title": "迟一拍的站台",
+        "keep": "角色和巡逻车共用可预测的节拍，侧身躲车要同时看时机与格子。",
+        "change": "这一拍按下的移动指令，到下一拍才执行。",
+        "build": "做一个 6×6 站台、两条固定巡逻线、一件待取行李，并用脚下小箭头显示已排好的下一步。",
+        "playtest": "迎面来车时，玩家是提前一拍等待，还是先横移再跟上？能从箭头看出险些撞车的原因吗？",
+        "days": 1
+      }
+    ],
+    "image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/247080/header.jpg",
+    "video": {
+      "provider": "bilibili",
+      "id": "BV1Us411D7Yc",
+      "url": "https://www.bilibili.com/video/BV1Us411D7Yc/",
+      "title": "【节奏地牢】纯新手入门讲解游戏实况",
+      "creator": "RainsOver",
+      "page": 1,
+      "cid": 3676903,
+      "segment": {
+        "start": 904,
+        "end": 931,
+        "cue": "先盯住画面下方朝红心靠拢的拍线，再抬头看角色在房间里移动和拾取金币。试着跟着两拍，预判下一步能落在哪格。",
+        "method": "editor"
+      }
+    },
+    "awards": [
+      {
+        "event": "IGF",
+        "year": 2014,
+        "category": "Excellence in Design",
+        "status": "nominee",
+        "url": "https://igf.com/archive-2014/"
+      }
+    ],
+    "yearNote": "2014 年进入抢先体验，2015 年正式发行。",
+    "criticNote": {
+      "text": "怪物按固定规律行动，思考时间却只有两拍之间那么长。连续踩准能赚更多金币，贪着保持连击又容易一步撞进危险。",
+      "label": "PC Gamer",
+      "url": "https://www.pcgamer.com/crypt-of-the-necrodancer-review/"
+    }
+  },
+  {
+    "id": "ref-crayon-physics-deluxe",
+    "title": "蜡笔物理学豪华版",
+    "titleEn": "Crayon Physics Deluxe",
+    "year": 2009,
+    "genres": [
+      "解谜"
+    ],
+    "mechanics": [
+      "手绘物体",
+      "物理传力"
+    ],
+    "core": "画一段斜坡让球滚，或在横梁边画一个重物让它倾斜。松开鼠标，图形就会掉落、转动、相撞；同一颗星可以靠不同的装置碰到。",
+    "lesson": "先固定终点，再把解法的形状交给玩家。球停住时，接触点和重心都在画面里，下一笔就能有根据地修正。",
+    "sourceLabel": "Kloonigames · 手绘物体与物理解谜",
+    "sourceUrl": "https://www.crayonphysics.com/",
+    "url": "https://store.steampowered.com/app/26900/",
+    "yearSourceUrl": "https://www.kloonigames.com/blog/general/big-crayon-colored-news",
+    "prototypeIdeas": [
+      {
+        "title": "只留一笔的弹珠台",
+        "keep": "玩家自己画出支撑物，通过滚动和碰撞把球送到目标。",
+        "change": "新画的轮廓一闭合，上一个手绘物体就会消失。",
+        "build": "用引擎自带的二维刚体做一屏、一个斜台和一个杯子，只识别手画的矩形与三角形。",
+        "playtest": "球刚滚出第一段坡时，玩家会何时落下第二笔？早画或晚画，球分别落在哪里？",
+        "days": 2
+      }
+    ],
+    "image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/26900/header.jpg",
+    "video": {
+      "provider": "bilibili",
+      "id": "BV1ML411o7fk",
+      "url": "https://www.bilibili.com/video/BV1ML411o7fk/",
+      "title": "【蜡笔物理学】绳索岛，连接两个点，可以画出一条绳子",
+      "creator": "天王鬼龙神",
+      "page": 1,
+      "cid": 1053345139,
+      "segment": {
+        "start": 130,
+        "end": 156,
+        "cue": "留意红色斜梁左端和圆球附近。玩家补画蓝色支撑后，球、支撑和梁的位置怎样变了？",
+        "method": "editor"
+      }
+    },
+    "awards": [
+      {
+        "event": "IGF",
+        "year": 2008,
+        "category": "Seumas McNally Grand Prize",
+        "status": "winner",
+        "url": "https://igf.com/article/2008-igf-awards-topped-by-crayon-physics-deluxe/"
+      }
+    ],
+    "yearNote": "豪华版在 2008 年获奖，2009 年发行。",
+    "criticNote": {
+      "text": "同一颗星星，有人画斜坡让球滚过去，有人做配重和杠杆。评测者喜欢的是能换个画法来解同一道题。",
+      "label": "Ars Technica",
+      "url": "https://arstechnica.com/gaming/2009/01/review-crayon-physics-brings-out-inner-physics-loving-child/"
+    }
+  },
+  {
+    "id": "ref-unpacking",
+    "title": "拆箱搬新家",
+    "titleEn": "Unpacking",
+    "year": 2021,
+    "genres": [
+      "休闲",
+      "解谜",
+      "叙事冒险"
+    ],
+    "mechanics": [
+      "逐件拆箱",
+      "用物品暗示人生变化"
+    ],
+    "core": "鼠标从纸箱里拿出一件旧物，翻找合适的床头柜、书桌或架子放好。下一次搬家时，熟悉的东西又从箱底出现，留给它的空间却变了。",
+    "lesson": "让玩家亲手为日用品找位置，才能注意到谁的东西占着桌面、谁的兴趣被收进柜子。轮换两间房时，保留一件玩家能认出的旧物，变化才有参照。",
+    "sourceLabel": "Witch Beam · 用物品叙述八次搬家",
+    "sourceUrl": "https://www.unpackinggame.com/",
+    "url": "https://www.unpackinggame.com/",
+    "yearSourceUrl": "https://store.steampowered.com/app/1135690/Unpacking/",
+    "prototypeIdeas": [
+      {
+        "title": "盒底的借书卡",
+        "keep": "让同一件旧物在两次整理里讲出变化。",
+        "change": "只改收纳对象：玩家整理的是同一辆流动书车在两所学校的书架。",
+        "build": "画两个容量不同的书架和六本书，逐本拖放，让一张旧借书卡在两轮都从同一本书掉出。",
+        "playtest": "第二轮结束前，玩家能指出哪本书被反复借阅，以及自己在哪看见了线索吗？",
+        "days": 1
+      }
+    ],
+    "awards": [
+      {
+        "event": "GDCA",
+        "year": 2022,
+        "category": "Innovation Award",
+        "status": "winner",
+        "url": "https://gamechoiceawards.com/archive-gdca-2022/"
+      },
+      {
+        "event": "BAFTA Games Awards",
+        "year": 2022,
+        "category": "Narrative",
+        "status": "winner",
+        "url": "https://www.bafta.org/media-centre/press-releases/bafta-games-awards-2022-winners-announced/"
+      }
+    ],
+    "video": {
+      "provider": "bilibili",
+      "id": "BV1Lf4y1u7u7",
+      "url": "https://www.bilibili.com/video/BV1Lf4y1u7u7/",
+      "title": "【褶】【完结】《开箱取物（Unpacking）》全流程解说-禅派治愈益智游戏",
+      "creator": "褶子丑",
+      "page": 1,
+      "cid": 436354642,
+      "segment": {
+        "start": 128,
+        "end": 154,
+        "cue": "看纸箱里的东西一件件被拿出来，书本和小物逐渐占满窗下的柜子和书桌。同一个房间只改变物品摆放，就有了住过的痕迹。",
+        "method": "editor"
+      }
+    },
+    "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1135690/header.jpg?t=1789426289",
+    "criticNote": {
+      "text": "和别人合住时，橱柜已经装着对方的东西。把主角的餐具和电脑一件件安顿下来，玩家亲手体会到了两个人的生活要怎样挤进同一个家。",
+      "label": "《卫报》",
+      "url": "https://www.theguardian.com/games/2021/nov/09/unpacking-review-moving-house-has-never-been-so-moving"
+    }
+  },
+  {
+    "id": "ref-before-your-eyes",
+    "yearSourceUrl": "https://store.steampowered.com/app/1082430/Before_Your_Eyes/",
+    "title": "历历在目",
+    "titleEn": "Before Your Eyes",
+    "year": 2021,
+    "genres": [
+      "叙事冒险"
+    ],
+    "mechanics": [
+      "眨眼跳过岁月",
+      "凝视延长回忆"
+    ],
+    "core": "当节拍器提示出现，再眨一次眼就可能跨过数年。玩家想留在某个瞬间多听一句，又必须和自己本能的眨眼对抗。",
+    "lesson": "把日常会不由自主做出的动作变成离开场景的开关，能让失去时间成为身体经验。切走以前要先让人看见一个仍值得留下的细节。",
+    "sourceLabel": "GoodbyeWorld Games · 摄像头眨眼叙事",
+    "sourceUrl": "https://store.steampowered.com/app/1082430/Before_Your_Eyes/",
+    "url": "https://store.steampowered.com/app/1082430/Before_Your_Eyes/",
+    "prototypeIdeas": [
+      {
+        "title": "离站的窗",
+        "keep": "玩家可以暂时留住眼前的人，但停留终究有代价。",
+        "change": "把眨眼换成按住车窗：一松手，列车便经过下一站。",
+        "build": "做三站共六张剪影，按住时逐句显示车外的话，松开后滑到下一站，不能倒带。",
+        "playtest": "第一次放手后，玩家会不会在下一站主动多停一会，想听完车外那句话？",
+        "days": 1
+      }
+    ],
+    "awards": [
+      {
+        "event": "BAFTA Games Awards",
+        "year": 2022,
+        "category": "Game Beyond Entertainment",
+        "status": "winner",
+        "url": "https://www.bafta.org/media-centre/press-releases/bafta-games-awards-2022-winners-announced/"
+      },
+      {
+        "event": "GDCA",
+        "year": 2022,
+        "category": "Social Impact Award",
+        "status": "nominee",
+        "url": "https://gamechoiceawards.com/archive-gdca-2022/"
+      }
+    ],
+    "video": {
+      "provider": "bilibili",
+      "id": "BV1HK4y1K7nC",
+      "url": "https://www.bilibili.com/video/BV1HK4y1K7nC/",
+      "title": "眨眼模拟器情感叙事游戏《Before Your Eyes》历历在目 全流程通关攻略视频",
+      "creator": "cookoocooky1",
+      "segment": {
+        "start": 357,
+        "end": 386,
+        "cue": "留意海边站起的人怎样消失在黑色画面边缘。眼睛图标出现后，海岸已换了光线与人物，下一次眨眼又把眼前的记忆带走。",
+        "method": "editor"
+      }
+    },
+    "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1082430/header.jpg?t=1791145610",
+    "criticNote": {
+      "text": "评测者试过睁着眼多留一会儿，却因为忍不住眨眼而错过了后半段。有时只是视线移开也会跳过，这让同一个动作既能制造不舍，也可能造成挫败。",
+      "label": "Gamereactor",
+      "url": "https://www.gamereactor.eu/before-your-eyes-review/"
+    }
+  },
+  {
+    "id": "ref-viewfinder",
+    "yearSourceUrl": "https://store.steampowered.com/app/1382070/Viewfinder/",
+    "title": "取景器",
+    "titleEn": "Viewfinder",
+    "year": 2023,
+    "genres": [
+      "解谜"
+    ],
+    "mechanics": [
+      "照片覆盖空间",
+      "透视变成立体通路"
+    ],
+    "core": "举起一张有楼梯或走廊的照片，调整朝向，把它放到眼前。照片边界内的场景被改写，纸上的楼梯真的可以走上去。",
+    "lesson": "预览时让玩家看清将被覆盖的轮廓，放下照片时保留同一个视角。玩家才能把之前的二维判断与脚下出现的通路对应起来。",
+    "sourceLabel": "Sad Owl Studios · 照片如何改变现实",
+    "sourceUrl": "https://store.steampowered.com/app/1382070/Viewfinder/",
+    "url": "https://store.steampowered.com/app/1382070/Viewfinder/",
+    "prototypeIdeas": [
+      {
+        "title": "一张站台剖面",
+        "keep": "把纸上看见的轮廓放进关卡，再沿它通行。",
+        "change": "把可放置的照片改成一张能转四个方向的站台楼梯剖面图。",
+        "build": "做三屏侧视站台，一张四格楼梯贴纸覆盖墙格并生成台阶，每屏只许贴一次。",
+        "playtest": "在按下贴纸之前，玩家能指出自己要从哪一格上楼，以及哪些旧墙会消失吗？",
+        "days": 2
+      }
+    ],
+    "awards": [
+      {
+        "event": "BAFTA Games Awards",
+        "year": 2024,
+        "category": "New Intellectual Property",
+        "status": "winner",
+        "url": "https://www.bafta.org/media-centre/press-releases/20th-bafta-games-awards-winners/"
+      }
+    ],
+    "video": {
+      "provider": "bilibili",
+      "id": "BV19C4y1C7W6",
+      "url": "https://www.bilibili.com/video/BV19C4y1C7W6/",
+      "title": "【小而美94】《Viewfinder取景器》全流程+全收集+全成就攻略解说。",
+      "creator": "鸠木采",
+      "page": 1,
+      "cid": 1346348788,
+      "segment": {
+        "start": 249,
+        "end": 273,
+        "cue": "看玩家举起黑白照片，定好朝向后，画里的房间出现在原来的彩色场景中。靠近时，照片上的墙和地面已有可以行走的深度。",
+        "method": "editor"
+      }
+    },
+    "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1382070/a69eb56f73446624325dec8a4fe74dc4ae09fb96/header.jpg?t=1764842475",
+    "criticNote": {
+      "text": "评测里有一道过沟的题。玩家拍下一堵墙，把照片转九十度再放回世界，这堵竖直的墙就成了脚下横着的桥。",
+      "label": "《卫报》",
+      "url": "https://www.theguardian.com/games/2023/jul/17/viewfinder-review-sad-owl-thunderful"
+    }
+  },
+  {
+    "id": "ref-hi-fi-rush",
+    "yearSourceUrl": "https://news.xbox.com/en-us/2023/01/25/hi-fi-rush-preview-out-now-hands-on/",
+    "title": "完美音浪",
+    "titleEn": "Hi-Fi RUSH",
+    "year": 2023,
+    "genres": [
+      "动作",
+      "节奏"
+    ],
+    "mechanics": [
+      "按拍连击",
+      "音乐与命中共用节拍"
+    ],
+    "core": "工厂机器、角色的脚和音乐打着同一个拍子。玩家根据拍点挥下吉他，轻重攻击接成短句；合拍的连击让得分与伴奏一起变化。",
+    "lesson": "当敌人动作、背景动效和旋律共用节拍时，即使漏听一声，也能从画面捡回节奏。合拍奖励越快反馈到下一声，玩家越容易听出自己按准了哪一下。",
+    "sourceLabel": "Xbox Wire · 战斗评分、音乐分轨和节拍",
+    "sourceUrl": "https://news.xbox.com/en-us/2023/01/25/hi-fi-rush-preview-out-now-hands-on/",
+    "url": "https://store.steampowered.com/app/1817230/HiFi_RUSH/",
+    "prototypeIdeas": [
+      {
+        "title": "打拍铆钉工",
+        "keep": "让玩家看和听同一个拍点，准确输入立即改变声音。",
+        "change": "把连击对象换成传送带上的铆钉，每四拍有一个标记件要重敲。",
+        "build": "画一条四拍传送带，做轻敲、重敲和命中窗口，加两层短音，敲准重件就加入低音。",
+        "playtest": "遮住节拍条一轮，玩家还能靠传送带动作和声音敲准下一颗重铆钉吗？",
+        "days": 2
+      }
+    ],
+    "awards": [
+      {
+        "event": "The Game Awards",
+        "year": 2023,
+        "category": "Best Audio Design",
+        "status": "winner",
+        "url": "https://thegameawards.com/rewind/year-2023"
+      },
+      {
+        "event": "GDCA",
+        "year": 2024,
+        "category": "Innovation Award",
+        "status": "nominee",
+        "url": "https://gamechoiceawards.com/archive-gdca-2024/"
+      }
+    ],
+    "video": {
+      "provider": "bilibili",
+      "id": "BV1c8411G7Gt",
+      "url": "https://www.bilibili.com/video/BV1c8411G7Gt/",
+      "title": "《Hi-Fi rush》完美音浪！ 全流程攻略（已完结）",
+      "creator": "主机玩家裕哥",
+      "page": 1,
+      "cid": 981296966,
+      "segment": {
+        "start": 253,
+        "end": 275,
+        "cue": "看训练场上方的两行拍点。第一次挥击出现 Miss，片段末尾又亮起 Perfect；玩家做了相同的动作，出手的时机改变了反馈。",
+        "method": "editor"
+      }
+    },
+    "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1817230/header.jpg?t=1764916407",
+    "criticNote": {
+      "text": "找拍子时可以直接看场景。路灯和管道跟着音乐起伏，主角每打一个响指也会冒出火花，目光留在敌人身上仍能读到节拍。",
+      "label": "PC Gamer",
+      "url": "https://www.pcgamer.com/hi-fi-rush-review/"
+    }
+  },
+  {
+    "id": "ref-tchia",
+    "title": "奇娅",
+    "titleEn": "Tchia",
+    "year": 2023,
+    "genres": [
+      "叙事冒险",
+      "节奏"
+    ],
+    "mechanics": [
+      "自由弹奏尤克里里",
+      "用旋律改变环境"
+    ],
+    "core": "营火旁可以拿起尤克里里，拨弦、切换和弦，跟着朋友一起唱。学会特定的灵魂旋律后，同一套弹奏动作还能唤来动物或物品，帮助在岛上探索。",
+    "lesson": "先让玩家在有听众的安全场景掌握和弦，再让相同手势在探索里派上用场。两套情境共用一种操作，练歌的熟悉感会带进冒险。",
+    "sourceLabel": "Awaceb 游戏总监 · 尤克里里与灵魂旋律",
+    "sourceUrl": "https://blog.playstation.com/?p=377276",
+    "url": "https://store.steampowered.com/app/1496590/Tchia/",
+    "yearSourceUrl": "https://blog.playstation.com/?p=376194",
+    "prototypeIdeas": [
+      {
+        "title": "雾港的三音灯号",
+        "keep": "从伙伴那里学到一段音乐，再用同样的输入影响环境。",
+        "change": "把乐器换成港口的雾笛，三音的次序决定哪一艘渡船靠岸。",
+        "build": "做三个音键和两条三音船号。先让守灯人吹一遍，再关掉提示，让玩家在雾里召船。",
+        "playtest": "不再显示音符时，玩家能招来要找的船，并说出自己记住的是声音还是键位吗？",
+        "days": 1
+      }
+    ],
+    "awards": [
+      {
+        "event": "The Game Awards",
+        "year": 2023,
+        "category": "Games for Impact",
+        "status": "winner",
+        "url": "https://thegameawards.com/rewind/year-2023"
+      },
+      {
+        "event": "BAFTA Games Awards",
+        "year": 2024,
+        "category": "Game Beyond Entertainment",
+        "status": "winner",
+        "url": "https://www.bafta.org/media-centre/press-releases/20th-bafta-games-awards-winners/"
+      }
+    ],
+    "video": {
+      "provider": "bilibili",
+      "id": "BV1i24y1E7T6",
+      "url": "https://www.bilibili.com/video/BV1i24y1E7T6/?p=2",
+      "title": "【奇娅 Tchia】4K 最高画质 全剧情流程通关攻略 开放世界动作冒险游戏 - Tchia",
+      "creator": "11的游戏世界",
+      "page": 2,
+      "cid": 1064074843,
+      "segment": {
+        "start": 257,
+        "end": 285,
+        "cue": "营火边进入演奏，镜头切到琴弦与拨弦的手，旁边的和弦轮跟着歌曲出现。观察普通手柄怎样同时承载和弦选择与拨弦。",
+        "method": "editor"
+      }
+    },
+    "yearNote": "2023 年先在 PlayStation 与 Epic Games Store 首发，Steam 版于 2024 年推出。",
+    "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1496590/header.jpg?t=1772227146",
+    "criticNote": {
+      "text": "评测者爬崖耗尽体力，坠落途中临时附身到地面的石头上脱险。同一种附身能力既能在路上赶时间，也能让玩家在意外中自行找出活路。",
+      "label": "PC Gamer",
+      "url": "https://www.pcgamer.com/tchia-review/"
+    }
+  },
+  {
+    "id": "ref-despelote",
+    "title": "街头足球",
+    "titleEn": "despelote",
+    "year": 2025,
+    "genres": [
+      "体育",
+      "叙事冒险"
+    ],
+    "mechanics": [
+      "街区自由带球",
+      "传球引发居民反应"
+    ],
+    "core": "八岁的胡利安在厄瓜多尔基多的街头带球。脚下同一颗球可以传给朋友，也可以滚向忙着聊天的邻居；下一步遇见什么人，要看球往哪里去了。",
+    "lesson": "让一个熟悉动作同时承担移动、打招呼和惹麻烦的用途，街道就能靠玩家的好奇心被探索。居民的反应需要能看出和这次传球的方向有关。",
+    "sourceLabel": "开发者官网 · 在基多街头带球与传球",
+    "sourceUrl": "https://despelote.game/",
+    "url": "https://despelote.game/",
+    "yearSourceUrl": "https://games.panic.com/despelote/",
+    "prototypeIdeas": [
+      {
+        "title": "谁接走了毽子",
+        "keep": "把球传向不同的人，日常场所便会给出不同回应。",
+        "change": "把足球换成会落在原地的毽子，只有愿意搭理你的人才把它踢回来。",
+        "build": "做一间俯视院子、一个方向键和三个邻居，各给一次踢回、捡起或让开的反应。",
+        "playtest": "不给任务文字，玩家是否会试着传给第二个人，并根据对方反应改变下一次站位？",
+        "days": 1
+      }
+    ],
+    "awards": [
+      {
+        "event": "BAFTA Games Awards",
+        "year": 2026,
+        "category": "Game Beyond Entertainment",
+        "status": "winner",
+        "url": "https://www.bafta.org/media-centre/press-releases/winners-2026-games-awards/"
+      }
+    ],
+    "video": {
+      "provider": "bilibili",
+      "id": "BV1To9DBREWA",
+      "url": "https://www.bilibili.com/video/BV1To9DBREWA/",
+      "title": "【游戏故事】街头足球（despelote）厄瓜多尔少年的足球梦！",
+      "creator": "T2MAC",
+      "segment": {
+        "start": 529,
+        "end": 556,
+        "cue": "镜头低到孩子脚边，足球和锥桶占了前景，后面是街区的墙与空地。看作者如何调整视线和走位，把地上的球带向下一处标记。",
+        "method": "editor"
+      }
+    },
+    "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2367820/header.jpg?t=1759948341",
+    "criticNote": {
+      "text": "广场上可以跟伙伴踢球，也可以停下来听大人聊天。世界杯的紧张气氛就藏在这些四处听来的话里，玩家能自己决定是哪段闲谈打断了这场球。",
+      "label": "《卫报》",
+      "url": "https://www.theguardian.com/games/2025/may/14/despelote-review-football-fans-world-cup-panic-pc-ps4-5-xbox"
+    }
+  }
+]

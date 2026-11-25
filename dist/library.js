@@ -1,7 +1,32 @@
 "use strict";
 
 const libraryGenres = ["动作", "射击", "平台跳跃", "解谜", "策略", "角色扮演", "卡牌", "Roguelike", "模拟经营", "生存建造", "叙事冒险", "节奏", "竞速", "体育", "休闲", "社交协作", "其他"];
-const referenceFiles = ["2007-2016", "2017-2026"].map(period => ({ period, state: "idle", games: [] }));
+const releasePeriods = ["2007-2016", "2017-2026"];
+const referenceFiles = [
+  ...releasePeriods.map(period => ({ name: "reference-" + period, label: period.replace("-", "–") + " 年参考库" })),
+  { name: "award-selections", label: "奖项选游" }
+].map(file => ({ ...file, state: "idle", games: [] }));
+const awardStatuses = { winner: "获奖", nominee: "提名" };
+const awardEvents = new Map([
+  ["IGF", "独立游戏节（IGF）"],
+  ["BAFTA Games Awards", "英国电影和电视艺术学院游戏奖（BAFTA）"],
+  ["GDCA", "游戏开发者选择奖（GDCA）"],
+  ["The Game Awards", "The Game Awards（TGA）"]
+]);
+const awardCategories = new Map([
+  ["Seumas McNally Grand Prize", "年度大奖"], ["Grand Prize", "年度大奖"],
+  ["Game of the Year", "年度游戏"], ["Best Game", "最佳游戏"],
+  ["Best Design", "最佳游戏设计"], ["Game Design", "最佳游戏设计"], ["Best Game Design", "最佳游戏设计"],
+  ["Innovation Award", "创新奖"], ["Nuovo Award", "Nuovo 创新奖"],
+  ["Debut Game", "首作奖"], ["Best Debut", "最佳首作"], ["Best Debut Independent Game", "最佳独立首作"],
+  ["Best Independent Game", "最佳独立游戏"], ["Best Student Game", "最佳学生游戏"], ["Best Visual Art", "最佳视觉艺术"],
+  ["Excellence in Design", "卓越设计"], ["Excellence in Visual Art", "卓越视觉艺术"],
+  ["Excellence in Audio", "卓越音效"], ["Excellence in Narrative", "卓越叙事"],
+  ["Best Audio Design", "最佳音效设计"], ["Games for Impact", "最具影响力游戏"],
+  ["Game Beyond Entertainment", "超越娱乐游戏奖"], ["Social Impact Award", "社会影响力奖"],
+  ["New Intellectual Property", "最佳原创 IP"], ["Narrative", "叙事奖"],
+  ["Audience Award", "观众奖"], ["Best Narrative", "最佳叙事"]
+]);
 let libraryRows = [];
 let libraryById = new Map();
 
@@ -18,6 +43,23 @@ function genresOf(game) {
   const genres = Array.isArray(game.genres) && game.genres.length ? game.genres : tagsOf(game);
   const recognized = libraryGenres.filter(genre => genres.includes(genre));
   return recognized.length ? recognized : ["其他"];
+}
+
+function mergeAwards(...lists) {
+  const records = new Map();
+  for (const list of lists) {
+    if (!Array.isArray(list)) continue;
+    for (const award of list) {
+      if (!award || typeof award.event !== "string" || !award.event.trim() || typeof award.category !== "string" || !award.category.trim()) continue;
+      const url = safeUrl(award.url);
+      if (!Number.isInteger(award.year) || !Object.hasOwn(awardStatuses, award.status) || !url) continue;
+      const event = award.event.trim(), category = award.category.trim();
+      const key = JSON.stringify([event, award.year, category, award.status]);
+      if (!records.has(key)) records.set(key, { event, category, year: award.year, status: award.status, url });
+    }
+  }
+  return Array.from(records.values()).sort((a, b) => b.year - a.year || a.event.localeCompare(b.event) ||
+    (a.status === b.status ? a.category.localeCompare(b.category) : a.status === "winner" ? -1 : 1));
 }
 
 function identityKeys(game) {
@@ -57,7 +99,7 @@ function rebuildLibrary() {
       weekly.push({ ...gamesById.get(game.id), issueId: issue.id });
     }
   }
-  function add(game, reference) {
+  function add(game, source) {
     const keys = identityKeys(game);
     let row = byId.get(game.id);
     if (!row) {
@@ -68,9 +110,10 @@ function rebuildLibrary() {
       }
     }
     if (!row) {
-      row = { ...game, genres: genresOf(game) };
+      row = { ...game, genres: genresOf(game), awards: mergeAwards(game.awards) };
       rows.push(row);
     } else {
+      row.awards = mergeAwards(row.awards, game.awards);
       row.genres = libraryGenres.filter(genre => row.genres.includes(genre) || genresOf(game).includes(genre));
       if (row.genres.length > 1) row.genres = row.genres.filter(genre => genre !== "其他");
       if (!row.titleEn && game.titleEn) row.titleEn = game.titleEn;
@@ -80,9 +123,13 @@ function rebuildLibrary() {
       }
       if (releaseYear(row) === releaseYear(game) && !row.yearSourceUrl) row.yearSourceUrl = game.yearSourceUrl;
       if (!row.video && game.video) row.video = game.video;
+      if (!row.criticNote && game.criticNote) row.criticNote = game.criticNote;
       if (!row.prototypeIdeas?.length && game.prototypeIdeas?.length) row.prototypeIdeas = game.prototypeIdeas;
     }
-    if (reference && !row.reference) row.reference = game;
+    if (source && !row.reference) {
+      row.reference = game;
+      row.referenceLabel = source.name === "award-selections" ? "奖项选游" : "历年参考";
+    }
     byId.set(game.id, row);
     for (const key of keys) {
       if (!byNameOrStore.has(key)) byNameOrStore.set(key, []);
@@ -91,7 +138,7 @@ function rebuildLibrary() {
     }
   }
   weekly.forEach(game => add(game, false));
-  referenceFiles.forEach(file => file.games.forEach(game => add(game, true)));
+  referenceFiles.forEach(file => file.games.forEach(game => add(game, file)));
   libraryById = byId;
   libraryRows = rows.sort((a, b) => (releaseYear(b) || 0) - (releaseYear(a) || 0) || a.title.localeCompare(b.title, "zh-CN"));
 }
@@ -102,7 +149,7 @@ function loadReferences(retry = false) {
   for (const file of pending) file.state = "loading";
   Promise.all(pending.map(async file => {
     try {
-      const response = await fetch(`./data/reference-${file.period}.json`, { cache: "no-cache" });
+      const response = await fetch(`./data/${file.name}.json`, { cache: "no-cache" });
       if (!response.ok) throw new Error("Archive unavailable");
       const data = await response.json();
       const games = Array.isArray(data) ? data : data.games;
@@ -114,6 +161,10 @@ function loadReferences(retry = false) {
     }
   })).then(() => {
     rebuildLibrary();
+    for (const slot of document.querySelectorAll(".award-records[data-game]")) {
+      const game = libraryById.get(slot.dataset.game);
+      if (game) fillAwardRecords(slot, game.awards);
+    }
     if (inLibrary() && !detail.open) refreshLibraryResults();
     else if (inNotebook() && !detail.open) render();
     else {
@@ -125,17 +176,20 @@ function loadReferences(retry = false) {
 
 function libraryFilters() {
   const params = new URLSearchParams(inLibrary() ? location.hash.split("?")[1] : "");
+  const status = params.get("awardStatus");
   return {
     genre: params.get("genre") || "",
     year: params.get("year") || "",
     period: params.get("period") || "",
-    q: params.get("q") || ""
+    q: params.get("q") || "",
+    award: params.get("award") || (Object.hasOwn(awardStatuses, status) ? "all" : ""),
+    awardStatus: Object.hasOwn(awardStatuses, status) ? status : ""
   };
 }
 
 function libraryUrl(filters = {}) {
   const params = new URLSearchParams();
-  for (const key of ["genre", "year", "period", "q"]) if (filters[key]) params.set(key, filters[key]);
+  for (const key of ["genre", "year", "period", "q", "award", "awardStatus"]) if (filters[key]) params.set(key, filters[key]);
   const query = params.toString();
   return query ? "#library?" + query : "#library";
 }
@@ -148,7 +202,14 @@ function genreNavigation(weekly) {
   heading.id = section.id + "-title";
   const status = element("p", "genre-browser-status");
   status.setAttribute("role", "status");
-  head.append(heading, status);
+  head.append(heading);
+  if (weekly) {
+    const awards = element("a", "award-entry", "奖项选游");
+    awards.href = libraryUrl({ award: "all" });
+    awards.append(icon("arrow"));
+    head.append(awards);
+  }
+  head.append(status);
   const links = element("nav", "genre-options");
   links.setAttribute("aria-labelledby", heading.id);
   section.append(head, links);
@@ -223,6 +284,40 @@ function yearEvidence(game) {
   return note.childNodes.length ? note : null;
 }
 
+function awardEvidence(game) {
+  const box = element("section", "award-records");
+  box.dataset.game = game.id;
+  box.setAttribute("aria-label", `《${game.title}》的获奖与提名记录`);
+  fillAwardRecords(box, libraryById.get(game.id)?.awards || mergeAwards(game.awards));
+  return box;
+}
+
+function fillAwardRecords(box, awards) {
+  box.replaceChildren();
+  box.hidden = !awards.length;
+  const groups = new Map();
+  for (const record of awards) {
+    const key = JSON.stringify([record.event, record.year, record.url]);
+    if (!groups.has(key)) {
+      const group = element("div", "award-group");
+      const head = element("div", "award-head");
+      head.append(element("strong", "", awardEvents.get(record.event) || record.event), element("span", "", `${record.year} 年颁奖`),
+        watchLink(record.url, "奖方记录", `查看 ${record.year} 年 ${record.event} 的官方记录`));
+      const list = element("ul", "award-list");
+      group.append(head, list);
+      box.append(group);
+      groups.set(key, list);
+    }
+    const item = element("li");
+    const name = element("span");
+    const translated = awardCategories.get(record.category);
+    if (translated) name.append(document.createTextNode(translated + " "), element("span", "award-original", record.category));
+    else name.textContent = record.category;
+    item.append(element("span", "award-result " + record.status, awardStatuses[record.status]), name);
+    groups.get(key).append(item);
+  }
+}
+
 function referenceDigest(game) {
   const reference = game.reference || (game.id.startsWith("ref-") ? game : null);
   if (!reference) return null;
@@ -241,6 +336,14 @@ function referenceDigest(game) {
     source.append(element("span", "", "参考来源"), watchLink(url, label, `阅读《${game.title}》的参考来源 · ${label}`));
     box.append(source);
   }
+  const critic = reference.criticNote || game.criticNote;
+  const criticUrl = safeUrl(critic?.url);
+  if (criticUrl && typeof critic.text === "string" && critic.text.trim() && typeof critic.label === "string" && critic.label.trim()) {
+    const line = element("p", "review-line critic-note");
+    line.append(element("strong", "review-label", "测评观察"), document.createTextNode(critic.text),
+      watchLink(criticUrl, critic.label, `阅读《${game.title}》的测评原文 · ${critic.label}`));
+    box.append(line);
+  }
   return box;
 }
 
@@ -249,7 +352,7 @@ function libraryCard(game, inNotes = false) {
   const head = element("div", "library-card-head");
   const names = element("div");
   const meta = element("p", "library-card-meta", yearText(game));
-  meta.append(element("span", "", game.issueId ? "周刊选游" : "历年参考"));
+  meta.append(element("span", "", game.issueId ? "周刊选游" : game.referenceLabel || "历年参考"));
   const heading = element("h3");
   heading.append(openButton(game, "", game.title));
   names.append(meta, heading);
@@ -268,6 +371,7 @@ function libraryCard(game, inNotes = false) {
   article.append(head, genreLinks(game));
   const evidence = yearEvidence(game);
   if (evidence) article.append(evidence);
+  article.append(awardEvidence(game));
   const mechanisms = game.reference?.mechanics || game.mechanics || tagsOf(game);
   if (Array.isArray(mechanisms) && mechanisms.length) article.append(element("p", "library-mechanics", mechanisms.join(" / ")));
   const digest = referenceDigest(game) || reviewDigest(game);
@@ -292,6 +396,9 @@ function filteredLibrary(filters) {
     const year = releaseYear(game);
     const genres = genresOf(game);
     if (filters.genre && !genres.includes(filters.genre)) return false;
+    if (filters.award && !game.awards.some(record =>
+      (filters.award === "all" || record.event === filters.award) &&
+      (!filters.awardStatus || record.status === filters.awardStatus))) return false;
     if (filters.year && (filters.year === "unknown" ? year !== null : year !== Number(filters.year))) return false;
     if (filters.period) {
       const [start, end] = filters.period.split("-").map(Number);
@@ -299,7 +406,8 @@ function filteredLibrary(filters) {
     }
     const reference = game.reference || {};
     const text = [game.title, game.titleEn, game.mechanic, game.review?.core, game.review?.appeal, reference.title, reference.titleEn,
-      reference.core, reference.lesson, ...(reference.mechanics || []), ...genres, ...tagsOf(game)].filter(Boolean).join(" ").normalize("NFKC").toLocaleLowerCase();
+      reference.core, reference.lesson, ...(reference.mechanics || []), ...genres, ...tagsOf(game),
+      ...game.awards.flatMap(record => [record.event, awardEvents.get(record.event), record.category, awardCategories.get(record.category)])].filter(Boolean).join(" ").normalize("NFKC").toLocaleLowerCase();
     return terms.every(term => text.includes(term));
   });
 }
@@ -309,7 +417,7 @@ function libraryYearOptions(select, filters) {
   select.replaceChildren(new Option("全部发行时间", ""));
   const periods = element("optgroup");
   periods.label = "发行时期";
-  for (const file of referenceFiles) periods.append(new Option(file.period.replace("-", "–") + " 年", "period:" + file.period));
+  for (const period of releasePeriods) periods.append(new Option(period.replace("-", "–") + " 年", "period:" + period));
   select.append(periods);
   const group = element("optgroup");
   group.label = "具体发行年份";
@@ -326,12 +434,20 @@ function refreshLibraryResults() {
   if (!results) return;
   stopVideo();
   const filters = libraryFilters();
-  const heading = filters.genre ? filters.genre + "游戏" : "游戏库";
+  const genreTitle = filters.genre ? filters.genre + "游戏" : "";
+  const heading = filters.award ? [genreTitle, "奖项选游"].filter(Boolean).join(" · ") : genreTitle || "游戏库";
   document.getElementById("library-heading").textContent = heading;
   document.title = heading + " · 游感周刊";
   const matches = filteredLibrary({ ...filters, genre: "" });
   showGenreOptions(document.getElementById("library-genres"), filters, matches);
   libraryYearOptions(document.getElementById("library-year"), filters);
+  const award = document.getElementById("library-award");
+  award.replaceChildren(new Option("不限奖项", ""), new Option("全部奖项选游", "all"));
+  const events = new Set(libraryRows.flatMap(game => game.awards.map(record => record.event)));
+  if (filters.award && filters.award !== "all") events.add(filters.award);
+  for (const event of Array.from(events).sort()) award.append(new Option(awardEvents.get(event) || event, event));
+  award.value = filters.award;
+  document.getElementById("library-award-status").value = filters.awardStatus;
   const games = filters.genre ? matches.filter(game => genresOf(game).includes(filters.genre)) : matches;
   document.getElementById("library-count").textContent = `${games.length} 款游戏`;
   document.getElementById("library-clear").hidden = !Object.values(filters).some(Boolean);
@@ -339,10 +455,10 @@ function refreshLibraryResults() {
   notice.replaceChildren();
   const failed = referenceFiles.filter(file => file.state === "failed");
   if (failed.length) {
-    notice.append(document.createTextNode(`${failed.map(file => file.period.replace("-", "–")).join("、")} 年的参考库暂时无法载入。 `),
+    notice.append(document.createTextNode(`${failed.map(file => file.label).join("、")}暂时无法载入。 `),
       button("outline-btn", "重新加载参考库", () => { loadReferences(true); refreshLibraryResults(); }));
   } else if (referenceFiles.some(file => file.state === "loading")) {
-    notice.textContent = "正在载入历年参考…";
+    notice.textContent = "正在载入游戏资料…";
   }
   if (issueLoadFailed) {
     notice.append(document.createTextNode(" 周刊选游暂时无法载入。 "), button("outline-btn", "重新加载周刊", load));
@@ -381,26 +497,44 @@ function libraryView() {
   form.setAttribute("role", "search");
   form.setAttribute("aria-label", "筛选游戏库");
   const search = element("input");
+  search.id = "library-search";
   search.type = "search";
   search.placeholder = "搜中英文游戏名或玩法关键词";
   search.value = filters.q;
   const year = element("select");
   year.id = "library-year";
   libraryYearOptions(year, filters);
-  for (const [label, control] of [["搜索游戏", search], ["发行时间", year]]) {
+  const award = element("select");
+  award.id = "library-award";
+  const status = element("select");
+  status.id = "library-award-status";
+  status.append(new Option("不限结果", ""));
+  for (const [value, label] of Object.entries(awardStatuses)) status.append(new Option(label, value));
+  for (const [label, control] of [["搜索游戏", search], ["发行时间", year], ["游戏奖项", award], ["奖项结果", status]]) {
     const field = element("label");
-    field.append(element("span", "", label), control);
+    const caption = element("span", "", label);
+    caption.id = control.id + "-label";
+    control.setAttribute("aria-labelledby", caption.id);
+    field.append(caption, control);
     form.append(field);
   }
   function apply(push = false) {
     const [kind, value] = year.value.split(":");
-    const hash = libraryUrl({ q: search.value.trim(), genre: libraryFilters().genre, [kind]: value });
+    const hash = libraryUrl({ q: search.value.trim(), genre: libraryFilters().genre, [kind]: value, award: award.value, awardStatus: status.value });
     if (location.hash !== hash) history[push ? "pushState" : "replaceState"](null, "", hash);
     refreshLibraryResults();
   }
   search.addEventListener("input", event => { if (!event.isComposing) apply(); });
   search.addEventListener("compositionend", () => apply());
   year.addEventListener("change", () => apply(true));
+  award.addEventListener("change", () => {
+    if (!award.value) status.value = "";
+    apply(true);
+  });
+  status.addEventListener("change", () => {
+    if (status.value && !award.value) award.value = "all";
+    apply(true);
+  });
   form.addEventListener("submit", event => { event.preventDefault(); apply(); });
   const bar = element("div", "library-result-head");
   const count = element("p", "library-count");
