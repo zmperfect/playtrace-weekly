@@ -1,0 +1,102 @@
+{
+  "issues": [
+    {
+      "id": "2026-W48",
+      "date": "2026-11-25",
+      "games": [
+        {
+          "id": "steam-3527290",
+          "title": "PEAK",
+          "source": "Steam",
+          "signal": "11 月 25 日入选 Steam 在线人数前 100。值得看的是，先爬上去的人还能回头改变队友的路线。",
+          "mechanic": "爬到岩沿后，你可以继续赶路，也可以回身拉队友一把。受伤会压缩体力上限，同一段峭壁，落在后面的人可能爬不上来。",
+          "prompt": "画一面只有三个落脚点的岩壁，给两名玩家一根绳子。把哪一个点挪远，会让他们第一次主动等对方？",
+          "url": "https://store.steampowered.com/app/3527290/PEAK/?l=schinese",
+          "image": "assets/peak-cover.webp",
+          "heroImage": "assets/peak-cover.webp",
+          "action": "看 Steam 实机",
+          "tags": [
+            "协作攀登",
+            "体力管理"
+          ],
+          "sourceUrl": "https://store.steampowered.com/charts/mostplayed",
+          "artCredit": "Landfall、Aggro Crab",
+          "artSource": "https://landfall.se/peak-press-kit"
+        },
+        {
+          "id": "steam-2868840",
+          "title": "杀戮尖塔 2",
+          "titleEn": "Slay the Spire 2",
+          "source": "Steam",
+          "signal": "11 月 25 日进入 Steam 在线人数前十。合作模式给同一套构筑玩法多出一个选择对象。",
+          "mechanic": "每场战斗都要用现有的牌度过眼前一回合。多人爬塔时，有些牌能和队友配合，单看自己手里的收益就不够了。",
+          "prompt": "做两副各五张牌的小牌组，其中一张只能给队友用。怎么设计它，才能让两位玩家愿意商量出牌顺序？",
+          "url": "https://store.steampowered.com/app/2868840/Slay_the_Spire_2/?l=schinese",
+          "image": "assets/spire-cover.webp",
+          "action": "看 Steam 实机",
+          "tags": [
+            "卡组构筑",
+            "回合制"
+          ],
+          "sourceUrl": "https://store.steampowered.com/charts/mostplayed",
+          "artCredit": "Mega Crit",
+          "artSource": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2868840/b0958d387dc366211e0f353443710cfcf9fdb020/header_2x.jpg"
+        },
+        {
+          "id": "itch-jbodah-admin-play",
+          "title": "Admin",
+          "source": "itch.io",
+          "signal": "入选 itch.io 的 Game Jam 高评分榜。作者把「上锁」这个命题放进了人人熟悉的办公室。",
+          "mechanic": "同事们过完年都忘了电脑密码。你得在办公室找线索、猜答案。卡住时每分钟会多一条提示，什么时候求助由你决定。",
+          "prompt": "只画一张办公桌，放三件能推断出主人习惯的东西。玩家能靠观察解开锁，还能顺便猜到这个人是什么性格吗？",
+          "url": "https://jbodah.itch.io/admin-play",
+          "image": "assets/admin-cover.webp",
+          "action": "在浏览器试玩",
+          "tags": [
+            "环境推理",
+            "点击解谜"
+          ],
+          "sourceUrl": "https://itch.io/games/top-rated/tag-game-jam",
+          "artCredit": "ZeroStas、jbodah、GabeMalk",
+          "artSource": "https://raw.githubusercontent.com/jbodah/game_jam-locked/master/cover.png"
+        },
+        {
+          "id": "steam-3419430",
+          "title": "Bongo Cat",
+          "source": "Steam",
+          "signal": "11 月 25 日进入 Steam 在线人数前十。一只待在任务栏上的猫，把日常打字变成了游戏输入。",
+          "mechanic": "每按一次键或点一下鼠标，猫就拍一下桌子。继续正常工作也能累积点数、收集帽子，你决定什么时候停下来看看它。",
+          "prompt": "做一株只在你停笔时开花的桌面植物。把反馈放在输入的间隙，会不会让人更愿意留它在屏幕上？",
+          "url": "https://store.steampowered.com/app/3419430/Bongo_Cat/?l=schinese",
+          "image": "assets/bongo-cover.webp",
+          "action": "前往免费游玩",
+          "tags": [
+            "桌面伙伴",
+            "轻量收集"
+          ],
+          "sourceUrl": "https://store.steampowered.com/charts/mostplayed",
+          "artCredit": "Irox Games",
+          "artSource": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3419430/2e6c93c020fe13d09d8120bb9164ed7cb58f00c5/header_2x.jpg"
+        },
+        {
+          "id": "itch-nbmachine-riba",
+          "title": "Riba",
+          "source": "itch.io",
+          "signal": "入选 itch.io 的 Game Jam 高评分榜。创作者用一次只需几分钟的垂钓，讲了一场告别。",
+          "mechanic": "来到河边，抛下鱼钩、等待、收线。你要寻回的是祖母的遗骨；重复同一个钓鱼动作时，每次等候也有了不同的意味。",
+          "prompt": "只留一个收音机旋钮，让玩家在杂音里调出三段家人的留言。没有文字说明时，他们会在哪一段停留？",
+          "url": "https://nbmachine.itch.io/riba",
+          "image": "assets/riba-cover.webp",
+          "action": "在浏览器试玩",
+          "tags": [
+            "叙事探索",
+            "单键交互"
+          ],
+          "sourceUrl": "https://itch.io/games/top-rated/tag-game-jam",
+          "artCredit": "Ivan Papiol、nbmach1ne",
+          "artSource": "https://img.itch.zone/aW1nLzUwOTU0NzcucG5n/315x250%23c/etxZpj.png"
+        }
+      ]
+    }
+  ]
+}
