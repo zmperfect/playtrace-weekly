@@ -41,9 +41,10 @@ function releaseYear(game) {
 }
 
 function genresOf(game) {
-  const genres = Array.isArray(game.genres) && game.genres.length ? game.genres : tagsOf(game);
-  const recognized = libraryGenres.filter(genre => genres.includes(genre));
-  return recognized.length ? recognized : ["其他"];
+  const genres = Array.isArray(game.genres) && game.genres.length
+    ? game.genres.filter(genre => typeof genre === "string" && genre.trim()).map(genre => genre.trim())
+    : tagsOf(game).filter(tag => libraryGenres.includes(tag));
+  return genres.length ? [...new Set(genres)] : ["其他"];
 }
 
 function mergeAwards(...lists) {
@@ -115,7 +116,7 @@ function rebuildLibrary() {
       rows.push(row);
     } else {
       row.awards = mergeAwards(row.awards, game.awards);
-      row.genres = libraryGenres.filter(genre => row.genres.includes(genre) || genresOf(game).includes(genre));
+      row.genres = [...new Set([...row.genres, ...genresOf(game)])];
       if (row.genres.length > 1) row.genres = row.genres.filter(genre => genre !== "其他");
       if (!row.titleEn && game.titleEn) row.titleEn = game.titleEn;
       if (!releaseYear(row) && releaseYear(game)) {
@@ -145,13 +146,25 @@ function rebuildLibrary() {
   libraryRows = rows.sort((a, b) => (releaseYear(b) || 0) - (releaseYear(a) || 0) || a.title.localeCompare(b.title, "zh-CN"));
 }
 
+const archiveFiles = JSON.parse(document.getElementById("archive-files")?.textContent || "{}");
+
+async function fetchArchive(name) {
+  const versioned = archiveFiles[name];
+  if (versioned) {
+    const response = await fetch(versioned);
+    // A long-lived tab may open an archive after its old release was replaced.
+    if (response.status !== 404) return response;
+  }
+  return fetch(`./data/${name}.json`, { cache: "no-cache" });
+}
+
 function loadReferences(retry = false) {
   const pending = referenceFiles.filter(file => file.state === "idle" || (retry && file.state === "failed"));
   if (!pending.length) return;
   for (const file of pending) file.state = "loading";
   Promise.all(pending.map(async file => {
     try {
-      const response = await fetch(`./data/${file.name}.json`, { cache: "no-cache" });
+      const response = await fetchArchive(file.name);
       if (!response.ok) throw new Error("Archive unavailable");
       const data = await response.json();
       const games = Array.isArray(data) ? data : data.games;
@@ -251,8 +264,9 @@ function showGenreOptions(section, filters, games) {
     return link;
   }
   const items = weekly ? [] : [chip("", games.length)];
-  const available = libraryGenres.filter(genre => counts.has(genre) || genre === filters.genre);
-  if (filters.genre && !available.includes(filters.genre)) available.push(filters.genre);
+  const available = new Set(libraryGenres.filter(genre => counts.has(genre) || genre === filters.genre));
+  for (const genre of counts.keys()) available.add(genre);
+  if (filters.genre) available.add(filters.genre);
   for (const genre of available) items.push(chip(genre, counts.get(genre) || 0));
   links.replaceChildren(...items);
   if (focusedGenre !== undefined) items.find(link => link.dataset.genre === focusedGenre)?.focus({ preventScroll: true });

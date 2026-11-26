@@ -757,7 +757,10 @@ window.addEventListener("storage", event => {
 async function load() {
   issueLoadFailed = false;
   try {
-    const response = await fetch("./data/issues.json", { cache: "no-cache" });
+    // Older cached HTML can load this flat script beside an earlier library.js.
+    const response = typeof fetchArchive === "function"
+      ? await fetchArchive("issues")
+      : await fetch("./data/issues.json", { cache: "no-cache" });
     if (!response.ok) throw new Error("Cannot load editions");
     const data = await response.json();
     issues = data.issues.filter(issue => typeof issue?.id === "string" && typeof issue.date === "string" && Array.isArray(issue.games) && issue.games.length);
