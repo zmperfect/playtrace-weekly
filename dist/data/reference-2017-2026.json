@@ -168,8 +168,34 @@
     "year": 2018,
     "genres": [
       "平台跳跃",
-      "动作"
+      "动作",
+      "动作手感"
     ],
+    "feelStudy": {
+      "kind": "jump",
+      "focus": "起跳宽限 · 看角色的脚何时离开平台",
+      "video": {
+        "provider": "bilibili",
+        "id": "BV1DitxeHEhs",
+        "title": "《蔚蓝》草莓酱练习房 · 机制 09：狼跳（离台起跳宽限）",
+        "creator": "芙露ency",
+        "page": 51,
+        "cid": 25899830296,
+        "url": "https://www.bilibili.com/video/BV1DitxeHEhs/?p=51",
+        "segment": {
+          "method": "editor",
+          "start": 1,
+          "end": 16,
+          "cue": "这是玩家模组「草莓酱」的练习房。先看红色示范影子走出左边平台，脚下已经悬空才起跳。再盯白色角色的脚，看玩家怎样跑过边缘再跳到对岸。"
+        }
+      },
+      "sourceLabel": "开发者手记 · 离台起跳宽限",
+      "exercise": "晚一步的跳跃",
+      "build": "用两块平台、一个坑和一个会跑会跳的方块。固定跑速、跳高和坑宽，每次都试着稍晚一点按跳跃。",
+      "a": "脚离开平台后，跳跃键立即失效。",
+      "b": "离台后再留 100 毫秒，期间按键仍能起跳。",
+      "test": "两版各跳五次。哪一次你明明按了跳，却觉得角色没听到？对照按键与离台的时间差看。"
+    },
     "mechanics": [
       "离台起跳宽限",
       "提前输入缓存"
@@ -216,6 +242,64 @@
           "method": "official"
         }
       }
+    }
+  },
+  {
+    "id": "ref-monster-hunter-world",
+    "title": "怪物猎人：世界",
+    "titleEn": "Monster Hunter: World",
+    "year": 2018,
+    "genres": [
+      "动作",
+      "角色扮演",
+      "动作手感"
+    ],
+    "mechanics": [
+      "大剑蓄力",
+      "预判落点",
+      "收招走位"
+    ],
+    "core": "大剑可以先架住蓄力，再朝预判的位置劈下。目标还会移动，站在哪里、什么时候开始蓄，都会影响这一刀能否赶上它。",
+    "lesson": "把一刀拆成蓄力、落刀、重新能走位三个时刻。想让玩家掂量出手的代价，可以先只调整落刀后多久能移动，再观察玩家会不会提早准备。",
+    "sourceLabel": "卡普空 · 《世界》重型武器官方演示（大剑）",
+    "sourceUrl": "https://www.youtube.com/watch?v=vgBhaRZhsFY&t=10s",
+    "url": "https://store.steampowered.com/app/582010/",
+    "yearSourceUrl": "https://www.capcom.co.jp/ir/english/news/html/e170920.html",
+    "yearNote": "卡普空公布的原版主机首发日为 2018 年 1 月 26 日。",
+    "prototypeIdeas": [
+      {
+        "title": "落空的一刀",
+        "keep": "保留提前站位、按住蓄力、松手时朝一个方向出刀的动作。",
+        "change": "只改挥空后重新可移动的时间。A 版用 0.2 秒，B 版用 0.55 秒，两版命中时的反馈完全相同。这两个数是实验起点。",
+        "build": "做一条地线、一个方块猎人和一个来回摆动的靶。两版共用同一条移动轨迹、蓄力时间、攻击距离及动画，用开关切换挥空后的等待时间。",
+        "playtest": "两版各挥十刀，看看玩家哪一版会提前站好、等靶子进入攻击范围。每次挥空后，记下玩家第一次想走开时角色能否行动。",
+        "days": 1
+      }
+    ],
+    "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/582010/header.jpg?t=1791439347",
+    "video": {
+      "provider": "bilibili",
+      "id": "BV1AW41137DY",
+      "cid": 34849999,
+      "page": 1,
+      "title": "【球魂】《怪物猎人·世界》大剑极尽教程 · 基础、进阶操作教程",
+      "creator": "球魂",
+      "url": "https://www.bilibili.com/video/BV1AW41137DY/?p=1",
+      "segment": {
+        "method": "editor",
+        "start": 141,
+        "end": 159,
+        "cue": "盯住训练木桩旁的猎人。她先沉肩把剑架住，身上闪光后才抡下去。再看第二刀落地后，她的上身还压得很低，随后才重新站起。"
+      }
+    },
+    "feelStudy": {
+      "kind": "sword",
+      "focus": "大剑的重量 · 从架剑看到收招",
+      "exercise": "落空的一刀",
+      "build": "让一个靶左右往返。按住蓄力，松手挥刀。两版保持靶速、出刀距离、命中反馈一致，只改挥空后多久能走。",
+      "a": "挥空后等 0.2 秒就能重新移动。",
+      "b": "挥空后等 0.55 秒才能重新移动。",
+      "test": "先故意挥空，再试着走位。换版后，下一刀你会提早蓄力、等靶靠近，还是照旧出手？"
     }
   },
   {

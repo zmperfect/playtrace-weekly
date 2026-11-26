@@ -1,0 +1,32 @@
+.feel-lab {
+  margin-block: 10px 4px;
+  border: 1px solid #b7c4ab;
+  border-radius: 6px;
+  background: #f6f8f1;
+  color: #273529;
+  text-align: left;
+}
+.feel-lab > summary { padding: 8px 11px; cursor: pointer; font-size: 13px; font-weight: 750; }
+.feel-lab summary:focus-visible { outline: 2px solid #587200; outline-offset: 2px; }
+.feel-lab-body { display: grid; gap: 8px; padding: 0 10px 10px; min-width: 0; }
+.feel-lab-help, .feel-lab-status { margin: 0; font-size: 12px; line-height: 1.6; }
+.feel-lab-status { color: #485641; min-height: 1.6em; font-variant-numeric: tabular-nums; }
+.feel-lab-modes, .feel-lab-controls { display: flex; flex-wrap: wrap; gap: 5px; }
+.feel-lab button {
+  min-height: 34px;
+  padding: 4px 9px;
+  border: 1px solid #b0bba6;
+  border-radius: 4px;
+  background: #fff;
+  font: 650 12px/1.3 var(--sans, sans-serif);
+  color: #29352b;
+  cursor: pointer;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.feel-lab button[aria-pressed="true"] { background: #e3f6a5; border-color: #829e37; }
+.feel-lab .feel-lab-controls button:nth-child(2):not(:disabled) { background: #293b36; color: #fff; }
+.feel-lab button:disabled { opacity: 0.48; cursor: default; }
+.feel-lab canvas { display: block; width: 100%; height: auto; border: 1px solid #c5cec0; border-radius: 4px; }
+@media (pointer: coarse) { .feel-lab button { min-height: 43px; } }

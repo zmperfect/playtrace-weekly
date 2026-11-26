@@ -1,6 +1,7 @@
 "use strict";
 
-const libraryGenres = ["动作", "射击", "平台跳跃", "解谜", "策略", "角色扮演", "卡牌", "Roguelike", "模拟经营", "生存建造", "叙事冒险", "节奏", "竞速", "体育", "休闲", "社交协作", "其他"];
+const feelTag = "动作手感";
+const libraryGenres = ["动作", feelTag, "射击", "平台跳跃", "解谜", "策略", "角色扮演", "卡牌", "Roguelike", "模拟经营", "生存建造", "叙事冒险", "节奏", "竞速", "体育", "休闲", "社交协作", "其他"];
 const releasePeriods = ["2007-2016", "2017-2026"];
 const referenceFiles = [
   ...releasePeriods.map(period => ({ name: "reference-" + period, label: period.replace("-", "–") + " 年参考库" })),
@@ -123,6 +124,7 @@ function rebuildLibrary() {
       }
       if (releaseYear(row) === releaseYear(game) && !row.yearSourceUrl) row.yearSourceUrl = game.yearSourceUrl;
       if (!row.video && game.video) row.video = game.video;
+      if (!row.feelStudy && game.feelStudy) row.feelStudy = game.feelStudy;
       if (!row.criticNote && game.criticNote) row.criticNote = game.criticNote;
       if (!row.prototypeIdeas?.length && game.prototypeIdeas?.length) row.prototypeIdeas = game.prototypeIdeas;
     }
@@ -260,7 +262,7 @@ function genreLinks(game) {
   const box = element("span", "genre-links");
   for (const genre of genresOf(game)) {
     const link = element("a", "genre-link", genre);
-    link.href = libraryUrl({ ...(inLibrary() ? libraryFilters() : {}), genre });
+    link.href = libraryUrl({ ...(inLibrary() && genre !== feelTag ? libraryFilters() : {}), genre });
     link.setAttribute("aria-label", `在游戏库查看${genre}游戏`);
     link.addEventListener("click", () => { if (detail.open) detail.close(); });
     box.append(link);
@@ -347,7 +349,49 @@ function referenceDigest(game) {
   return box;
 }
 
-function libraryCard(game, inNotes = false) {
+function feelContent(game, article) {
+  const study = game.feelStudy;
+  const grid = element("div", "study-grid");
+  const footage = element("section", "study-footage");
+  footage.append(element("h4", "study-title", study.focus));
+  const media = element("div", "library-media");
+  const recording = study.video || game.reference?.video || game.video;
+  // The study uses this recording's timecode and cue together, including on later weekly appearances.
+  const video = { ...recording, preview: undefined };
+  if (study.cue && video.segment) video.segment = { ...video.segment, cue: study.cue };
+  const watch = videoSection({ ...game, video }, article, media);
+  const posterUrl = safeUrl(game.image, true);
+  const play = watch.querySelector(".watch-toggle");
+  if (posterUrl && play) {
+    const poster = element("img", "study-poster");
+    poster.alt = "";
+    poster.loading = "lazy";
+    poster.src = posterUrl;
+    poster.addEventListener("error", () => poster.remove(), { once: true });
+    play.prepend(poster);
+  }
+  footage.append(media, watch);
+  const source = safeUrl(study.sourceUrl || game.reference?.sourceUrl || game.sourceUrl);
+  const label = study.sourceLabel || game.reference?.sourceLabel || game.sourceLabel;
+  if (source && label) footage.append(watchLink(source, label, "阅读《" + game.title + "》的动作设计来源"));
+
+  const experiment = element("section", "study-experiment");
+  experiment.append(element("h4", "study-title", "小原型 · " + study.exercise), element("p", "study-build", study.build));
+  const versions = element("dl", "study-versions");
+  for (const [key, value] of [["A", study.a], ["B", study.b]]) {
+    versions.append(element("dt", "", key), element("dd", "", value));
+  }
+  experiment.append(versions, element("p", "study-question", study.test));
+  if (typeof feelLab === "function") {
+    const lab = feelLab(study.kind);
+    lab.addEventListener("click", stopVideo);
+    experiment.append(lab);
+  }
+  grid.append(footage, experiment);
+  return grid;
+}
+
+function libraryCard(game, inNotes = false, studyView = false) {
   const article = element("article", "library-card");
   const head = element("div", "library-card-head");
   const names = element("div");
@@ -358,7 +402,7 @@ function libraryCard(game, inNotes = false) {
   names.append(meta, heading);
   if (game.titleEn && game.titleEn !== game.title) names.append(element("p", "library-en", game.titleEn));
   const imageUrl = safeUrl(game.image, true);
-  if (imageUrl) {
+  if (imageUrl && !studyView) {
     const image = element("img", "library-thumb");
     image.alt = "";
     image.loading = "lazy";
@@ -368,18 +412,25 @@ function libraryCard(game, inNotes = false) {
     head.append(image);
   }
   head.append(names, bookmark(game));
-  article.append(head, genreLinks(game));
-  const evidence = yearEvidence(game);
-  if (evidence) article.append(evidence);
-  article.append(awardEvidence(game));
-  const mechanisms = game.reference?.mechanics || game.mechanics || tagsOf(game);
-  if (Array.isArray(mechanisms) && mechanisms.length) article.append(element("p", "library-mechanics", mechanisms.join(" / ")));
-  const digest = referenceDigest(game) || reviewDigest(game);
-  if (digest) article.append(digest);
-  else if (game.mechanic) article.append(element("p", "library-mechanics", game.mechanic));
-  const media = element("div", "library-media");
-  const watch = videoSection(game, article, media);
-  article.append(media, watch, prototypeIdeas(game, "h4"));
+  article.append(head);
+  if (studyView && game.feelStudy) {
+    article.classList.add("study-card");
+    article.dataset.study = game.feelStudy.kind;
+    article.append(feelContent(game, article));
+  } else {
+    article.append(genreLinks(game));
+    const evidence = yearEvidence(game);
+    if (evidence) article.append(evidence);
+    article.append(awardEvidence(game));
+    const mechanisms = game.reference?.mechanics || game.mechanics || tagsOf(game);
+    if (Array.isArray(mechanisms) && mechanisms.length) article.append(element("p", "library-mechanics", mechanisms.join(" / ")));
+    const digest = referenceDigest(game) || reviewDigest(game);
+    if (digest) article.append(digest);
+    else if (game.mechanic) article.append(element("p", "library-mechanics", game.mechanic));
+    const media = element("div", "library-media");
+    const watch = videoSection(game, article, media);
+    article.append(media, watch, prototypeIdeas(game, "h4"));
+  }
   const note = entries.get(entryKey(game))?.note;
   if (inNotes && note) article.append(element("p", "note-snippet", note));
   const foot = element("div", "card-foot");
@@ -406,7 +457,7 @@ function filteredLibrary(filters) {
     }
     const reference = game.reference || {};
     const text = [game.title, game.titleEn, game.mechanic, game.review?.core, game.review?.appeal, reference.title, reference.titleEn,
-      reference.core, reference.lesson, ...(reference.mechanics || []), ...genres, ...tagsOf(game),
+      reference.core, reference.lesson, game.feelStudy?.focus, game.feelStudy?.exercise, ...(reference.mechanics || []), ...genres, ...tagsOf(game),
       ...game.awards.flatMap(record => [record.event, awardEvents.get(record.event), record.category, awardCategories.get(record.category)])].filter(Boolean).join(" ").normalize("NFKC").toLocaleLowerCase();
     return terms.every(term => text.includes(term));
   });
@@ -434,9 +485,19 @@ function refreshLibraryResults() {
   if (!results) return;
   stopVideo();
   const filters = libraryFilters();
-  const genreTitle = filters.genre ? filters.genre + "游戏" : "";
+  const studyView = filters.genre === feelTag;
+  const genreTitle = studyView ? feelTag : filters.genre ? filters.genre + "游戏" : "";
   const heading = filters.award ? [genreTitle, "奖项选游"].filter(Boolean).join(" · ") : genreTitle || "游戏库";
   document.getElementById("library-heading").textContent = heading;
+  document.getElementById("library-intro").textContent = studyView
+    ? "看一次起跳、挥刀和踩拍，再用 A、B 两版试同一个动作。下列数值是周刊自制原型的设定。"
+    : "从周刊选游和历年作品中，找一个值得借鉴的玩法。";
+  const options = document.getElementById("library-options");
+  if (options.dataset.view !== (studyView ? "study" : "library")) {
+    options.dataset.view = studyView ? "study" : "library";
+    options.open = !studyView || Boolean(filters.q || filters.year || filters.period || filters.award);
+  }
+  results.classList.toggle("study-results", studyView);
   document.title = heading + " · 游感周刊";
   const matches = filteredLibrary({ ...filters, genre: "" });
   showGenreOptions(document.getElementById("library-genres"), filters, matches);
@@ -465,7 +526,11 @@ function refreshLibraryResults() {
   }
   notice.hidden = !notice.childNodes.length;
   if (games.length) {
-    results.replaceChildren(...games.map(game => libraryCard(game)));
+    if (studyView) {
+      const order = ["jump", "sword", "beat"];
+      games.sort((a, b) => order.indexOf(a.feelStudy?.kind) - order.indexOf(b.feelStudy?.kind));
+    }
+    results.replaceChildren(...games.map(game => libraryCard(game, false, studyView)));
   } else if (referenceFiles.some(file => file.state === "loading") && !failed.length) {
     results.replaceChildren();
   } else {
@@ -483,7 +548,9 @@ function libraryView() {
   const head = element("div", "library-head");
   const heading = element("h1", "", "游戏库");
   heading.id = "library-heading";
-  head.append(heading, element("p", "", "从周刊选游和历年作品中，找一个值得借鉴的玩法。"));
+  const intro = element("p");
+  intro.id = "library-intro";
+  head.append(heading, intro);
   const categories = genreNavigation(false);
   categories.addEventListener("click", event => {
     const link = event.target.closest("a.genre-option");
@@ -568,5 +635,8 @@ function libraryView() {
   notice.setAttribute("role", "status");
   const results = element("div", "library-results");
   results.id = "library-results";
-  return [head, categories, form, bar, notice, results];
+  const options = element("details", "library-options");
+  options.id = "library-options";
+  options.append(element("summary", "", "筛选这组游戏"), categories, form);
+  return [head, options, bar, notice, results];
 }
