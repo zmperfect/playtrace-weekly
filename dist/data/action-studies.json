@@ -1,0 +1,200 @@
+[
+  {
+    "id": "ref-sekiro",
+    "title": "只狼：影逝二度",
+    "titleEn": "Sekiro: Shadows Die Twice",
+    "year": 2019,
+    "genres": [
+      "动作",
+      "动作手感"
+    ],
+    "mechanics": [
+      "弹反（弹开）",
+      "普通格挡",
+      "架势积累"
+    ],
+    "core": "在敌人连续出招时，每一记来招都给你一次选择。一直举刀能挡住普通攻击。在接触前按下防御，则能弹开这一刀，同时把对手的架势推向崩溃。",
+    "lesson": "把成功信号放在两刀交接的位置。玩家看着下一刀的起手，就能凭眼角闪过的火花判断上一刀的结果。",
+    "sourceLabel": "Activision · 弹开与架势",
+    "sourceUrl": "https://support.activision.com/uk/en/sekiro/articles/sekiro-shadows-die-twice-game-mechanics",
+    "url": "https://store.steampowered.com/app/814380/",
+    "yearSourceUrl": "https://store.steampowered.com/app/814380/",
+    "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/814380/header.jpg?t=1762888662",
+    "awards": [
+      {
+        "event": "The Game Awards",
+        "year": 2019,
+        "category": "Game of the Year",
+        "status": "winner",
+        "url": "https://thegameawards.com/rewind/year-2019"
+      }
+    ],
+    "criticNote": {
+      "text": "PC Gamer 的评测写到，作者连续弹开两刀时，每一下都有清亮的金属声和一闪的火星。读懂来招之后，原本难熬的连段变成了可以逐拍回应的来回。",
+      "label": "PC Gamer · Tom Senior",
+      "url": "https://www.pcgamer.com/sekiro-review/"
+    },
+    "video": {
+      "provider": "bilibili",
+      "id": "BV1a14y1Z7zr",
+      "url": "https://www.bilibili.com/video/BV1a14y1Z7zr/",
+      "title": "只狼入门到精通 弹刀 反斩 弹反",
+      "creator": "拝淚",
+      "page": 1,
+      "cid": 1116314092,
+      "segment": {
+        "method": "editor",
+        "start": 8,
+        "end": 38,
+        "cue": "先看狼举刀防守，原片约 0:15，身前只溅出一小团火星。到 0:21 再盯两刀相接的位置，橙色亮环一下扩过了肩宽。约 0:29 还有一次，试试看只凭火花能否认出弹反。"
+      }
+    },
+    "feelStudy": {
+      "kind": "deflect",
+      "focus": "弹反成功 · 看两刀相交处的一圈橙光",
+      "sourceLabel": "Activision · 弹开如何改变对手的架势",
+      "exercise": "看火花认出成功的那一下",
+      "build": "用两个图形演一记有预备动作的来招，只做一个防御键。固定来招时序和判定窗口，让普通格挡在两版里看起来一样。",
+      "a": "弹反成功时，两者接触处只冒出一小簇火花。",
+      "b": "同样的弹反成功时，让亮环向外展开，火星沿环飞散。",
+      "test": "各试一轮，先凭火花判断哪几下弹开了，再对照结果。哪一版让你更敢把视线留在下一次来招上？"
+    },
+    "prototypeIdeas": [
+      {
+        "title": "用火花数出接准了几次",
+        "keep": "接触发生的那一刻，玩家能从画面辨认自己的按键是否踩准。",
+        "change": "把来招换成自动摆回的小球，每次只判断接早了、接准了，还是漏接。",
+        "build": "画摆球和接球板，做一个按键和两套成功粒子，录下每轮结果。一个下午就能与朋友交换试玩。",
+        "playtest": "让朋友报出刚才接准的次数，再与记录对照。哪种火花更容易在注视下一次摆动时看见？",
+        "days": 1
+      }
+    ]
+  },
+  {
+    "id": "ref-hollow-knight",
+    "title": "空洞骑士",
+    "titleEn": "Hollow Knight",
+    "year": 2017,
+    "genres": [
+      "动作",
+      "平台跳跃",
+      "动作手感"
+    ],
+    "mechanics": [
+      "骨钉近战",
+      "命中闪白",
+      "命中反冲"
+    ],
+    "core": "贴近敌人，用骨钉从侧面或空中进攻。每次横斩接触后，小骑士会被轻轻顶开。要继续追击，就得重新估量下一刀的距离。",
+    "lesson": "刀光告诉玩家自己出手了，敌人闪白、角色轻轻后退才告诉玩家这一刀碰到了什么。把挥刀和命中的反馈分开，画面再热闹也能读清接触。",
+    "sourceLabel": "Team Cherry · 游戏与战斗介绍",
+    "sourceUrl": "https://www.hollowknight.com/",
+    "url": "https://store.steampowered.com/app/367520/",
+    "yearSourceUrl": "https://store.steampowered.com/app/367520/",
+    "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/367520/3c3489495136b26b34f8a9543c7f5645b99d388c/header.jpg?t=1776125684",
+    "criticNote": {
+      "label": "PC Gamer · Hollow Knight 评测",
+      "url": "https://www.pcgamer.com/hollow-knight-review/",
+      "text": "评测作者提到，骨钉砍中时有清脆的响声，小骑士也会向后弹一点。这让玩家能凭手上的节奏判断有没有打中。"
+    },
+    "video": {
+      "provider": "bilibili",
+      "id": "BV1dt411B78e",
+      "cid": 69865652,
+      "page": 35,
+      "title": "《空洞骑士》无护符全辐辉 · 假骑士",
+      "creator": "sasasa212",
+      "url": "https://www.bilibili.com/video/BV1dt411B78e/?p=35",
+      "segment": {
+        "method": "editor",
+        "start": 11,
+        "end": 41,
+        "cue": "先盯小骑士面前的白色刀弧，再盯假骑士的盔甲。原片 0:17 和 0:23 左右，骨钉扫到时盔甲跟着闪白；约 0:31，盔甲已经趴倒，露出里面的白色脑袋。试着只看敌人，数出命中了几下。"
+      }
+    },
+    "feelStudy": {
+      "kind": "impact",
+      "focus": "骨钉命中 · 看刀弧碰上盔甲的瞬间",
+      "sourceLabel": "PC Gamer · 骨钉命中时的反冲和声音",
+      "sourceUrl": "https://www.pcgamer.com/hollow-knight-review/",
+      "exercise": "停在打中的那一下",
+      "build": "用一个挥刀方块和一个往返移动的靶。等靶进入刀弧再出手，再故意挥空一次。两版共用攻击距离、靶速和命中闪光。",
+      "a": "打中后动作继续，停顿为 0 毫秒。",
+      "b": "打中时角色和靶一起定住 65 毫秒，再接着运动。挥空照常。",
+      "test": "两版各试五刀，故意让一刀落空。哪版让你更容易指出哪刀打中了？连续出刀时，这点停顿会不会打断自己的节奏？"
+    },
+    "prototypeIdeas": [
+      {
+        "title": "停在打中的那一下",
+        "keep": "保留靠近目标、挥刀、读出是否接触的过程。",
+        "change": "只改变命中瞬间的停顿，比较 0 毫秒和 65 毫秒。两个值都是原型的试验参数。",
+        "build": "做一个左右移动的靶和一段固定刀弧，两者重叠就记一次命中。两版保留相同的闪光、刀弧与移动速度。",
+        "playtest": "交错打中与挥空，让试玩者每刀后先说中没中，再对照记录。连续出刀时再问停顿会不会打断自己的节奏。",
+        "days": 1
+      }
+    ]
+  },
+  {
+    "id": "ref-shovel-knight-shovel-of-hope",
+    "title": "铲子骑士：希望之铲",
+    "titleEn": "Shovel Knight: Shovel of Hope",
+    "year": 2014,
+    "yearNote": "按 2014 年原版战役首发计。Steam 后来单独发售《希望之铲》。",
+    "yearSourceUrl": "https://www.yachtclubgames.com/games/shovel-knight-shovel-of-hope/",
+    "genres": [
+      "动作",
+      "平台跳跃",
+      "动作手感"
+    ],
+    "mechanics": [
+      "下铲回弹",
+      "连续命中",
+      "空中走位"
+    ],
+    "core": "跳起来，让铲尖朝下。碰到敌人时，骑士从下落切换成上升。这次命中也给了你调整下一个落点的时间。",
+    "lesson": "把命中反馈放在角色的运动轨迹上。玩家只看自己弹到哪里，就能判断刚才有没有铲中、来不来得及再打一下。",
+    "sourceLabel": "Yacht Club Games · 官方操作手册",
+    "sourceUrl": "https://www.yachtclubgames.com/blog/shovel-knight-shovel-of-hope-instruction-manual/",
+    "criticNote": {
+      "text": "Nintendo Life 的评测把下铲称为招牌动作，因为同一次弹跳既能对付敌人，也能越过棘手的平台。选段里，骑士靠连续命中留在空中。",
+      "label": "Nintendo Life · 原版评测",
+      "url": "https://www.nintendolife.com/reviews/wiiu-eshop/shovel_knight"
+    },
+    "url": "https://store.steampowered.com/app/589500/",
+    "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/589500/header.jpg?t=1778720362",
+    "video": {
+      "provider": "bilibili",
+      "id": "BV1Yz4y1d7s9",
+      "title": "希望之铲通关流程 · 初见黑骑士＋国王骑士",
+      "creator": "Oxealiz",
+      "page": 1,
+      "cid": 241780796,
+      "url": "https://www.bilibili.com/video/BV1Yz4y1d7s9/?p=1",
+      "segment": {
+        "method": "editor",
+        "start": 216,
+        "end": 246,
+        "cue": "进洞后盯住骑士脚下的铲尖。约 03:47，铲尖碰到吐泡泡的橙龙，龙身变色，骑士随即往上弹。接下来的几铲里，他一直悬在龙头上方。留意每次下落在哪一刻掉头向上。"
+      }
+    },
+    "feelStudy": {
+      "kind": "rebound",
+      "focus": "下铲命中 · 看骑士何时从下落变成上升",
+      "exercise": "一铲能弹多高",
+      "build": "画一个自动下落的方块、一块固定靶和一条高度线。下落时按下敲击。观察命中后方块的最高点，试着接上第二铲。",
+      "a": "命中后回弹 34 像素，顶点在高度线下方。",
+      "b": "只把回弹高度改成 68 像素，越过同一条高度线。",
+      "test": "先别看数字，连续敲中三次。哪版的回弹足以让你看清落点？哪版会让你等得太久才按下一铲？"
+    },
+    "prototypeIdeas": [
+      {
+        "title": "够到下一盏灯",
+        "keep": "下落敲中目标就弹起，下一次敲击仍由玩家决定。",
+        "change": "给每个目标正上方挂一盏灯，只有回弹碰到它才点亮。",
+        "build": "一天内搭一块方靶、一条重力曲线和三个高度的灯，用同一套输入比较两档回弹。",
+        "playtest": "看玩家第一次未碰到灯后，能否分清是敲空了，还是已经敲中但弹得太低。",
+        "days": 1
+      }
+    ]
+  }
+]

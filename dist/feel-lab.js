@@ -1,4 +1,4 @@
-/* Three short, single-variable experiments. Each instance is idle until Start. */
+/* Short, single-variable experiments. Each instance is idle until Start. */
 (() => {
   "use strict";
   const ink = "#293b36", green = "#d6fa58", paper = "#eef1e8", coral = "#ad4937";
@@ -194,10 +194,168 @@
     };
   }
 
+  function deflectTrial({ ctx, variant, say, finish }) {
+    const contacts = [1.25, 2.8, 4.35], line = 125, y = 68;
+    const results = [];
+    let pressedAt = -Infinity, held = false;
+
+    function resolve(t) {
+      while (results.length < contacts.length && contacts[results.length] <= t) {
+        const lead = contacts[results.length] - pressedAt;
+        const result = lead >= 0 && lead <= 0.12 ? "弹反" : held ? "格挡" : "漏接";
+        results.push(result);
+        say("第 " + results.length + " 颗：" + result + "。");
+      }
+    }
+    return {
+      press(t) {
+        // Settle any earlier contact before using the new input.
+        if (t > contacts[results.length]) resolve(t);
+        if (!held) { pressedAt = t; held = true; }
+      },
+      release(t) { resolve(t); held = false; },
+      draw(t, running) {
+        if (running) resolve(t);
+        rect(ctx, 45, y + 14, 330, 2, "#a2ada0");
+        rect(ctx, line - 1, y - 30, 2, 49, "#8a998d");
+        rect(ctx, line - 24, y - 11, 16, 25, ink);
+        rect(ctx, line - 8, y - 15, held ? 8 : 4, 30, held ? coral : ink);
+        for (let i = 0; i < contacts.length; i++) {
+          disc(ctx, line + i * 16, 105, 4, results[i] === "弹反" ? coral : results[i] ? ink : "#b6c1b1");
+        }
+        if (results.length < contacts.length) {
+          const remaining = contacts[results.length] - t;
+          disc(ctx, Math.min(365, line + 210 * remaining), y, 7, coral);
+        }
+        const last = results.length - 1;
+        const age = t - contacts[last];
+        if (last >= 0 && age < 0.28) {
+          if (results[last] === "弹反") {
+            disc(ctx, line + age * 235, y - age * 95, 6, coral);
+            disc(ctx, line, y, 5 * (1 - age / 0.28), coral);
+            if (variant === "B") {
+              const distance = 9 + age * 100;
+              ctx.strokeStyle = coral;
+              ctx.lineWidth = 2;
+              ctx.beginPath();
+              ctx.arc(line, y, distance * 0.84, 0, 2 * Math.PI);
+              ctx.stroke();
+              for (let i = 0; i < 8; i++) {
+                const angle = i * Math.PI / 4;
+                disc(ctx, line + Math.cos(angle) * distance, y + Math.sin(angle) * distance, 2, ink);
+              }
+            }
+          } else if (results[last] === "格挡") {
+            rect(ctx, line - 1, y - 9, 3, 18, ink);
+          } else {
+            disc(ctx, line - age * 210, y, 7, coral);
+          }
+        }
+        if (running && last === contacts.length - 1 && age > 0.45) {
+          finish("三次接触依次为" + results.join("、") + "。");
+        }
+      }
+    };
+  }
+
+  function impactTrial({ ctx, variant, say }) {
+    const hand = 116, reach = 78, radius = 13, y = 69;
+    const pause = variant === "B" ? 0.065 : 0;
+    let pausedTime = 0, freezeUntil = 0, lastSwing = -Infinity, hit = false;
+    const target = t => 209 + 56 * Math.cos(t * Math.PI);
+    // During hit-stop, the target, swing and contact effects share one frozen clock.
+    const world = t => Math.max(t, freezeUntil) - pausedTime;
+    return {
+      press(t) {
+        const now = world(t);
+        if (now - lastSwing < 0.3) return;
+        lastSwing = now;
+        hit = target(now) - radius <= hand + reach;
+        if (hit) { pausedTime += pause; freezeUntil = t + pause; }
+        say(hit ? "命中。留意圆靶和挥击何时一起离开接触位置。" : "挥空。等圆靶进入地上的标记再试。");
+      },
+      draw(t) {
+        const now = world(t), age = now - lastSwing, x = target(now);
+        rect(ctx, 36, 90, 346, 3, "#97a894");
+        rect(ctx, hand, 88, reach, 4, ink);
+        rect(ctx, hand + reach - 2, 84, 3, 9, ink);
+        rect(ctx, hand - 22, y - 6, 20, 25, ink);
+        disc(ctx, hand - 12, y - 11, 8, ink);
+        disc(ctx, x, y, radius, hit && age < 0.15 ? ink : coral);
+        disc(ctx, x, y, 5, paper);
+        ctx.save();
+        ctx.translate(hand, y);
+        ctx.rotate(age < 0.22 ? -0.05 - age * 4.5 : -1.04);
+        rect(ctx, 0, -2, reach, 4, ink);
+        ctx.restore();
+        if (hit && age < 0.15) {
+          const contact = target(lastSwing) - radius, spread = 4 + age * 115;
+          for (const direction of [-1, 1]) {
+            rect(ctx, contact - 2, y + direction * spread - 2, 4, 4, coral);
+            rect(ctx, contact - spread, y + direction * spread * 0.65, 3, 3, coral);
+          }
+        }
+      }
+    };
+  }
+
+  function reboundTrial({ ctx, variant, say, finish }) {
+    const floor = 98, x = 200, heightGain = variant === "B" ? 68 : 34;
+    const gravity = 320, speed = Math.sqrt(2 * gravity * heightGain);
+    let contact = 1, launch = null, armed = false, landed = false, bounces = 0;
+    function resolve(t) {
+      while (!landed && t >= contact) {
+        if (!armed) { landed = true; break; }
+        launch = contact;
+        contact += 2 * speed / gravity;
+        armed = false;
+        bounces++;
+        say("回弹 " + bounces + " 次。看脚底能否越过标线，落下时可再敲。");
+      }
+    }
+    return {
+      press(t) {
+        resolve(t);
+        if (landed || armed) return;
+        if (launch !== null && t < launch + speed / gravity) {
+          say("还在上升。等方块开始下落，再按下敲。");
+          return;
+        }
+        armed = true;
+        say("已进入下敲姿态，碰到弹台就会回弹。");
+      },
+      draw(t, running) {
+        if (running) resolve(t);
+        const dt = t - launch;
+        const foot = landed ? floor : launch === null ? 26 + (floor - 26) * t * t
+          : floor - speed * dt + gravity * dt * dt / 2;
+        rect(ctx, 76, floor + 12, 268, 2, "#a2ada0");
+        rect(ctx, x - 28, floor, 56, 12, ink);
+        rect(ctx, x - 24, floor, 48, 3, coral);
+        for (let mark = 92; mark <= 298; mark += 10) rect(ctx, mark, floor - 50, 6, 2, "#73836c");
+        ctx.fillStyle = ink;
+        ctx.font = "12px sans-serif";
+        ctx.fillText("50 像素", 306, floor - 46);
+        rect(ctx, x - 8, foot - 18, 16, 14, ink);
+        if (armed) {
+          ctx.fillStyle = coral;
+          ctx.beginPath(); ctx.moveTo(x - 6, foot - 5); ctx.lineTo(x + 6, foot - 5);
+          ctx.lineTo(x, foot); ctx.closePath(); ctx.fill();
+        } else rect(ctx, x - 5, foot - 4, 10, 4, ink);
+        if (running && landed && t >= contact + 0.28) {
+          finish("落在弹台上。本次连续回弹 " + bounces + " 次。");
+        }
+      }
+    };
+  }
+
   const recipes = {
     jump: { make: jumpTrial, instruction: "方块会向右跑。试着刚跑出台沿再按跳跃。", action: "跳跃", variants: ["离台即失效", "宽限 100 毫秒"] },
     sword: { make: swordTrial, instruction: "按住蓄力、松开挥击。挥空后按住移动，留意第一步何时迈出。", action: "按住蓄力", variants: ["收招 0.2 秒", "收招 0.55 秒"] },
-    beat: { make: beatTrial, instruction: "请开声音。听三拍预备音，再跟着八拍挥击。两版的合拍范围相同。", action: "挥击", variants: ["普通挥击声", "合拍多一声"] }
+    beat: { make: beatTrial, instruction: "请开声音。听三拍预备音，再跟着八拍挥击。两版的合拍范围相同。", action: "挥击", variants: ["普通挥击声", "合拍多一声"] },
+    deflect: { make: deflectTrial, instruction: "三颗光点会依次飞向竖线。试一次提前按住，再试一次贴线时轻点。", action: "格挡", variants: ["小火花", "亮环与火星"] },
+    impact: { make: impactTrial, instruction: "圆靶左右滑动。等它进入深色地标再挥击，也试一下挥空。", action: "挥击", variants: ["命中不停顿", "命中停顿 65 毫秒"] },
+    rebound: { make: reboundTrial, instruction: "方块下落时按「下敲」，碰到弹台会回弹。看脚底能否超过虚线。", action: "下敲", variants: ["回弹 34 像素", "回弹 68 像素"] }
   };
 
   function stopActive() { active?.stop(); }
@@ -209,6 +367,7 @@
   document.addEventListener("focusin", stopOutside);
 
   window.feelLab = function (kind) {
+    if (!Object.hasOwn(recipes, kind)) return null;
     const recipe = recipes[kind];
     const root = node("details", "", "feel-lab");
     root.dataset.feel = kind;
@@ -216,7 +375,10 @@
     const body = node("div", "", "feel-lab-body");
     const canvas = node("canvas");
     canvas.width = width * 2; canvas.height = height * 2;
-    canvas.setAttribute("aria-label", { jump: "方块越过平台缺口", sword: "挥击往返移动的圆靶", beat: "八拍位置与挥击节奏" }[kind]);
+    canvas.setAttribute("aria-label", {
+      jump: "方块越过平台缺口", sword: "挥击往返移动的圆靶", beat: "八拍位置与挥击节奏",
+      deflect: "在竖线处弹回飞来的光点", impact: "挥击进入地标范围的移动圆靶", rebound: "方块下敲弹台并对照虚线高度"
+    }[kind]);
     canvas.setAttribute("role", "img");
     const status = node("p", "选好版本后点开始。", "feel-lab-status");
     status.setAttribute("role", "status");

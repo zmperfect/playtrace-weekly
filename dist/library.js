@@ -5,7 +5,8 @@ const libraryGenres = ["动作", feelTag, "射击", "平台跳跃", "解谜", "�
 const releasePeriods = ["2007-2016", "2017-2026"];
 const referenceFiles = [
   ...releasePeriods.map(period => ({ name: "reference-" + period, label: period.replace("-", "–") + " 年参考库" })),
-  { name: "award-selections", label: "奖项选游" }
+  { name: "award-selections", label: "奖项选游" },
+  { name: "action-studies", label: "动作手感选游" }
 ].map(file => ({ ...file, state: "idle", games: [] }));
 const awardStatuses = { winner: "获奖", nominee: "提名" };
 const awardEvents = new Map([
@@ -398,8 +399,10 @@ function feelContent(game, article) {
   experiment.append(versions, element("p", "study-question", study.test));
   if (typeof feelLab === "function") {
     const lab = feelLab(study.kind);
-    lab.addEventListener("click", stopVideo);
-    experiment.append(lab);
+    if (lab) {
+      lab.addEventListener("click", stopVideo);
+      experiment.append(lab);
+    }
   }
   grid.append(footage, experiment);
   return grid;
@@ -504,7 +507,7 @@ function refreshLibraryResults() {
   const heading = filters.award ? [genreTitle, "奖项选游"].filter(Boolean).join(" · ") : genreTitle || "游戏库";
   document.getElementById("library-heading").textContent = heading;
   document.getElementById("library-intro").textContent = studyView
-    ? "看一次起跳、挥刀和踩拍，再用 A、B 两版试同一个动作。下列数值是周刊自制原型的设定。"
+    ? "先看实机里的一个动作，再用 A、B 两版亲手比较。弹反的火花、命中的停顿、下铲后的回弹，各自改变了什么？试玩数值均为周刊自设。"
     : "从周刊选游和历年作品中，找一个值得借鉴的玩法。";
   const options = document.getElementById("library-options");
   if (options.dataset.view !== (studyView ? "study" : "library")) {
@@ -541,8 +544,12 @@ function refreshLibraryResults() {
   notice.hidden = !notice.childNodes.length;
   if (games.length) {
     if (studyView) {
-      const order = ["jump", "sword", "beat"];
-      games.sort((a, b) => order.indexOf(a.feelStudy?.kind) - order.indexOf(b.feelStudy?.kind));
+      const order = ["deflect", "impact", "rebound", "jump", "sword", "beat"];
+      const rank = game => {
+        const index = order.indexOf(game.feelStudy?.kind);
+        return index < 0 ? order.length : index;
+      };
+      games.sort((a, b) => rank(a) - rank(b));
     }
     results.replaceChildren(...games.map(game => libraryCard(game, false, studyView)));
   } else if (referenceFiles.some(file => file.state === "loading") && !failed.length) {
