@@ -15,31 +15,31 @@
       "Riot"
     ],
     "mechanics": [
-      "第一人称视角",
       "开火反馈",
+      "枪口火光",
       "命中确认",
-      "镜头控制"
+      "命中停顿"
     ],
-    "core": "玩家点击时，近处的火光马上回应手指。远处目标的反应告诉玩家这一下有没有打中。转头时，可以分别留意这两处反馈在画面里的位置。",
-    "lesson": "给开火和命中各自一个看得清的位置。玩家已经转头看向下一处时，前一个目标的反馈仍要读得懂。",
+    "core": "近处的枪口闪光和余弹减少，告诉玩家这一发出去了。远处目标的反应才告诉玩家打中了什么。两种反馈出现在画面的不同位置。",
+    "lesson": "把开火和打中分别做出反馈。Riot 的开发说明提到，客户端会先显示开火效果，命中确认要等服务器返回结果。",
     "sourceLabel": "Riot Games · 从点击到命中反馈",
     "sourceUrl": "https://playvalorant.com/en-us/news/dev/the-state-of-hit-registration/",
     "criticNote": {
       "label": "PC Gamer · Morgan Park 评测",
       "url": "https://www.pcgamer.com/valorant-review/",
-      "text": "Morgan Park 在评测里特意提到，有些外观会改掉换弹动画和声音。他记住的是同一个第一人称动作换了怎样的演出。"
+      "text": "Morgan Park 提到，游戏把曳光线做得很醒目，他在开火时就能看清射击轨迹的变化。"
     },
     "url": "https://playvalorant.com/",
     "yearSourceUrl": "https://www.riotgames.com/en/news/starting-the-valorant-journey",
     "image": "https://www.riotgames.com/darkroom/1000/d0807e131a84f2e42c7a303bda672789:5f9cc29dd5d2a50bb1a8ea2efbc97abb/valorant-offwhitelaunch-keyart.jpg",
     "feelStudy": {
       "kind": "fps-camera",
-      "focus": "开火和命中 · 先看近处闪光，再看远处目标",
+      "focus": "开火和打中各有什么反馈？看枪口的一闪，再看目标倒下",
       "exercise": "打中时，镜头还听手吗？",
-      "build": "让中央准星经过移动方块时发出脉冲，手继续向一侧转。命中时看后墙的深色立柱有没有停在原地。再故意点空一次作对照。65 毫秒是周刊实验设定。",
+      "build": "先点空一次，听发射声，看准星张开再收回。接着边转头边点中方块，听多出来的一声高音。换到 B 版重复，盯住后墙的立柱，比较命中时镜头还跟不跟手。65 毫秒是周刊实验设定。",
       "a": "命中时，方块和手边的脉冲装置停 65 毫秒。继续转视角，墙柱仍从画面里划过。",
       "b": "方块和装置同样停 65 毫秒。这次镜头也跟着停，在这段时间里转动不会在结束时补上一跳。",
-      "test": "保持同样的转动速度，各点中几次。你先察觉的是方块被碰到了，还是视角有一下没跟上手？"
+      "test": "同样的击发声、回弹和命中提示下，哪一版让你觉得这一发更有分量？持续转头时，哪一版更跟手？"
     },
     "video": {
       "provider": "bilibili",
@@ -53,15 +53,15 @@
         "method": "editor",
         "start": 102,
         "end": 132,
-        "cue": "原片 1:52 左右，先盯画面右下，近处亮起火光。下一轮把视线留在房间深处，看黄色目标从站立到倒地。约 2:04，目标已经躺下，视角还在扫过前面的长台。"
+        "cue": "1:52 左右盯住枪口的一闪，同时右下角的余弹数在减。再从 2:00 看向房间深处，黄色目标还站着，到 2:04 已经倒地。哪一个画面让你确信射击命中了？"
       }
     },
     "prototypeIdeas": [
       {
         "title": "让墙柱告诉你哪里停了",
-        "keep": "发出脉冲马上有回应，碰到移动方块再给一记短停。",
+        "keep": "点下就有击发声与准星回弹，命中移动方块才给出高音和边框反馈。",
         "change": "两版只改变命中停顿期间是否还允许转动镜头。",
-        "build": "一个灰盒房、两根深色立柱、一个移动方块和一个脉冲装置即可。把输入、相机、目标与装置状态分开更新。",
+        "build": "一个灰盒房、两根立柱和一个会亮的方块即可。两版使用同一组音效、准星动画和命中停顿，只切换停顿期间能否转头。",
         "playtest": "让试玩者保持小幅转动，分别点中和点空，描述手指还在动的时候哪一层画面停过。",
         "days": 1
       }
@@ -88,46 +88,46 @@
       "反恐精英"
     ],
     "mechanics": [
-      "第一人称跳跃",
-      "视角起落",
-      "近景参照"
+      "枪口闪光",
+      "击发动画",
+      "前景回位"
     ],
-    "core": "这段选的是经典 CS 的社区跳跃地图。人在空中时看不见自己的脚，只能从方柱顶面的位置、近处边缘掠过的速度判断自己还有多高。",
-    "lesson": "做第一人称移动，可以先给地面放几块高度明确、边缘醒目的物体。即使只画最简单的几何体，玩家也有机会读出上升、越过顶点和落下三个时刻。",
-    "sourceLabel": "Valve · 1.6 版发布公告",
-    "sourceUrl": "https://store.steampowered.com/oldnews/184?l=english",
+    "core": "沙地尽头的拱门一直在画面中央。开火那一下，右下的枪口亮起来，手里的模型往上一跳，随后又落回原处。亮光和动作一起，把一次点击画了出来。",
+    "lesson": "可以把开火分成两笔。闪光交代发射的瞬间，模型抬起再落下交代这一下的余劲。用一块固定背景，很容易看出哪一笔对手感贡献更大。",
+    "sourceLabel": "Greeds · 经典 CS 第一人称开火演示",
+    "sourceUrl": "https://www.bilibili.com/video/BV1Wu4y1D7mZ/",
     "url": "https://store.steampowered.com/app/10/",
     "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/10/header.jpg?t=1745368572",
     "feelStudy": {
       "kind": "cs-classic",
-      "focus": "第一人称起落 · 看方柱顶面怎样掠过画面",
-      "build": "先把目光留在远墙，再重看一次，只跟一块近处柱顶的亮色标记。比较从哪一处更容易看出自己在往上还是往下。",
-      "test": "如果把右下角的手部模型遮住，你还看得出每次起落吗？是哪条边、哪个标记给了你线索？",
-      "sourceLabel": "玩家雏菊sw · 社区跳跃图原录像",
-      "sourceUrl": "https://www.bilibili.com/video/BV1jW4y1t7xr/"
+      "focus": "单发的手感 · 看枪口亮起和前景回位",
+      "build": "先看 0:44–0:49 右下方那团短促的黄白色闪光。重放一次，把目光放到枪身轮廓，看看刚闪完时它朝哪里挪，过多久才回到原位。",
+      "test": "如果只剩短闪，拿掉枪身往上一跳的动作，这一下还会显得同样有力吗？",
+      "sourceLabel": "片内署名 Greeds · 游戏实录",
+      "sourceUrl": "https://www.bilibili.com/video/BV1Wu4y1D7mZ/"
     },
     "video": {
       "provider": "bilibili",
-      "id": "BV1jW4y1t7xr",
+      "id": "BV1Wu4y1D7mZ",
       "page": 1,
-      "cid": 814143729,
-      "title": "【cs kz】开学了 · 第一人称社区跳跃地图",
-      "creator": "雏菊sw",
-      "url": "https://www.bilibili.com/video/BV1jW4y1t7xr/",
+      "cid": 1249895875,
+      "title": "反恐精英 CS 1.6 全武器展示 · 沙地场景开火片段",
+      "creator": "Greeds（片内署名，发布账号已注销）",
+      "url": "https://www.bilibili.com/video/BV1Wu4y1D7mZ/",
       "segment": {
         "method": "editor",
-        "start": 26,
-        "end": 56,
-        "cue": "原片约 0:36，视角转进粉色通道，远处亮块还能当作参照。0:42 进入白色大厅，盯住近处方柱的十字标记，看柱顶怎样接近画面下缘，又在下一跳时离开。"
+        "start": 31,
+        "end": 61,
+        "cue": "0:33 左右，黑色枪口前闪出一团亮光。看 0:45–0:49 的第二组开火，亮光一闪就灭，枪身却会抬起再落回去。用远处的石拱门作参照，区分枪身和背景各动了多少。"
       }
     },
     "prototypeIdeas": [
       {
-        "title": "看地面猜高度",
-        "keep": "保留同一段移动轨迹、视野和跳跃时间。",
-        "change": "A 版只留远墙，B 版给路线加三根有顶面标记的方柱。",
-        "build": "在一个房间循环播放同一条跳跃轨迹，允许玩家转头，用一个键猜落地的时刻。",
-        "playtest": "哪一版更容易猜对？问玩家刚才读的是远墙、柱顶，还是画面边缘。",
+        "title": "一次点击的两笔反馈",
+        "keep": "点击一次，右下的发射器闪一下，中央圆点同时亮起。",
+        "change": "两版的亮度、声音和命中效果相同，B 版给前景模型加一个短促上抬、落回原位的动作。",
+        "build": "一个固定视角、一块发射器占位图和一个会亮的圆点。按空格发射，用切换键在两版之间来回试。",
+        "playtest": "同样点三下，哪一版更有重量？只看前景的轮廓，你能辨出每一下吗？",
         "days": 1
       }
     ]
@@ -137,7 +137,7 @@
     "title": "反恐精英：全球攻势",
     "titleEn": "Counter-Strike: Global Offensive",
     "year": 2012,
-    "yearNote": "收录 2012 年发行的原版 CS:GO，所选玩家录像摄于 2019 年。",
+    "yearNote": "收录 2012 年发行的原版 CS:GO，所选玩家录像发布于 2019 年。",
     "yearSourceUrl": "https://blog.counter-strike.net/2012/08/4571/",
     "genres": [
       "射击",
@@ -152,46 +152,47 @@
       "全球攻势"
     ],
     "mechanics": [
-      "第一人称检视",
-      "前景模型动画",
-      "镜头稳定"
+      "连续开火",
+      "镜头后坐",
+      "停火回落",
+      "枪声音效"
     ],
-    "core": "检视时，手会把屏幕下方的物件抬到眼前，转出侧面再放回。即使背景保持平稳，物件遮住的画面范围和它回到原位的过程也让动作有分量。",
-    "lesson": "手持物能独立承担一整段大幅动作。给场景留一处稳定参照，既能展示手上的变化，也能让玩家继续看清自己朝向哪里。",
-    "sourceLabel": "Valve · 反恐精英系列二十周年更新",
-    "sourceUrl": "https://blog.counter-strike.net/2019/10/25884/",
+    "core": "在同一处海边开火时，枪口一连几次亮起，远处水面的反光和栏杆在画面里一起往下走。火光断了，背景又回到先前的高度，开火和停火各有一个读得出来的动作。",
+    "lesson": "看连续射击的手感，既可以听枪声的间隔，也可以盯固定地标看镜头何时回稳。即便目标没有被打中，画面也能让人读到射击的起止。",
+    "sourceLabel": "Valve · CS:GO 射击音效更新说明",
+    "sourceUrl": "https://blog.counter-strike.net/2016/06/14766/",
     "url": "https://blog.counter-strike.net/about/",
     "image": "https://media.steampowered.com/apps/csgo/blog/images/fb_image.png?v=6",
     "feelStudy": {
       "kind": "csgo",
-      "focus": "前景动作 · 盯住远处月亮，看手移动了多少",
-      "build": "先跟随检视中的物件看一遍，再把目光固定在月亮的边缘。用同一颗月亮作参照，比较前景抬起、转动和收回时背景有多稳定。",
-      "test": "哪一下让你最能感觉到物件抬到了眼前？是手腕的转动、物件变大的轮廓，还是它遮住的画面面积？",
-      "sourceLabel": "Valve · 2019 年 CS20 收藏更新",
-      "sourceUrl": "https://blog.counter-strike.net/2019/10/25884/"
+      "focus": "连续开火与停火 · 看镜头后坐怎样推开海平线",
+      "build": "先开声音听连续枪声从哪里断开。重放 0:03–0:07，盯住海面反光或左侧栏杆，留意它们在停火后怎样回到较高的位置。",
+      "test": "枪声停下和画面回稳，你先察觉到哪一个？关掉声音后，你能从哪一刻看出这一串已经结束了？",
+      "sourceLabel": "Valve · CS:GO 射击音效更新说明",
+      "sourceUrl": "https://blog.counter-strike.net/2016/06/14766/"
     },
     "video": {
       "provider": "bilibili",
-      "id": "BV1yE411k7NQ",
-      "page": 1,
-      "cid": 124435776,
-      "title": "CS:GO 中的系列二十周年收藏检视 · 2019 年原录像",
-      "creator": "Rieの",
-      "url": "https://www.bilibili.com/video/BV1yE411k7NQ/",
+      "id": "BV12b411h7AV",
+      "page": 15,
+      "cid": 77788089,
+      "title": "CS:GO 枪声音乐素材 · 第 15 段海边开火实录",
+      "creator": "SnAK3G0D",
+      "url": "https://www.bilibili.com/video/BV12b411h7AV/?p=15",
       "segment": {
         "method": "editor",
-        "start": 154,
-        "end": 184,
-        "cue": "原片约 2:38，金色模型横过画面下方，约 2:42 才收回右侧。到 2:54，花色模型又转出一整个侧面。每段检视时盯住天上的月亮，看远景和手里的物件各移动了多少。"
+        "start": 1,
+        "end": 31,
+        "cue": "第 15 段 0:02 和 0:04 前后先后有火光。盯住海面那块白色反光，开火时它在画面里往下走，约 0:06 又回到较高的位置。0:21 左右的下一组开火可以用来再看一次。"
       }
     },
     "prototypeIdeas": [
       {
-        "title": "把怀表举到眼前",
-        "keep": "手持物从角落抬起、转面、再收回的过程。",
-        "change": "做两档前景旋转幅度，让远处时钟和视角始终保持原样。",
-        "build": "一个方形表壳、一段检视动画和墙上一只钟足够。让玩家检视时仍能左右看。",
-        "playtest": "哪版能看清表面，又能一眼找到刚才墙上的钟？分别试慢转头和快速转头。",
+        "title": "停火后，镜头多久安定下来？",
+        "keep": "按住一个键，屏幕里的脉冲器重复闪亮，背景随每个脉冲小幅移动。",
+        "change": "两版使用相同的声音和镜头位移幅度，只改松开按键后视角回到原位的时间。",
+        "build": "画一条地平线和一个近处栏杆，放一段短促的电子音。松键时让两版分别较快和较慢地回位。",
+        "playtest": "哪版让你先觉得这次发射已经结束？把声音关掉，再看一次地平线。",
         "days": 1
       }
     ]
@@ -206,47 +207,47 @@
       "FPS 手感"
     ],
     "mechanics": [
-      "第一人称移动",
-      "高低差",
-      "地面参照"
+      "射击反馈",
+      "命中提示",
+      "累计伤害数字"
     ],
-    "core": "第一人称跑图时，你能从地面和屋顶的相对位置读出自己到了多高。这段奥林匹斯实机里，角色从窄通道跑向开阔平台，随后圆屋顶从眼前转到脚下。",
-    "lesson": "试着让同一个地标贯穿起跳和落地。腾空前它能挡住半个画面，越过它时能看见顶面，回到地面又能看清近处的小物件。这些参照让高度变化更容易读懂。",
-    "sourceLabel": "EA Help · 移动与滑行",
-    "sourceUrl": "https://help.ea.com/en/articles/apex-legends/how-to-play/",
+    "core": "准星框里是一团浅色烟，目标的红色轮廓很小。连续命中时，目标上方的紫色数字一次次变大。前景抬起换弹，刚才的总数还停留了片刻。",
+    "lesson": "让连中的几下共用一个读数。数字跟着目标更新，停火时留出一小段阅读时间，玩家就能在前景动作最忙的时候读完这次反馈。",
+    "sourceLabel": "EA · 准星命中提示与伤害数字设置",
+    "sourceUrl": "https://www.ea.com/able/resources/apex-legends/pc/features",
     "url": "https://store.steampowered.com/app/1172470/",
     "yearSourceUrl": "https://news.ea.com/press-releases/press-releases-details/2019/Respawn-Launches-Apex-Legends-a-Free-to-Play-Battle-Royale-Experience-Available-Now-on-PC-PS4-and-Xbox-One/default.aspx",
     "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1172470/4219c147f1e094297c726d537518babba7f3ae2d/header.jpg?t=1794958367",
     "video": {
       "provider": "bilibili",
-      "id": "BV1Ww1aB3EPW",
+      "id": "BV1xS4y1c7ba",
       "page": 1,
-      "cid": 33646708017,
-      "url": "https://www.bilibili.com/video/BV1Ww1aB3EPW/",
-      "title": "【APEX27赛季】新奥林匹斯新增点位跑图分享，大空地明显减少，三叉戟疑似删除？",
-      "creator": "毕生温柔_",
+      "cid": 581845444,
+      "url": "https://www.bilibili.com/video/BV1xS4y1c7ba/",
+      "title": "【APEX】日常靶场练枪“真假难辨”4230伤害",
+      "creator": "一大杯牛奶丶",
       "segment": {
         "method": "editor",
-        "start": 33,
-        "end": 63,
-        "cue": "0:39 看通道出口的两侧怎样掠过。0:45 会短暂打开背包，关掉后留意蓝白色圆屋顶，0:55 它几乎贴着视线，0:59 已经能俯看屋顶，1:03 目光又回到地上的物品。"
+        "start": 35,
+        "end": 65,
+        "cue": "0:40 左右，红色目标刚出现在准星框里，紫色数字随后才亮起。0:43 左右盯着目标上方，看读数从 137 跳到 164。前景抬起换弹后，这个数字还留了片刻才消失。"
       }
     },
     "feelStudy": {
       "kind": "apex",
-      "focus": "腾空到落地时，同一座屋顶怎样交代高度",
-      "build": "把片段拖回 0:53，盯着蓝白色屋顶的边缘看到 0:59，再播一次只看画面中央远处的建筑。比较哪一处更早让你觉察到角色在升高。",
-      "test": "在能看见整个屋顶之前，你最早在哪一刻觉得自己腾空了？",
-      "sourceLabel": "EA Help · 第一人称移动",
-      "sourceUrl": "https://help.ea.com/en/articles/apex-legends/how-to-play/"
+      "focus": "连中几下，目标头顶的数字怎样接起来？",
+      "build": "重看 0:40–0:44。第一遍只看准星框里的红色轮廓，第二遍只看它头顶的数字。留意换弹动作已经开始时，你还能不能读到刚才的总数。",
+      "test": "如果每一下都在新位置跳出一个数字，你会更容易数清命中了几下，还是更难读出这一串的总量？",
+      "sourceLabel": "EA · 准星命中提示与伤害数字设置",
+      "sourceUrl": "https://www.ea.com/able/resources/apex-legends/pc/features"
     },
     "prototypeIdeas": [
       {
-        "title": "闭掉高度表也能猜出跳了多高",
-        "keep": "腾空和落地时，近处物体的侧面和顶面会先后出现在视野里。",
-        "change": "把跑图缩成一个院子。每跳一次随机选低、中、高三档，让人落地后凭印象猜高度。",
-        "build": "搭地面、远墙和一座矮圆台，固定视野角与起跳速度的三档数值。做一个开关控制圆台是否可见，重复同一组跳跃。",
-        "playtest": "每版各跳六次，记录猜对次数，再问对方从哪一帧开始有把握。",
+        "title": "同一串命中，数字逐个跳还是合起来？",
+        "keep": "每次碰到方块都立即给一次可见反馈。",
+        "change": "A 版每次各弹一个小数字，B 版在同一位置更新累计数。两版使用相同的命中序列、颜色和淡出时间。",
+        "build": "在二维画面放一个方块，点击播放一串光点撞上方块的短动画。用一个开关切换两种数字显示方式。",
+        "playtest": "让试玩者各看一次，再分别说出碰了几下、总数是多少。比较两种显示方式各自容易读出什么。",
         "days": 1
       }
     ],
@@ -267,47 +268,47 @@
       "FPS 手感"
     ],
     "mechanics": [
-      "第一人称驾驶",
-      "驾驶舱参照",
-      "运动视差"
+      "单发与连发的声响",
+      "连续开火的画面反馈",
+      "弹药归零提示"
     ],
-    "core": "同样是第一人称，坐进驾驶席后，窗框给了眼睛一个随车移动的参照。近处树干一下就掠过窗边，远处的树线慢慢移，就能感觉到车在往前开。",
-    "lesson": "做第一人称移动时，可以把画面分成三层去看：贴近玩家的固定边框、快速掠过的路边物、慢慢移动的远景。即使没有速度表，这三层也能交代运动。",
-    "sourceLabel": "PUBG Support · 第一人称视角",
-    "sourceUrl": "https://support.pubg.com/hc/en-us/articles/115004201774-What-is-the-FPP-mode",
+    "core": "同一把枪先隔几秒响一下，随后连成一串。画面中央的枪模跟着颠动，下方弹数从两位数跳到红色的 0。声音、动画和数字一起交代这串射击何时停下来。",
+    "lesson": "先让人听出单次击发的起音，再听相同声音接成一串。把停火那一下也留在画面里，让玩家能判断最后一发发生在什么时候。",
+    "sourceLabel": "PUBG 开发组 · 原版和重制版开火音效",
+    "sourceUrl": "https://www.pubg.com/en-asia/news/1373",
     "url": "https://store.steampowered.com/app/578080/",
     "yearSourceUrl": "https://store.steampowered.com/app/578080/",
     "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/578080/841ea38bc58cabb70aef65365cf50bc2d79329d9/header.jpg?t=1792718193",
     "video": {
       "provider": "bilibili",
-      "id": "BV1VLwCezEsQ",
-      "page": 1,
-      "cid": 27961461990,
-      "url": "https://www.bilibili.com/video/BV1VLwCezEsQ/",
-      "title": "分析地图，轻松进圈！PUBG第一人称单排全局解说",
-      "creator": "HuskyBleh",
+      "id": "BV1tb411E7Sk",
+      "page": 9,
+      "cid": 81916586,
+      "url": "https://www.bilibili.com/video/BV1tb411E7Sk/?p=9",
+      "title": "《绝地求生》训练场开火声音素材 · 第 9 P M4_batch",
+      "creator": "像水花一般",
       "segment": {
         "method": "editor",
-        "start": 640,
-        "end": 670,
-        "cue": "10:40 镜头还在车外，接着坐进驾驶席。10:49 起盯住挡风玻璃左侧的窗柱，看树干从它旁边经过。到 11:04 车头转过来，比较窗柱、近处地面和远处树线各移动了多少。"
+        "start": 49,
+        "end": 79,
+        "cue": "0:56 到 1:01，开声音听两次分开的击发，弹数从 30 变成 29、28。1:07 起听它们怎样连成一串，顺着枪模的颠动看到 1:10，底部弹数已经变成红色的 0。"
       }
     },
     "feelStudy": {
       "kind": "pubg",
-      "focus": "坐进驾驶席后，窗框、近树和远景各移动多少",
-      "build": "看两遍 10:49 到 11:04。第一遍只跟着窗边最近的一棵树，第二遍只看远处树线，再用窗柱作参照，试着指出车头拐弯的时刻。",
-      "test": "哪一层最能让你感觉车开得快？哪一层最能告诉你方向变了？",
-      "sourceLabel": "PUBG Support · 第一人称视角",
-      "sourceUrl": "https://support.pubg.com/hc/en-us/articles/115004201774-What-is-the-FPP-mode"
+      "focus": "单发和连发 · 同一个声音怎样从一下变成一串",
+      "build": "先看 0:56 左右的单发，记住每一下声音开始时枪模的动作。到 1:07 看连续开火，再重播一次，只用耳朵判断何时停火，然后看弹数归零的时刻是否对得上。",
+      "test": "这串射击结束时，你最先察觉的是声音停了、枪模稳住了，还是底部亮起了红色的 0？",
+      "sourceLabel": "PUBG 开发组 · 原版和重制版开火音效",
+      "sourceUrl": "https://www.pubg.com/en-asia/news/1373"
     },
     "prototypeIdeas": [
       {
-        "title": "同速两趟车，哪一趟更快？",
-        "keep": "坐在同一辆车里，近处的树干掠过得比远处的树线快。",
-        "change": "做一辆沿固定弯道自动开的观光车。两趟速度完全相同，只有路边树离车的距离不同。",
-        "build": "画一个固定窗框，摆两排树和远山，让相机沿一条弯线匀速移动。按键重播同一路线，交替显示近树与远树。",
-        "playtest": "把速度读数藏起来，让人选出感觉更快的一趟，指一指是什么让他这么判断。",
+        "title": "给同一串脉冲换个尾音",
+        "keep": "相同的击发声既能单独辨认，也能随连续触发形成一串。",
+        "change": "给科幻脉冲器做两版音效。保留同一个起音、音量和发射间隔，只改变尾音消退所需的时间。",
+        "build": "画一个脉冲器和五格能量条。按一次播放同一段五连发，给两版配上相同的闪光和能量消耗。用合成短音即可。",
+        "playtest": "关掉能量条，各听一次。在你觉得最后一次脉冲结束时按键，比较两版在哪一刻让你觉得它停了。",
         "days": 1
       }
     ],

@@ -29,6 +29,26 @@
     return { x: p.x, y: p.y, half: 0.73 * p.scale };
   }
 
+  function playShotSound(audio, hit) {
+    if (!audio || audio.state !== "running") return;
+    const now = audio.currentTime;
+    function tone(type, from, to, delay, duration, volume) {
+      const start = now + delay, end = start + duration;
+      const voice = audio.createOscillator(), gain = audio.createGain();
+      voice.type = type;
+      voice.frequency.setValueAtTime(from, start);
+      voice.frequency.exponentialRampToValueAtTime(to, end);
+      gain.gain.setValueAtTime(0.001, start);
+      gain.gain.exponentialRampToValueAtTime(volume, start + 0.004);
+      gain.gain.exponentialRampToValueAtTime(0.001, end);
+      voice.connect(gain).connect(audio.destination);
+      voice.onended = () => { voice.disconnect(); gain.disconnect(); };
+      voice.start(start); voice.stop(end);
+    }
+    tone("triangle", 240, 82, 0, 0.075, 0.22);
+    if (hit) tone("sine", 740, 1080, 0.018, 0.095, 0.12);
+  }
+
   function drawRoom(ctx, yaw, pitch) {
     function panel(points, color) {
       ctx.beginPath();
@@ -84,8 +104,11 @@
     ctx.beginPath(); ctx.ellipse(7, -55, 14, 6, 0, 0, Math.PI * 2);
     ctx.fillStyle = pulse ? "#fff4ad" : "#b8f388"; ctx.fill();
     ctx.restore();
-    ctx.fillStyle = "#152e2b"; ctx.fillRect(width/2-4, height/2-1, 9, 3); ctx.fillRect(width/2-1, height/2-4, 3, 9);
-    ctx.fillStyle = "#fffce9"; ctx.fillRect(width/2, height/2, 1, 1);
+    const cx = width / 2, cy = height / 2, spread = 2 + Math.round(5 * pulse);
+    ctx.fillStyle = "#152e2b";
+    ctx.fillRect(cx - spread - 3, cy - 1, 4, 2); ctx.fillRect(cx + spread, cy - 1, 4, 2);
+    ctx.fillRect(cx - 1, cy - spread - 3, 2, 4); ctx.fillRect(cx - 1, cy + spread, 2, 4);
+    ctx.fillStyle = "#fffce9"; ctx.fillRect(cx - 1, cy - 1, 2, 2);
   }
 
   window.fpsLab = function () {
@@ -108,6 +131,12 @@
     }
     const a = button(modes, "A · 镜头可转"), b = button(modes, "B · 镜头同停");
     const start = button(controls, "开始"), fireButton = button(controls, "发射"), end = button(controls, "停止");
+    const sound = button(controls, "音效开");
+    const Audio = window.AudioContext || window.webkitAudioContext;
+    let audio, soundEnabled = Boolean(Audio);
+    sound.setAttribute("aria-label", "射击音效");
+    sound.setAttribute("aria-pressed", String(soundEnabled));
+    sound.hidden = !Audio;
     const ctx = canvas.getContext("2d");
     if (!ctx) {
       body.append(element("p", "feel-lab-help", "这个浏览器未能打开试玩画布。")); root.append(body); return root;
@@ -118,6 +147,29 @@
     let variant = "A", running = false, listeners, raf = 0;
     let state, last = 0, freezeUntil = 0, pointer = null;
     const keys = new Set();
+    function closeAudio() {
+      if (audio && audio.state !== "closed") audio.close().catch(() => {});
+      audio = null;
+    }
+    function enableAudio() {
+      if (!soundEnabled) return;
+      function unavailable() {
+        closeAudio(); soundEnabled = false; sound.disabled = true;
+        sound.textContent = "音效不可用"; sound.setAttribute("aria-pressed", "false");
+      }
+      try {
+        audio = new Audio({ latencyHint: "interactive" });
+        const current = audio;
+        audio.resume().catch(() => { if (audio === current) unavailable(); });
+      } catch { unavailable(); }
+    }
+    sound.addEventListener("click", () => {
+      soundEnabled = !soundEnabled;
+      sound.textContent = soundEnabled ? "音效开" : "音效关";
+      sound.setAttribute("aria-pressed", String(soundEnabled));
+      if (!soundEnabled) closeAudio();
+      else if (running) enableAudio();
+    });
     function reset() {
       state = { time: 0, yaw: 0, pitch: 0, firedAt: -Infinity, hit: false };
       last = performance.now(); freezeUntil = 0; pointer = null; keys.clear();
@@ -146,11 +198,13 @@
       state.hit = Math.abs(block.x - width/2) <= block.half && Math.abs(block.y - height/2) <= block.half;
       state.firedAt = state.time;
       if (state.hit) freezeUntil = now + freezeMs;
+      playShotSound(audio, state.hit);
       status.textContent = state.hit ? "命中。方块和手里的装置停顿 65 毫秒。" : "未命中。准星经过橙色方块时再点一次。";
       draw(ctx, state);
     }
     function stop(message = "已停止。") {
       running = false; cancelAnimationFrame(raf); listeners?.abort();
+      closeAudio();
       root.classList.remove("is-running");
       keys.clear(); pointer = null;
       if (stopRunning === stop) stopRunning = null;
@@ -158,6 +212,7 @@
     }
     function begin() {
       stopRunning?.(); reset(); running = true; stopRunning = stop;
+      enableAudio();
       root.classList.add("is-running");
       listeners = new AbortController();
       const opts = { signal: listeners.signal };

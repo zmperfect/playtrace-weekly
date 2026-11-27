@@ -8,7 +8,7 @@ const studyTopics = new Map([
     order: ["cadence", "deflect", "impact", "rebound", "jump", "sword", "beat"]
   }],
   [fpsTag, {
-    intro: "先在《无畏契约》卡片里试试命中时镜头要不要停，再对照其他游戏的第一人称画面。每段实机 30 秒。",
+    intro: "每款看 30 秒射击实机。开火时留意枪声和枪口的动作，停火时看画面怎样回稳，打中时再看目标给了什么回应。",
     order: ["fps-camera", "cs-classic", "csgo", "apex", "pubg"]
   }]
 ]);

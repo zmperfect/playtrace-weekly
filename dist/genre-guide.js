@@ -110,7 +110,7 @@ function genreGuide() {
   const studyLinks = element("ul", "guide-entries");
   studyLinks.append(
     row([feelTag, "看一个动作如何回应按键", "从《只狼》的招架或《黑暗之魂 III》的快慢刀开始。看过实机，再亲手比较两个版本。"]),
-    row([fpsTag, "看第一人称画面如何回应操作", "在《无畏契约》的小原型里，试试命中时镜头继续转和停一下的区别。"])
+    row([fpsTag, "听开火的声音，看回弹与命中反馈", "在《无畏契约》的小原型里，先听点空和命中的声音，再换一版感受命中时镜头跟着停一下的区别。"])
   );
   studies.append(element("h2", "", "想研究手感时"), studyLinks);
   guide.append(head, terms, groups, overlap, studies);
