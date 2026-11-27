@@ -196,5 +196,75 @@
         "days": 1
       }
     ]
+  },
+  {
+    "id": "ref-dark-souls-3",
+    "title": "黑暗之魂 III",
+    "titleEn": "Dark Souls III",
+    "year": 2016,
+    "genres": [
+      "动作",
+      "角色扮演",
+      "动作手感"
+    ],
+    "tags": [
+      "黑魂",
+      "黑魂3",
+      "黑暗之魂3"
+    ],
+    "mechanics": [
+      "无名王者",
+      "快慢刀",
+      "延迟出手",
+      "翻滚时机"
+    ],
+    "core": "无名王者抬起剑枪，玩家就知道攻击要来，却还要读出它什么时候会到。快招很快接上挥击，慢招会蓄住再动身。上一招刚好躲开，照着同一拍再滚一次，却可能正好被下一招追上。",
+    "lesson": "把起手和真正出手都做成玩家能指出的动作。多等一拍可以打乱熟悉的节奏。只要出手的动作清楚，滚早的人重看时就能指出自己在哪一下抢了拍。",
+    "sourceLabel": "無茶君 · 无名王者分阶段招式解析",
+    "sourceUrl": "https://www.gamersky.com/handbook/201603/732653.shtml",
+    "criticNote": {
+      "label": "kakated · 二周目实战心得",
+      "url": "https://www.gamersky.com/handbook/201605/748696.shtml",
+      "text": "玩家 kakated 在二周目记录里把近身挥击、蓄力下砸和较慢的突刺分开写。三招都逼人翻滚，但从看见起手到需要按键，中间等的时间并不一样。"
+    },
+    "url": "https://store.steampowered.com/app/374320/",
+    "yearSourceUrl": "https://en.bandainamcoent.eu/dark-souls/dark-souls-iii",
+    "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/374320/header.jpg?t=1748630784",
+    "feelStudy": {
+      "kind": "cadence",
+      "focus": "快慢刀 · 看无名王者抬手后哪一刻真正出招",
+      "sourceLabel": "kakated · 无名王者的快挥与蓄力下砸",
+      "sourceUrl": "https://www.gamersky.com/handbook/201605/748696.shtml",
+      "exercise": "别急着躲第二下",
+      "build": "只画一个蓄势后向前冲的菱形和一个会闪避的方块。让同一组四招等间隔起手，固定冲过来的速度和闪避有效时长，先在 A 找到节拍，再用相同按法试 B。",
+      "a": "四招都在蓄势完成后短停 80 毫秒，再向前冲。",
+      "b": "第 2、4 招在相同姿势上额外停 400 毫秒。出手后的速度和 220 毫秒闪避窗口都和 A 一样。",
+      "test": "切到 B 后，先凭 A 的节拍躲四下，再盯着菱形开始向前动才按。哪两下最容易滚早？看完每招结果，你能说出自己刚才盯的是起手还是出手吗？"
+    },
+    "prototypeIdeas": [
+      {
+        "title": "会迟到的摆锤",
+        "keep": "准备动作先让你知道危险将至，真正摆下来时才需要闪避。",
+        "change": "同一只摆锤每隔一轮多停一拍，松开的瞬间保持相同的动作提示。",
+        "build": "用一个圆、一个方块和一个按键做四次摆动，给每次闪避记下偏早、成功或偏晚。一天内可以做出两种节奏。",
+        "playtest": "让人先玩固定节拍，再换混合节拍。第二轮漏躲后，让他指出下一次准备看哪个动作提示。",
+        "days": 1
+      }
+    ],
+    "video": {
+      "provider": "bilibili",
+      "id": "BV1ossTeKEZY",
+      "page": 1,
+      "cid": 500001653847005,
+      "title": "黑魂3无伤「无名王者」· 第二阶段",
+      "creator": "夜里一只鸦",
+      "url": "https://www.bilibili.com/video/BV1ossTeKEZY/",
+      "segment": {
+        "method": "editor",
+        "start": 63,
+        "end": 93,
+        "cue": "原片约 1:14–1:16，无名王者横扫后很快又挥了一下。到 1:22，他把剑枪举过头顶，玩家仍留在脚边。枪尖停住，约 1:24 才砸地亮起雷光。再看一次，只盯玩家，看看他在举枪还是落枪时翻滚。"
+      }
+    }
   }
 ]

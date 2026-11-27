@@ -507,7 +507,7 @@ function refreshLibraryResults() {
   const heading = filters.award ? [genreTitle, "奖项选游"].filter(Boolean).join(" · ") : genreTitle || "游戏库";
   document.getElementById("library-heading").textContent = heading;
   document.getElementById("library-intro").textContent = studyView
-    ? "先看实机里的一个动作，再用 A、B 两版亲手比较。弹反的火花、命中的停顿、下铲后的回弹，各自改变了什么？试玩数值均为周刊自设。"
+    ? "先看实机里的一个动作，再亲手比较 A、B 两版。快慢刀改出手前的等待，弹反改火花，近战命中改停顿。试玩数值由周刊设定。"
     : "从周刊选游和历年作品中，找一个值得借鉴的玩法。";
   const options = document.getElementById("library-options");
   if (options.dataset.view !== (studyView ? "study" : "library")) {
@@ -544,7 +544,7 @@ function refreshLibraryResults() {
   notice.hidden = !notice.childNodes.length;
   if (games.length) {
     if (studyView) {
-      const order = ["deflect", "impact", "rebound", "jump", "sword", "beat"];
+      const order = ["cadence", "deflect", "impact", "rebound", "jump", "sword", "beat"];
       const rank = game => {
         const index = order.indexOf(game.feelStudy?.kind);
         return index < 0 ? order.length : index;

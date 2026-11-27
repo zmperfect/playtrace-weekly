@@ -349,13 +349,82 @@
     };
   }
 
+  function cadenceTrial({ ctx, variant, say, finish }) {
+    const windup = 0.4, travel = 0.32, recovery = 0.3, evade = 0.22;
+    const moves = Array.from({ length: 4 }, (_, index) => {
+      const start = 0.6 + index * 2.4;
+      const hold = variant === "B" && index % 2 === 1 ? 0.48 : 0.08;
+      const release = start + windup + hold;
+      return { start, release, contact: release + travel, input: null, outcome: "" };
+    });
+    function score(move, now, index) {
+      if (move.outcome || now < move.contact) return;
+      if (move.input === null) {
+        if (now < move.contact + recovery) return;
+        move.outcome = "未闪";
+      } else if (move.input > move.contact) move.outcome = "闪晚";
+      else if (move.input + evade < move.contact) move.outcome = "闪早";
+      else move.outcome = "躲开";
+      say("第 " + (index + 1) + " 招 · " + move.outcome + "。");
+    }
+    return {
+      press(t) {
+        const move = moves.find(m => t >= m.start && t < m.contact + recovery);
+        if (move && move.input === null) move.input = t;
+      },
+      draw(t, running) {
+        if (running) moves.forEach((move, i) => score(move, t, i));
+        const index = Math.max(0, moves.findLastIndex(move => t >= move.start));
+        const move = moves[index];
+        const rest = 292, raised = 320, line = 110, floor = 83;
+        let x = rest, lift = 0, label = "准备";
+        if (t >= move.start && t < move.release) {
+          const progress = Math.min(1, (t - move.start) / windup);
+          x += (raised - rest) * progress;
+          lift = 29 * progress;
+          label = progress < 1 ? "抬手" : "蓄住";
+        } else if (t >= move.release && t < move.contact) {
+          const progress = (t - move.release) / travel;
+          x = raised + (line - raised) * progress;
+          lift = 29 * (1 - progress);
+          label = "出手";
+        } else if (t >= move.contact && t < move.contact + recovery) {
+          x = line + (rest - line) * (t - move.contact) / recovery;
+          label = "收招";
+        }
+        rect(ctx, 48, floor + 12, 314, 2, "#a2ada0");
+        rect(ctx, line - 1, floor - 3, 2, 15, "#859080");
+        const dodgeAge = move.input === null ? -1 : t - move.input;
+        const airborne = dodgeAge >= 0 && dodgeAge <= evade;
+        const playerY = floor - (airborne ? 28 : 0);
+        rect(ctx, line - 8, playerY - 11, 16, 22, ink);
+        rect(ctx, line + 2, playerY - 7, 4, 4, paper);
+        ctx.save();
+        ctx.translate(x, floor - lift);
+        ctx.rotate(Math.PI / 4);
+        rect(ctx, -8, -8, 16, 16, coral);
+        ctx.restore();
+        ctx.fillStyle = ink;
+        ctx.font = "14px sans-serif";
+        ctx.fillText("第 " + (index + 1) + " 招 · " + label, 25, 26);
+        moves.forEach((m, i) => {
+          disc(ctx, 330 + 15 * i, 21, 5, m.outcome === "躲开" ? ink : m.outcome ? coral : "#b5c0ae");
+        });
+        if (running && t >= moves[moves.length - 1].contact + recovery + 0.4) {
+          finish("四招依次为" + moves.map(m => m.outcome).join("、") + "。");
+        }
+      }
+    };
+  }
+
   const recipes = {
     jump: { make: jumpTrial, instruction: "方块会向右跑。试着刚跑出台沿再按跳跃。", action: "跳跃", variants: ["离台即失效", "宽限 100 毫秒"] },
     sword: { make: swordTrial, instruction: "按住蓄力、松开挥击。挥空后按住移动，留意第一步何时迈出。", action: "按住蓄力", variants: ["收招 0.2 秒", "收招 0.55 秒"] },
     beat: { make: beatTrial, instruction: "请开声音。听三拍预备音，再跟着八拍挥击。两版的合拍范围相同。", action: "挥击", variants: ["普通挥击声", "合拍多一声"] },
     deflect: { make: deflectTrial, instruction: "三颗光点会依次飞向竖线。试一次提前按住，再试一次贴线时轻点。", action: "格挡", variants: ["小火花", "亮环与火星"] },
     impact: { make: impactTrial, instruction: "圆靶左右滑动。等它进入深色地标再挥击，也试一下挥空。", action: "挥击", variants: ["命中不停顿", "命中停顿 65 毫秒"] },
-    rebound: { make: reboundTrial, instruction: "方块下落时按「下敲」，碰到弹台会回弹。看脚底能否超过虚线。", action: "下敲", variants: ["回弹 34 像素", "回弹 68 像素"] }
+    rebound: { make: reboundTrial, instruction: "方块下落时按「下敲」，碰到弹台会回弹。看脚底能否超过虚线。", action: "下敲", variants: ["回弹 34 像素", "回弹 68 像素"] },
+    cadence: { make: cadenceTrial, instruction: "看红菱形先抬起、再向左冲。每招只能闪一次。先在 A 找到节拍，再试着看准 B 的出手动作。", action: "闪避", variants: ["四招同拍", "快慢交替"] }
   };
 
   function stopActive() { active?.stop(); }
@@ -377,7 +446,8 @@
     canvas.width = width * 2; canvas.height = height * 2;
     canvas.setAttribute("aria-label", {
       jump: "方块越过平台缺口", sword: "挥击往返移动的圆靶", beat: "八拍位置与挥击节奏",
-      deflect: "在竖线处弹回飞来的光点", impact: "挥击进入地标范围的移动圆靶", rebound: "方块下敲弹台并对照虚线高度"
+      deflect: "在竖线处弹回飞来的光点", impact: "挥击进入地标范围的移动圆靶", rebound: "方块下敲弹台并对照虚线高度",
+      cadence: "红菱形抬起后冲向左侧方块，在来招到达前闪避"
     }[kind]);
     canvas.setAttribute("role", "img");
     const status = node("p", "选好版本后点开始。", "feel-lab-status");
