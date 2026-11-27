@@ -78,13 +78,16 @@ def library_genres(tags, description=""):
     return result[:3] or ["其他"]
 
 
-def release_fields(item, url):
+def release_fields(item, url, reference=None):
     release = item.get("release") or {}
     for field, label in (("original_release_date", "Steam 标注的原版发行年份"),
                          ("steam_release_date", "Steam 平台发行年份")):
         timestamp = release.get(field)
         if isinstance(timestamp, int) and 0 < timestamp <= time.time():
             year = datetime.fromtimestamp(timestamp, timezone.utc).year
+            # Some editions inherit their predecessor's store listing and release date.
+            if reference and reference.get("legacyStoreYear") == year:
+                return {key: reference[key] for key in ("year", "yearNote", "yearSourceUrl")}
             if release.get("is_early_access") and field == "steam_release_date":
                 label = "Steam 抢先体验年份"
             return {"year": year, "yearNote": label, "yearSourceUrl": url}
@@ -179,10 +182,10 @@ def add_chapter(video):
         video["segment"] = segment
 
 
-def steam_reference_videos():
-    videos = {}
+def steam_references():
+    references = {}
     for path in sorted(ARCHIVE.parent.glob("*.json")):
-        if not (path.stem.startswith("reference-") or path.stem == "award-selections"):
+        if not (path.stem.startswith("reference-") or path.stem in ("award-selections", "fps-studies")):
             continue
         try:
             games = json.loads(path.read_text(encoding="utf-8-sig"))
@@ -199,9 +202,9 @@ def steam_reference_videos():
             for url in (game.get("url"), game.get("yearSourceUrl"), (video.get("preview") or {}).get("url")):
                 key = game_key(url or "")
                 if key.startswith("steam-"):
-                    videos.setdefault(key, video)
+                    references.setdefault(key, game)
                     break
-    return videos
+    return references
 
 
 def steam_games(seen):
@@ -219,7 +222,7 @@ def steam_games(seen):
     items = {}
     for start in range(0, len(ranked), 32):
         items.update(store_items(ranked[start:start + 32]))
-    curated = steam_reference_videos()
+    curated = steam_references()
     def has_gameplay_clip(row):
         if f"steam-{row['appid']}" in curated:
             return True
@@ -245,7 +248,8 @@ def steam_games(seen):
         })
         if not description:
             continue
-        video = curated.get(game_key(url))
+        reference = curated.get(game_key(url))
+        video = reference["video"] if reference else None
         preview = (video or {}).get("preview") or steam_preview(item)
         if video is None:
             try:
@@ -283,7 +287,7 @@ def steam_games(seen):
             "prompt": prompt_for(tags), "url": url,
             "image": trusted_url(artwork, "steamstatic.com"),
             "action": "查看 Steam 商店", "tags": tags, "genres": library_genres(all_tags, description), "video": video,
-            **release_fields(item, url),
+            **release_fields(item, url, reference),
         }
 
 

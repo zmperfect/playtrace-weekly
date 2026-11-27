@@ -198,6 +198,75 @@
     ]
   },
   {
+    "id": "ref-counter-strike-2",
+    "title": "反恐精英 2",
+    "titleEn": "Counter-Strike 2",
+    "year": 2023,
+    "yearNote": "按 CS2 于 2023 年 9 月 27 日正式上线计。它沿用的 Steam 商店条目保留了 CS:GO 的 2012 年发行日期。",
+    "yearSourceUrl": "https://store.steampowered.com/news/app/730/view/3747614808335282785",
+    "legacyStoreYear": 2012,
+    "genres": [
+      "射击",
+      "FPS 手感"
+    ],
+    "tags": [
+      "CS",
+      "CS2",
+      "CS 2",
+      "反恐精英2",
+      "反恐精英 2"
+    ],
+    "mechanics": [
+      "击发动画",
+      "末发反馈",
+      "余弹显示"
+    ],
+    "core": "在同一个固定机位里，枪口连闪几次，枪身小幅回落。余弹变红归零后，枪身抬起侧转，接上换弹动作。两段动作的轮廓差异，能让人看清这一串射击停在哪里。",
+    "lesson": "让最后一次输入有一个看得清的收尾。玩家即使没盯着屏幕边缘的数字，也有机会从前景轮廓读出状态变化。",
+    "sourceLabel": "Valve · 第一人称开火与换弹动画更新",
+    "sourceUrl": "https://store.steampowered.com/news/app/730/view/529853121068793939",
+    "url": "https://store.steampowered.com/app/730/",
+    "image": "https://cdn.fastly.steamstatic.com/apps/csgo/images/csgo_react/social/cs2.jpg",
+    "feelStudy": {
+      "kind": "cs2",
+      "focus": "余弹归零后，能从前景动作读出射击结束了吗？",
+      "build": "第一遍看右下角，记住 7:13 左右余弹变红的时刻。第二遍用手遮住数字，对比普通击发后的回落，以及归零之后接上的抬枪、侧转。到 7:26，再看一次。",
+      "test": "哪一刻你第一次觉得「这一串打完了」？再看 CS 1.6 的单发回位和 CS:GO 的镜头回稳，比较三段里各是什么先提醒了你。",
+      "sourceLabel": "Valve · 第一人称开火与换弹动画更新",
+      "sourceUrl": "https://store.steampowered.com/news/app/730/view/529853121068793939"
+    },
+    "prototypeIdeas": [
+      {
+        "title": "遮住能量数字，还认得最后一下吗？",
+        "keep": "每次点击都让屏幕里的脉冲器闪一下，再回到原位。",
+        "change": "最后一格能量用尽时，A 版照常回位，B 版让前景模型抬起并停在一个容易认出的姿态。",
+        "build": "一张脉冲器侧影、一个能量计数和一个补满按钮。每轮随机给三到五格能量，两版用同样的闪光、声音和计数。",
+        "playtest": "把数字遮住，让试玩者在觉得能量耗尽时说一声。看哪一版更容易认出最后一下。",
+        "days": 1
+      }
+    ],
+    "criticNote": {
+      "label": "Shacknews · Donovan Erskine 首发评测",
+      "url": "https://www.shacknews.com/article/138117/counter-strike-2-review-score",
+      "text": "Donovan Erskine 在 2023 年首发评测里提到，武器开火的瞬间就能看出 Source 2 光照的变化。"
+    },
+    "video": {
+      "provider": "bilibili",
+      "id": "BV1L98QzAECu",
+      "page": 1,
+      "cid": 25832529913,
+      "url": "https://www.bilibili.com/video/BV1L98QzAECu/",
+      "creator": "猫谷米",
+      "title": "猫谷米自录 · CS2 动画更新后的连续击发与空仓反馈",
+      "segment": {
+        "method": "editor",
+        "start": 421,
+        "end": 451,
+        "cue": "7:11 左右有弹壳飞起，底部余弹还是 11。7:13 余弹变成红色的 0，右下的枪模随即抬起侧转。7:16 又能看见橙色枪口火光，7:26 再次归零时重现同一个动作。试着只看前景，你能在哪一刻看出这一串结束了？"
+      }
+    }
+  },
+  {
     "id": "ref-apex-legends",
     "title": "Apex 英雄",
     "titleEn": "Apex Legends",

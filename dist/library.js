@@ -9,7 +9,7 @@ const studyTopics = new Map([
   }],
   [fpsTag, {
     intro: "每款看 30 秒射击实机。开火时留意枪声和枪口的动作，停火时看画面怎样回稳，打中时再看目标给了什么回应。",
-    order: ["fps-camera", "cs-classic", "csgo", "apex", "pubg"]
+    order: ["fps-camera", "cs-classic", "csgo", "cs2", "apex", "pubg"]
   }]
 ]);
 const libraryGenres = ["动作", feelTag, "射击", fpsTag, "平台跳跃", "解谜", "策略", "角色扮演", "卡牌", "Roguelike", "模拟经营", "生存建造", "叙事冒险", "节奏", "竞速", "体育", "休闲", "社交协作", "其他"];
@@ -493,7 +493,7 @@ function filteredLibrary(filters) {
     }
     const reference = game.reference || {};
     const text = [game.title, game.titleEn, game.mechanic, game.review?.core, game.review?.appeal, reference.title, reference.titleEn,
-      reference.core, reference.lesson, game.feelStudy?.focus, game.feelStudy?.exercise, ...(reference.mechanics || []), ...genres, ...tagsOf(game),
+      reference.core, reference.lesson, game.feelStudy?.focus, game.feelStudy?.exercise, ...(reference.mechanics || []), ...genres, ...tagsOf(game), ...tagsOf(reference),
       ...game.awards.flatMap(record => [record.event, awardEvents.get(record.event), record.category, awardCategories.get(record.category)])].filter(Boolean).join(" ").normalize("NFKC").toLocaleLowerCase();
     return terms.every(term => text.includes(term));
   });
