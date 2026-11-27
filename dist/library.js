@@ -231,13 +231,18 @@ function genreNavigation(weekly) {
   const status = element("p", "genre-browser-status");
   status.setAttribute("role", "status");
   head.append(heading);
+  const guides = element("div", "genre-shortcuts");
+  const guide = element("a", "award-entry", "分类速查");
+  guide.href = "#genres";
+  guide.append(icon("book"));
+  guides.append(guide);
   if (weekly) {
     const awards = element("a", "award-entry", "奖项选游");
     awards.href = libraryUrl({ award: "all" });
     awards.append(icon("arrow"));
-    head.append(awards);
+    guides.append(awards);
   }
-  head.append(status);
+  head.append(guides, status);
   const links = element("nav", "genre-options");
   links.setAttribute("aria-labelledby", heading.id);
   section.append(head, links);

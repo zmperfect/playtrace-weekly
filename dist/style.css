@@ -237,6 +237,39 @@ dialog h2{font-size:clamp(28px,4vw,38px);letter-spacing:-.055em;line-height:1.13
 .genre-browser-status{color:#59664d;font-size:12px;line-height:1.5}
 .award-entry{display:inline-flex;align-items:center;gap:5px;margin-right:auto;min-height:28px;padding:1px 7px;border:1px solid #bec6af;border-radius:4px;color:#394927;background:#fcfdf6;font-size:12px;font-weight:750}
 .award-entry:hover{background:var(--lime);border-color:#758e3b}
+.genre-shortcuts{display:flex;align-items:center;flex-wrap:wrap;gap:6px;margin-right:auto}
+.genre-shortcuts .award-entry{margin:0}
+.genre-guide{max-width:1100px;margin:0 auto}
+.guide-terms{margin:-5px 0 18px;padding:9px 14px;border-left:3px solid #829a4f;background:#edf0e5}
+.guide-terms summary{width:fit-content;max-width:100%;font-size:14px;font-weight:700;cursor:pointer}
+.guide-terms summary:focus-visible{outline:3px solid #718c00;outline-offset:3px}
+.guide-terms dl{display:grid;grid-template-columns:auto 1fr;gap:8px 14px;margin:12px 0 3px;font-size:13px}
+.guide-terms dt{font-weight:750}
+.guide-terms dd{margin:0}
+.guide-back{display:inline-block;padding:4px 0;color:#4b5b3e;font-size:13px;font-weight:700;text-decoration:underline;text-underline-offset:3px}
+.guide-groups{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:start}
+.guide-group,.guide-studies{min-width:0;overflow:hidden;border:1px solid var(--rule);border-radius:8px;background:#fffefa}
+.guide-group h2,.guide-studies h2{margin:0;padding:10px 16px;background:#e9edde;border-bottom:1px solid var(--rule);font-size:17px;letter-spacing:-.025em}
+.guide-entries{margin:0;padding:0;list-style:none}
+.guide-entries li+li{border-top:1px solid #e4e6db}
+.guide-row{display:block;padding:11px 16px}
+.guide-row:hover,.guide-row:focus-visible{background:#f4f8e9}
+.guide-row:focus-visible{outline-offset:-3px}
+.guide-label{display:flex;align-items:baseline;gap:5px 9px;flex-wrap:wrap;line-height:1.45}
+.guide-label strong{font-size:16px}
+.guide-label .icon{margin-left:auto;align-self:center;color:#5c713a}
+.guide-cue{font-size:13px;color:#415432;font-weight:650}
+.guide-example{display:block;margin-top:4px;color:#53594d;font-size:13px;line-height:1.65}
+.guide-overlap{max-width:75ch;margin:24px 0}
+.guide-overlap h2{margin-bottom:5px;font-size:18px}
+.guide-overlap p{margin:8px 0;font-size:14px;line-height:1.7}
+.guide-overlap strong{margin-right:.7em}
+.guide-studies .guide-entries{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+.guide-studies li+li{border-top:0;border-left:1px solid var(--rule)}
+@media(max-width:720px){
+  .guide-groups,.guide-studies .guide-entries{grid-template-columns:1fr}
+  .guide-studies li+li{border-left:0;border-top:1px solid var(--rule)}
+}
 .genre-retry{margin-left:8px;padding:1px 4px;text-decoration:underline;text-underline-offset:2px;font-weight:700}
 .genre-options{display:flex;align-items:center;flex-wrap:wrap;gap:6px}
 .genre-option{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:32px;padding:4px 10px;border:1px solid #bfc8ad;border-radius:5px;background:#fffefa;color:#3d4a32;font-size:13px;font-weight:700;line-height:1.3}

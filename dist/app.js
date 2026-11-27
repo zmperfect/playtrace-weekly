@@ -670,7 +670,7 @@ function inNotebook() {
 }
 
 function updateNavigation() {
-  const activeId = inLibrary() ? "library-nav" : inNotebook() ? "notes-nav" : "weekly-nav";
+  const activeId = inLibrary() || location.hash === "#genres" ? "library-nav" : inNotebook() ? "notes-nav" : "weekly-nav";
   for (const link of document.querySelectorAll(".nav-item")) {
     if (link.id === activeId) link.setAttribute("aria-current", "page");
     else link.removeAttribute("aria-current");
@@ -683,6 +683,11 @@ function updateNavigation() {
 function render() {
   stopVideo();
   updateNavigation();
+  if (location.hash === "#genres") {
+    if (!main.firstElementChild?.classList.contains("genre-guide")) main.replaceChildren(genreGuide());
+    document.title = "游戏分类速查 · 游感周刊";
+    return;
+  }
   if (inLibrary()) {
     loadReferences();
     main.replaceChildren(...libraryView());
