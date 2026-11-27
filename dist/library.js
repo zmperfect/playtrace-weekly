@@ -1,12 +1,24 @@
 "use strict";
 
 const feelTag = "动作手感";
-const libraryGenres = ["动作", feelTag, "射击", "平台跳跃", "解谜", "策略", "角色扮演", "卡牌", "Roguelike", "模拟经营", "生存建造", "叙事冒险", "节奏", "竞速", "体育", "休闲", "社交协作", "其他"];
+const fpsTag = "FPS 手感";
+const studyTopics = new Map([
+  [feelTag, {
+    intro: "先看实机里的一个动作，再亲手比较 A、B 两版。快慢刀改出手前的等待，弹反改火花，近战命中改停顿。试玩数值由周刊设定。",
+    order: ["cadence", "deflect", "impact", "rebound", "jump", "sword", "beat"]
+  }],
+  [fpsTag, {
+    intro: "先在《无畏契约》卡片里试试命中时镜头要不要停，再对照其他游戏的第一人称画面。每段实机 30 秒。",
+    order: ["fps-camera", "cs-classic", "csgo", "apex", "pubg"]
+  }]
+]);
+const libraryGenres = ["动作", feelTag, "射击", fpsTag, "平台跳跃", "解谜", "策略", "角色扮演", "卡牌", "Roguelike", "模拟经营", "生存建造", "叙事冒险", "节奏", "竞速", "体育", "休闲", "社交协作", "其他"];
 const releasePeriods = ["2007-2016", "2017-2026"];
 const referenceFiles = [
   ...releasePeriods.map(period => ({ name: "reference-" + period, label: period.replace("-", "–") + " 年参考库" })),
   { name: "award-selections", label: "奖项选游" },
-  { name: "action-studies", label: "动作手感选游" }
+  { name: "action-studies", label: "动作手感选游" },
+  { name: "fps-studies", label: "FPS 手感选游" }
 ].map(file => ({ ...file, state: "idle", games: [] }));
 const awardStatuses = { winner: "获奖", nominee: "提名" };
 const awardEvents = new Map([
@@ -277,7 +289,7 @@ function genreLinks(game) {
   const box = element("span", "genre-links");
   for (const genre of genresOf(game)) {
     const link = element("a", "genre-link", genre);
-    link.href = libraryUrl({ ...(inLibrary() && genre !== feelTag ? libraryFilters() : {}), genre });
+    link.href = libraryUrl({ ...(inLibrary() && !studyTopics.has(genre) ? libraryFilters() : {}), genre });
     link.setAttribute("aria-label", `在游戏库查看${genre}游戏`);
     link.addEventListener("click", () => { if (detail.open) detail.close(); });
     box.append(link);
@@ -391,18 +403,20 @@ function feelContent(game, article) {
   if (source && label) footage.append(watchLink(source, label, "阅读《" + game.title + "》的动作设计来源"));
 
   const experiment = element("section", "study-experiment");
-  experiment.append(element("h4", "study-title", "小原型 · " + study.exercise), element("p", "study-build", study.build));
-  const versions = element("dl", "study-versions");
-  for (const [key, value] of [["A", study.a], ["B", study.b]]) {
-    versions.append(element("dt", "", key), element("dd", "", value));
-  }
-  experiment.append(versions, element("p", "study-question", study.test));
-  if (typeof feelLab === "function") {
-    const lab = feelLab(study.kind);
-    if (lab) {
-      lab.addEventListener("click", stopVideo);
-      experiment.append(lab);
+  const title = study.exercise ? "小原型 · " + study.exercise : "回看这 30 秒";
+  experiment.append(element("h4", "study-title", title), element("p", "study-build", study.build));
+  if (study.a && study.b) {
+    const versions = element("dl", "study-versions");
+    for (const [key, value] of [["A", study.a], ["B", study.b]]) {
+      versions.append(element("dt", "", key), element("dd", "", value));
     }
+    experiment.append(versions);
+  }
+  experiment.append(element("p", "study-question", study.test));
+  const lab = study.kind === "fps-camera" ? window.fpsLab?.() : window.feelLab?.(study.kind);
+  if (lab) {
+    lab.addEventListener("click", stopVideo);
+    experiment.append(lab);
   }
   grid.append(footage, experiment);
   return grid;
@@ -485,7 +499,7 @@ function libraryYearOptions(select, filters) {
   select.replaceChildren(new Option("全部发行时间", ""));
   const periods = element("optgroup");
   periods.label = "发行时期";
-  for (const period of releasePeriods) periods.append(new Option(period.replace("-", "–") + " 年", "period:" + period));
+  for (const period of ["1997-2006", ...releasePeriods]) periods.append(new Option(period.replace("-", "–") + " 年", "period:" + period));
   select.append(periods);
   const group = element("optgroup");
   group.label = "具体发行年份";
@@ -502,13 +516,12 @@ function refreshLibraryResults() {
   if (!results) return;
   stopVideo();
   const filters = libraryFilters();
-  const studyView = filters.genre === feelTag;
-  const genreTitle = studyView ? feelTag : filters.genre ? filters.genre + "游戏" : "";
+  const topic = studyTopics.get(filters.genre);
+  const studyView = Boolean(topic);
+  const genreTitle = studyView ? filters.genre : filters.genre ? filters.genre + "游戏" : "";
   const heading = filters.award ? [genreTitle, "奖项选游"].filter(Boolean).join(" · ") : genreTitle || "游戏库";
   document.getElementById("library-heading").textContent = heading;
-  document.getElementById("library-intro").textContent = studyView
-    ? "先看实机里的一个动作，再亲手比较 A、B 两版。快慢刀改出手前的等待，弹反改火花，近战命中改停顿。试玩数值由周刊设定。"
-    : "从周刊选游和历年作品中，找一个值得借鉴的玩法。";
+  document.getElementById("library-intro").textContent = topic?.intro || "从周刊选游和历年作品中，找一个值得借鉴的玩法。";
   const options = document.getElementById("library-options");
   if (options.dataset.view !== (studyView ? "study" : "library")) {
     options.dataset.view = studyView ? "study" : "library";
@@ -544,7 +557,7 @@ function refreshLibraryResults() {
   notice.hidden = !notice.childNodes.length;
   if (games.length) {
     if (studyView) {
-      const order = ["cadence", "deflect", "impact", "rebound", "jump", "sword", "beat"];
+      const order = topic.order;
       const rank = game => {
         const index = order.indexOf(game.feelStudy?.kind);
         return index < 0 ? order.length : index;

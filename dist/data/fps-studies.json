@@ -1,0 +1,320 @@
+[
+  {
+    "id": "ref-valorant",
+    "title": "无畏契约",
+    "titleEn": "VALORANT",
+    "year": 2020,
+    "genres": [
+      "射击",
+      "FPS 手感"
+    ],
+    "tags": [
+      "瓦",
+      "瓦罗兰特",
+      "特战英豪",
+      "Riot"
+    ],
+    "mechanics": [
+      "第一人称视角",
+      "开火反馈",
+      "命中确认",
+      "镜头控制"
+    ],
+    "core": "玩家点击时，近处的火光马上回应手指。远处目标的反应告诉玩家这一下有没有打中。转头时，可以分别留意这两处反馈在画面里的位置。",
+    "lesson": "给开火和命中各自一个看得清的位置。玩家已经转头看向下一处时，前一个目标的反馈仍要读得懂。",
+    "sourceLabel": "Riot Games · 从点击到命中反馈",
+    "sourceUrl": "https://playvalorant.com/en-us/news/dev/the-state-of-hit-registration/",
+    "criticNote": {
+      "label": "PC Gamer · Morgan Park 评测",
+      "url": "https://www.pcgamer.com/valorant-review/",
+      "text": "Morgan Park 在评测里特意提到，有些外观会改掉换弹动画和声音。他记住的是同一个第一人称动作换了怎样的演出。"
+    },
+    "url": "https://playvalorant.com/",
+    "yearSourceUrl": "https://www.riotgames.com/en/news/starting-the-valorant-journey",
+    "image": "https://www.riotgames.com/darkroom/1000/d0807e131a84f2e42c7a303bda672789:5f9cc29dd5d2a50bb1a8ea2efbc97abb/valorant-offwhitelaunch-keyart.jpg",
+    "feelStudy": {
+      "kind": "fps-camera",
+      "focus": "开火和命中 · 先看近处闪光，再看远处目标",
+      "exercise": "打中时，镜头还听手吗？",
+      "build": "让中央准星经过移动方块时发出脉冲，手继续向一侧转。命中时看后墙的深色立柱有没有停在原地。再故意点空一次作对照。65 毫秒是周刊实验设定。",
+      "a": "命中时，方块和手边的脉冲装置停 65 毫秒。继续转视角，墙柱仍从画面里划过。",
+      "b": "方块和装置同样停 65 毫秒。这次镜头也跟着停，在这段时间里转动不会在结束时补上一跳。",
+      "test": "保持同样的转动速度，各点中几次。你先察觉的是方块被碰到了，还是视角有一下没跟上手？"
+    },
+    "video": {
+      "provider": "bilibili",
+      "id": "BV1UE421w7Qj",
+      "page": 1,
+      "cid": 1633628555,
+      "title": "无畏契约新版新手教学模式 · 室内第一人称实机",
+      "creator": "GDSage",
+      "url": "https://www.bilibili.com/video/BV1UE421w7Qj/",
+      "segment": {
+        "method": "editor",
+        "start": 102,
+        "end": 132,
+        "cue": "原片 1:52 左右，先盯画面右下，近处亮起火光。下一轮把视线留在房间深处，看黄色目标从站立到倒地。约 2:04，目标已经躺下，视角还在扫过前面的长台。"
+      }
+    },
+    "prototypeIdeas": [
+      {
+        "title": "让墙柱告诉你哪里停了",
+        "keep": "发出脉冲马上有回应，碰到移动方块再给一记短停。",
+        "change": "两版只改变命中停顿期间是否还允许转动镜头。",
+        "build": "一个灰盒房、两根深色立柱、一个移动方块和一个脉冲装置即可。把输入、相机、目标与装置状态分开更新。",
+        "playtest": "让试玩者保持小幅转动，分别点中和点空，描述手指还在动的时候哪一层画面停过。",
+        "days": 1
+      }
+    ]
+  },
+  {
+    "id": "ref-counter-strike-16",
+    "title": "反恐精英 1.6",
+    "titleEn": "Counter-Strike 1.6",
+    "year": 2003,
+    "yearNote": "按 Valve 发布 1.6 版 Steam 安装包的年份收录。",
+    "yearSourceUrl": "https://store.steampowered.com/oldnews/184?l=english",
+    "genres": [
+      "射击",
+      "FPS 手感"
+    ],
+    "tags": [
+      "CS",
+      "CS1.6",
+      "CS 1.6",
+      "CS16",
+      "CS 16",
+      "经典CS",
+      "反恐精英"
+    ],
+    "mechanics": [
+      "第一人称跳跃",
+      "视角起落",
+      "近景参照"
+    ],
+    "core": "这段选的是经典 CS 的社区跳跃地图。人在空中时看不见自己的脚，只能从方柱顶面的位置、近处边缘掠过的速度判断自己还有多高。",
+    "lesson": "做第一人称移动，可以先给地面放几块高度明确、边缘醒目的物体。即使只画最简单的几何体，玩家也有机会读出上升、越过顶点和落下三个时刻。",
+    "sourceLabel": "Valve · 1.6 版发布公告",
+    "sourceUrl": "https://store.steampowered.com/oldnews/184?l=english",
+    "url": "https://store.steampowered.com/app/10/",
+    "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/10/header.jpg?t=1745368572",
+    "feelStudy": {
+      "kind": "cs-classic",
+      "focus": "第一人称起落 · 看方柱顶面怎样掠过画面",
+      "build": "先把目光留在远墙，再重看一次，只跟一块近处柱顶的亮色标记。比较从哪一处更容易看出自己在往上还是往下。",
+      "test": "如果把右下角的手部模型遮住，你还看得出每次起落吗？是哪条边、哪个标记给了你线索？",
+      "sourceLabel": "玩家雏菊sw · 社区跳跃图原录像",
+      "sourceUrl": "https://www.bilibili.com/video/BV1jW4y1t7xr/"
+    },
+    "video": {
+      "provider": "bilibili",
+      "id": "BV1jW4y1t7xr",
+      "page": 1,
+      "cid": 814143729,
+      "title": "【cs kz】开学了 · 第一人称社区跳跃地图",
+      "creator": "雏菊sw",
+      "url": "https://www.bilibili.com/video/BV1jW4y1t7xr/",
+      "segment": {
+        "method": "editor",
+        "start": 26,
+        "end": 56,
+        "cue": "原片约 0:36，视角转进粉色通道，远处亮块还能当作参照。0:42 进入白色大厅，盯住近处方柱的十字标记，看柱顶怎样接近画面下缘，又在下一跳时离开。"
+      }
+    },
+    "prototypeIdeas": [
+      {
+        "title": "看地面猜高度",
+        "keep": "保留同一段移动轨迹、视野和跳跃时间。",
+        "change": "A 版只留远墙，B 版给路线加三根有顶面标记的方柱。",
+        "build": "在一个房间循环播放同一条跳跃轨迹，允许玩家转头，用一个键猜落地的时刻。",
+        "playtest": "哪一版更容易猜对？问玩家刚才读的是远墙、柱顶，还是画面边缘。",
+        "days": 1
+      }
+    ]
+  },
+  {
+    "id": "ref-counter-strike-global-offensive",
+    "title": "反恐精英：全球攻势",
+    "titleEn": "Counter-Strike: Global Offensive",
+    "year": 2012,
+    "yearNote": "收录 2012 年发行的原版 CS:GO，所选玩家录像摄于 2019 年。",
+    "yearSourceUrl": "https://blog.counter-strike.net/2012/08/4571/",
+    "genres": [
+      "射击",
+      "FPS 手感"
+    ],
+    "tags": [
+      "CS",
+      "CSGO",
+      "CS:GO",
+      "CS GO",
+      "反恐精英",
+      "全球攻势"
+    ],
+    "mechanics": [
+      "第一人称检视",
+      "前景模型动画",
+      "镜头稳定"
+    ],
+    "core": "检视时，手会把屏幕下方的物件抬到眼前，转出侧面再放回。即使背景保持平稳，物件遮住的画面范围和它回到原位的过程也让动作有分量。",
+    "lesson": "手持物能独立承担一整段大幅动作。给场景留一处稳定参照，既能展示手上的变化，也能让玩家继续看清自己朝向哪里。",
+    "sourceLabel": "Valve · 反恐精英系列二十周年更新",
+    "sourceUrl": "https://blog.counter-strike.net/2019/10/25884/",
+    "url": "https://blog.counter-strike.net/about/",
+    "image": "https://media.steampowered.com/apps/csgo/blog/images/fb_image.png?v=6",
+    "feelStudy": {
+      "kind": "csgo",
+      "focus": "前景动作 · 盯住远处月亮，看手移动了多少",
+      "build": "先跟随检视中的物件看一遍，再把目光固定在月亮的边缘。用同一颗月亮作参照，比较前景抬起、转动和收回时背景有多稳定。",
+      "test": "哪一下让你最能感觉到物件抬到了眼前？是手腕的转动、物件变大的轮廓，还是它遮住的画面面积？",
+      "sourceLabel": "Valve · 2019 年 CS20 收藏更新",
+      "sourceUrl": "https://blog.counter-strike.net/2019/10/25884/"
+    },
+    "video": {
+      "provider": "bilibili",
+      "id": "BV1yE411k7NQ",
+      "page": 1,
+      "cid": 124435776,
+      "title": "CS:GO 中的系列二十周年收藏检视 · 2019 年原录像",
+      "creator": "Rieの",
+      "url": "https://www.bilibili.com/video/BV1yE411k7NQ/",
+      "segment": {
+        "method": "editor",
+        "start": 154,
+        "end": 184,
+        "cue": "原片约 2:38，金色模型横过画面下方，约 2:42 才收回右侧。到 2:54，花色模型又转出一整个侧面。每段检视时盯住天上的月亮，看远景和手里的物件各移动了多少。"
+      }
+    },
+    "prototypeIdeas": [
+      {
+        "title": "把怀表举到眼前",
+        "keep": "手持物从角落抬起、转面、再收回的过程。",
+        "change": "做两档前景旋转幅度，让远处时钟和视角始终保持原样。",
+        "build": "一个方形表壳、一段检视动画和墙上一只钟足够。让玩家检视时仍能左右看。",
+        "playtest": "哪版能看清表面，又能一眼找到刚才墙上的钟？分别试慢转头和快速转头。",
+        "days": 1
+      }
+    ]
+  },
+  {
+    "id": "ref-apex-legends",
+    "title": "Apex 英雄",
+    "titleEn": "Apex Legends",
+    "year": 2019,
+    "genres": [
+      "射击",
+      "FPS 手感"
+    ],
+    "mechanics": [
+      "第一人称移动",
+      "高低差",
+      "地面参照"
+    ],
+    "core": "第一人称跑图时，你能从地面和屋顶的相对位置读出自己到了多高。这段奥林匹斯实机里，角色从窄通道跑向开阔平台，随后圆屋顶从眼前转到脚下。",
+    "lesson": "试着让同一个地标贯穿起跳和落地。腾空前它能挡住半个画面，越过它时能看见顶面，回到地面又能看清近处的小物件。这些参照让高度变化更容易读懂。",
+    "sourceLabel": "EA Help · 移动与滑行",
+    "sourceUrl": "https://help.ea.com/en/articles/apex-legends/how-to-play/",
+    "url": "https://store.steampowered.com/app/1172470/",
+    "yearSourceUrl": "https://news.ea.com/press-releases/press-releases-details/2019/Respawn-Launches-Apex-Legends-a-Free-to-Play-Battle-Royale-Experience-Available-Now-on-PC-PS4-and-Xbox-One/default.aspx",
+    "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1172470/4219c147f1e094297c726d537518babba7f3ae2d/header.jpg?t=1794958367",
+    "video": {
+      "provider": "bilibili",
+      "id": "BV1Ww1aB3EPW",
+      "page": 1,
+      "cid": 33646708017,
+      "url": "https://www.bilibili.com/video/BV1Ww1aB3EPW/",
+      "title": "【APEX27赛季】新奥林匹斯新增点位跑图分享，大空地明显减少，三叉戟疑似删除？",
+      "creator": "毕生温柔_",
+      "segment": {
+        "method": "editor",
+        "start": 33,
+        "end": 63,
+        "cue": "0:39 看通道出口的两侧怎样掠过。0:45 会短暂打开背包，关掉后留意蓝白色圆屋顶，0:55 它几乎贴着视线，0:59 已经能俯看屋顶，1:03 目光又回到地上的物品。"
+      }
+    },
+    "feelStudy": {
+      "kind": "apex",
+      "focus": "腾空到落地时，同一座屋顶怎样交代高度",
+      "build": "把片段拖回 0:53，盯着蓝白色屋顶的边缘看到 0:59，再播一次只看画面中央远处的建筑。比较哪一处更早让你觉察到角色在升高。",
+      "test": "在能看见整个屋顶之前，你最早在哪一刻觉得自己腾空了？",
+      "sourceLabel": "EA Help · 第一人称移动",
+      "sourceUrl": "https://help.ea.com/en/articles/apex-legends/how-to-play/"
+    },
+    "prototypeIdeas": [
+      {
+        "title": "闭掉高度表也能猜出跳了多高",
+        "keep": "腾空和落地时，近处物体的侧面和顶面会先后出现在视野里。",
+        "change": "把跑图缩成一个院子。每跳一次随机选低、中、高三档，让人落地后凭印象猜高度。",
+        "build": "搭地面、远墙和一座矮圆台，固定视野角与起跳速度的三档数值。做一个开关控制圆台是否可见，重复同一组跳跃。",
+        "playtest": "每版各跳六次，记录猜对次数，再问对方从哪一帧开始有把握。",
+        "days": 1
+      }
+    ],
+    "tags": [
+      "Apex",
+      "APEC",
+      "Apex Legends",
+      "Apex英雄"
+    ]
+  },
+  {
+    "id": "ref-pubg",
+    "title": "绝地求生",
+    "titleEn": "PUBG: BATTLEGROUNDS",
+    "year": 2017,
+    "genres": [
+      "射击",
+      "FPS 手感"
+    ],
+    "mechanics": [
+      "第一人称驾驶",
+      "驾驶舱参照",
+      "运动视差"
+    ],
+    "core": "同样是第一人称，坐进驾驶席后，窗框给了眼睛一个随车移动的参照。近处树干一下就掠过窗边，远处的树线慢慢移，就能感觉到车在往前开。",
+    "lesson": "做第一人称移动时，可以把画面分成三层去看：贴近玩家的固定边框、快速掠过的路边物、慢慢移动的远景。即使没有速度表，这三层也能交代运动。",
+    "sourceLabel": "PUBG Support · 第一人称视角",
+    "sourceUrl": "https://support.pubg.com/hc/en-us/articles/115004201774-What-is-the-FPP-mode",
+    "url": "https://store.steampowered.com/app/578080/",
+    "yearSourceUrl": "https://store.steampowered.com/app/578080/",
+    "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/578080/841ea38bc58cabb70aef65365cf50bc2d79329d9/header.jpg?t=1792718193",
+    "video": {
+      "provider": "bilibili",
+      "id": "BV1VLwCezEsQ",
+      "page": 1,
+      "cid": 27961461990,
+      "url": "https://www.bilibili.com/video/BV1VLwCezEsQ/",
+      "title": "分析地图，轻松进圈！PUBG第一人称单排全局解说",
+      "creator": "HuskyBleh",
+      "segment": {
+        "method": "editor",
+        "start": 640,
+        "end": 670,
+        "cue": "10:40 镜头还在车外，接着坐进驾驶席。10:49 起盯住挡风玻璃左侧的窗柱，看树干从它旁边经过。到 11:04 车头转过来，比较窗柱、近处地面和远处树线各移动了多少。"
+      }
+    },
+    "feelStudy": {
+      "kind": "pubg",
+      "focus": "坐进驾驶席后，窗框、近树和远景各移动多少",
+      "build": "看两遍 10:49 到 11:04。第一遍只跟着窗边最近的一棵树，第二遍只看远处树线，再用窗柱作参照，试着指出车头拐弯的时刻。",
+      "test": "哪一层最能让你感觉车开得快？哪一层最能告诉你方向变了？",
+      "sourceLabel": "PUBG Support · 第一人称视角",
+      "sourceUrl": "https://support.pubg.com/hc/en-us/articles/115004201774-What-is-the-FPP-mode"
+    },
+    "prototypeIdeas": [
+      {
+        "title": "同速两趟车，哪一趟更快？",
+        "keep": "坐在同一辆车里，近处的树干掠过得比远处的树线快。",
+        "change": "做一辆沿固定弯道自动开的观光车。两趟速度完全相同，只有路边树离车的距离不同。",
+        "build": "画一个固定窗框，摆两排树和远山，让相机沿一条弯线匀速移动。按键重播同一路线，交替显示近树与远树。",
+        "playtest": "把速度读数藏起来，让人选出感觉更快的一趟，指一指是什么让他这么判断。",
+        "days": 1
+      }
+    ],
+    "tags": [
+      "PUBG",
+      "吃鸡",
+      "绝地求生"
+    ]
+  }
+]

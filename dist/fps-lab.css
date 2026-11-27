@@ -1,0 +1,8 @@
+.fps-lab canvas { touch-action: none; }
+.fps-lab.is-running canvas { cursor: none; }
+.fps-lab canvas:focus-visible { outline: 2px solid #587200; outline-offset: 2px; }
+.fps-help .fps-touch { display: none; }
+@media (pointer: coarse) {
+  .fps-help .fps-desktop { display: none; }
+  .fps-help .fps-touch { display: inline; }
+}
